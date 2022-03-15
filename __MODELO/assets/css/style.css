@@ -1,0 +1,18 @@
+@charset "UTF-8";
+
+@import url(boot.css);
+
+@font-face {
+    font-family: 'Fredoka';
+    src: url(fonts/Fredoka.ttf);
+}
+
+body {
+    font-family: 'Fredoka', sans-serif;
+}
+
+h3 {
+    color: var(--orange);
+}
+
+
