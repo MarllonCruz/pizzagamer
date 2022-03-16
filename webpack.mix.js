@@ -1,3 +1,4 @@
+const { version } = require('laravel-mix');
 const mix = require('laravel-mix');
 
 /*
@@ -11,7 +12,9 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+mix
+    .css('node_modules/@fortawesome/fontawesome-free/css/all.css', '_MODELO/assets/css/fontawesome.css')
+
+    .js('node_modules/@fortawesome/fontawesome-free/js/all.js', '_MODELO/assets/js/fontawesome.js')
+
+    .version;
