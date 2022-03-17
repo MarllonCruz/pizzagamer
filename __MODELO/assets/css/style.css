@@ -6,6 +6,7 @@
 @import url(boot.css);
 
 body {
+    width: 100vw;
     font-family: 'Fredoka', sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -22,8 +23,10 @@ body {
 *
 * ======================================================= */
 header {
+    position: relative;
     min-height: 60px;
-    width: 100%;
+    width: 100vw;
+    margin: 0 auto;
     background-color: var(--white);
     color: var(--black);
 }
@@ -118,23 +121,109 @@ ul.nav-top--social li a:hover {
 .nav-menu--menus ul li a.active {
     color: var(--orange);
 }
+/* =======================================================
+* 	Header Menu Btn
+* ======================================================= */
+.nav-menu--btn {
+    display: none;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    border: 3px solid var(--black-light);
+    overflow: hidden;
+}
+
+.nav-menu--btn .menu-btn {
+    width: 28px;
+    height: 4px;
+    background-color: var(--black-light);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
+    transition: all .5s ease-in-out;
+}
+
+.nav-menu--btn .menu-btn::after,
+.nav-menu--btn .menu-btn::before {
+    content: '';
+    position: absolute;
+    width: 28px;
+    height: 4px;
+    background-color: var(--black-light);
+    border-radius: 5px;
+    box-shadow: 0 2px 2px rgba(255, 101, 47, .2);
+    transition: all .5s ease-in-out;
+}
+
+.nav-menu--btn .menu-btn::after {
+    transform: translateY(8px);
+}
+
+.nav-menu--btn .menu-btn::before {
+    transform: translateY(-8px);
+}
+
+/* =======================================================
+* 	Btn Animation
+* ======================================================= */
+.nav-menu--btn.open {
+    border: 3px solid var(--orange);
+}
+.nav-menu--btn.open .menu-btn {
+    background-color: var(--orange);
+    transform: translateX(-50px);
+    background: transparent;
+    box-shadow: none;
+}
+
+.nav-menu--btn.open .menu-btn::after {
+    transform: rotate(-45deg) translate(35px, 35px);
+    background-color: var(--orange);
+}
+
+.nav-menu--btn.open .menu-btn::before {
+    transform: rotate(45deg) translate(35px, -35px);
+    background-color: var(--orange);
+}
+
+
 
 /* =======================================================
 * 	Header @media
 * ======================================================= */
 @media (max-width: 960px) {
+    .p-40 {
+        padding: 0 20px;
+    }
+    .nav-top {
+        justify-content: center;
+    }
+
+    .nav-menu--btn {
+        display: flex;
+    }
+
     .nav-menu--menus {
-        position: absolute;
+        position: fixed;
         top: 118px;
-        right: 0;
+        right: -230px;
         bottom: 0;
         height: 100vh;
-        width: 230px;
+        width: 210px;
         background-color: var(--white);
         border-left: 2px solid var(--black-light);
         border-top: 2px solid var(--black-light);
         border-top-left-radius: 5px;
         padding: 10px 20px;
+        transition: all .5s ease-in-out;
+    }
+
+    .nav-menu--menus.active {
+        right: 0;
     }
 
     .nav-menu--menus ul {

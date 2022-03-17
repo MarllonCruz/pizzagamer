@@ -41,6 +41,10 @@ li {
     list-style: none;
 }
 
+.margin-center {
+    margin: 0 auto;
+}
+
 .container {
     max-width: 1320px;
 }
