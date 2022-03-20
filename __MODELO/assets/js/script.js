@@ -1,19 +1,25 @@
 /* =======================================================
 *   Btn Nav Menu
 * ======================================================= */
-const menuBtn = document.querySelector('.nav-menu--btn');
+const menuBtnOpen = document.querySelector('.nav-menu--btn-open');
+const menuBtnClose = document.querySelector('.nav-menu--btn-close');
 const menus = document.querySelector('.nav-menu--menus');
 let menuOpen = false;
-menuBtn.addEventListener('click', function() {
+menuBtnOpen.addEventListener('click', function() {
     if (!menuOpen) {
-        menuBtn.classList.add('open');
         menus.classList.add('active');
         menuOpen = true;
     } else {
-        menuBtn.classList.remove('open');
         menus.classList.remove('active');
         menuOpen = false;
     }
+});
+
+menuBtnClose.addEventListener('click', function() {
+	if (menuOpen) {
+		menus.classList.remove('active');
+        menuOpen = false;
+	}
 });
 
 /* =======================================================
@@ -46,7 +52,7 @@ btns.forEach((btn, i) => {
 
 // slider autoplay navigation
 var repeat = function(activeClass) {
-	let active = document.getElementsByClassName('active');
+	let active = document.getElementsByClassName('slide active');
 	let i = 1;
 
 	var repeater = () => {

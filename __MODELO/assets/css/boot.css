@@ -18,18 +18,23 @@
     --white: #FFFFFF;
     --white-light: #FCFCFC;
     --black: #0F1013;
-    --black-light: #191919;
+    --black-light: #5a5a5afd;
     --orange: #FD5E17;
     --orange-light: #fb4d00;
     --gray: #D6D6D6;
 
     --separate-color: #19191914;
+    --bg-body: #EFEFEF;
 }
   
 h1, h2, h3, h4, h5, h6, figure {
-    color: #000;
+    color: var(--black);
     font-family: "Fredoka", Arial, sans-serif;
     font-weight: 400;
+}
+
+img {
+    max-width: 100%;
 }
 
 a {
@@ -69,6 +74,6 @@ li {
     margin-top: 20px;
 }
 
-img {
-    max-width: 300px;
+.mx-20 {
+    margin: 20px 0;
 }

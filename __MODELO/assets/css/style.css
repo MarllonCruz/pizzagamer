@@ -13,8 +13,7 @@ body {
     line-height: 1.7;
     position: relative;
     overflow-x: hidden;
-    background-color: var(--black-light);
-    color: var(--white);
+    background-color: var(--bg-body);
 }
 
 /* =======================================================
@@ -23,7 +22,7 @@ body {
 header {
     min-height: 60px;
     background-color: var(--white);
-    color: var(--black);
+    color: var(--black-light);
 }
 
 header nav {
@@ -43,7 +42,7 @@ header nav {
     font-size: 13px;
     padding-right: 10px;
     margin-right: 5px;
-    border-right: 1px solid var(--black);
+    border-right: 1px solid var(--black-light);
     letter-spacing: 0px;
 }
 
@@ -56,13 +55,17 @@ ul.nav-top--social li {
 }
 
 ul.nav-top--social li a:hover {
-    color: var(--orange);
+    color: var(--black);
 }
 
 .nav-separate {
     width: 100%;
     height: 1px;
     background-color: var(--separate-color);
+    position: absolute;
+    top: 46px;
+    left: 0;
+    bottom: 0;
 }
 
 .nav-menu {
@@ -70,22 +73,23 @@ ul.nav-top--social li a:hover {
     justify-content: space-between;
     height: 70px;
     align-items: center;
+    position: relative;
 }
 
 .nav-menu--log a {
     font-size: 20px;
     font-weight: 600;
-    color: var(--orange);
+    color: var(--black);
     display: flex;
     align-items: center;
-    border: 3px solid var(--orange);
+    border: 3px solid var(--black);
     padding: 5px 5px;
     border-radius: 10px;
 }
 
 .nav-menu--log a:hover {
-    color: var(--orange-light);
-    border: 3px solid var(--orange-light);
+    color: var(--black);
+    border: 3px solid var(--black);
 }
 
 .nav-menu--log a svg {
@@ -108,71 +112,37 @@ ul.nav-top--social li a:hover {
 
 .nav-menu--menus ul li a:hover,
 .nav-menu--menus ul li a.active {
-    color: var(--orange);
+    color: var(--black);
 }
 
-.nav-menu--btn {
+.nav-menu--btn-open,
+.nav-menu--btn-close {
     display: none;
-    position: relative;
     justify-content: center;
     align-items: center;
-    width: 45px;
-    height: 45px;
+    padding: 3px 8px;
     border-radius: 5px;
     cursor: pointer;
-    transition: all .5s ease-in-out;
-    border: 3px solid var(--black-light);
-    overflow: hidden;
+    border: 3px solid var(--black);
+    color: var(--black);
 }
 
-.nav-menu--btn .menu-btn {
-    width: 28px;
-    height: 4px;
-    background-color: var(--black-light);
-    border-radius: 5px;
-    box-shadow: 0 2px 5px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+.nav-menu--btn-close {
+    border: 3px solid #ff3838;
+    width: 160px;
+    height: 40px;
+    margin-bottom: 10px;
+    font-size: 22px;
 }
 
-.nav-menu--btn .menu-btn::after,
-.nav-menu--btn .menu-btn::before {
-    content: '';
-    position: absolute;
-    width: 28px;
-    height: 4px;
-    background-color: var(--black-light);
-    border-radius: 5px;
-    box-shadow: 0 2px 2px rgba(255, 101, 47, .2);
-    transition: all .5s ease-in-out;
+.nav-menu--btn-close svg {
+    color: #ff3838;
 }
 
-.nav-menu--btn .menu-btn::after {
-    transform: translateY(8px);
+.nav-menu--btn-open svg {
+    font-size: 30px;
 }
 
-.nav-menu--btn .menu-btn::before {
-    transform: translateY(-8px);
-}
-
-.nav-menu--btn.open {
-    border: 3px solid var(--orange);
-}
-.nav-menu--btn.open .menu-btn {
-    background-color: var(--orange);
-    transform: translateX(-50px);
-    background: transparent;
-    box-shadow: none;
-}
-
-.nav-menu--btn.open .menu-btn::after {
-    transform: rotate(-45deg) translate(35px, 35px);
-    background-color: var(--orange);
-}
-
-.nav-menu--btn.open .menu-btn::before {
-    transform: rotate(45deg) translate(35px, -35px);
-    background-color: var(--orange);
-}
 
 /* ======================================================= 
 *   Feed SlideShow
@@ -183,6 +153,7 @@ ul.nav-top--social li a:hover {
 	height: 570px;
 	border-radius: 20px;
 	overflow: hidden;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .feed-slideshow .slide {
 	z-index: 1;
@@ -285,8 +256,51 @@ ul.nav-top--social li a:hover {
 }
 .feed-slideshow .navigation .btn.active {
 	background: #fff;
-	box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+	box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
 }
+
+/* =======================================================
+* 	Feed Highlights
+* ======================================================= */
+.feed-highlights {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    width: 100%;
+	margin: 0 auto;
+	grid-gap: 20px;
+}
+
+.feed-highlights article {
+    position: relative;
+	background-color: var(--white);
+	width: 100%;
+	height: 390px;
+	border-radius: 10px;
+	overflow: hidden;
+	display: flex;
+	flex-direction: column;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.feed-highlights article.feed-large {
+    grid-column: 1 / span 3;
+    grid-row: 1 / span 1;
+    background-color: red;
+}
+
+.feed-highlights article.feed-medium {
+    grid-row: 3 / span 1;
+    grid-column: 1 / span 2;
+    background-color: aqua;
+}
+
+.feed-highlights article.feed-news {
+    grid-column: 4 / span 1;
+    grid-row: 1 / span 2;
+    background-color: gold;
+    height: auto;
+}
+
 
 /* =======================================================
 * 	 
@@ -304,28 +318,29 @@ ul.nav-top--social li a:hover {
         justify-content: center;
     }
 
-    .nav-menu--btn {
+    .nav-menu--btn-open,
+    .nav-menu--btn-close {
         display: flex;
     }
 
     .nav-menu--menus {
         z-index: 10;
         position: fixed;
-        top: 118px;
-        right: -230px;
+        right: -20px;
         bottom: 0;
+        transform: translateX(210px);
         height: 100vh;
         width: 210px;
         background-color: var(--white);
-        border-left: 2px solid var(--black-light);
-        border-top: 2px solid var(--black-light);
+        border-left: 2px solid var(--black);
+        border-top: 2px solid var(--black);
         border-top-left-radius: 5px;
         padding: 10px 20px;
         transition: all .5s ease-in-out;
     }
 
     .nav-menu--menus.active {
-        right: 0;
+        transform: translateX(0);
     }
 
     .nav-menu--menus ul {
@@ -344,7 +359,7 @@ ul.nav-top--social li a:hover {
         height: 420px;
     }
 
-    .feed-slideshow .slide .slide-info h2 {
+    .feed-st-slideshow .slide .slide-info h2 {
         font-size: 30px;
     }
     .feed-slideshow .slide .slide-info p {
