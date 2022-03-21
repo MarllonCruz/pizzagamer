@@ -58,22 +58,10 @@ li {
     max-width: 1100px;
 }
 
-.p-40 {
-    padding: 40px;
-}
-
-.px-40 {
-    padding: 0 40px;
-}
-
-.py-40 {
-    padding: 40px 0; 
-}
-
 .mt-20 {
     margin-top: 20px;
 }
 
-.mx-20 {
+.my-20 {
     margin: 20px 0;
 }

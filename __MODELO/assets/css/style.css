@@ -285,22 +285,202 @@ ul.nav-top--social li a:hover {
 .feed-highlights article.feed-large {
     grid-column: 1 / span 3;
     grid-row: 1 / span 1;
-    background-color: red;
 }
 
 .feed-highlights article.feed-medium {
     grid-row: 3 / span 1;
     grid-column: 1 / span 2;
-    background-color: aqua;
 }
 
 .feed-highlights article.feed-news {
     grid-column: 4 / span 1;
     grid-row: 1 / span 2;
-    background-color: gold;
     height: auto;
 }
 
+.feed-highlights article {
+    display: flex;
+    position: relative;
+}
+
+.feed-highlights article .feed-info,
+.feed-highlights article .feed-cover {
+    flex: 1;
+}
+
+.feed-highlights article .feed-cover img{
+    max-width: 100%;
+    height: 100%;
+	object-fit: cover;
+}
+
+.feed-highlights article .feed-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 0 20px;
+}
+
+.feed-highlights article .feed-datetime {
+    color: var(--black-light);
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+
+    position: absolute;
+    bottom: 8px;
+    left: 20px;
+}
+
+.feed-highlights article .feed-datetime svg {
+    margin-right: 5px;
+}
+
+/* =======================================================
+* 	Feed Highlights - Feed-Large
+* ======================================================= */
+.feed-highlights article.feed-large {
+    flex-direction: row;
+}
+
+.feed-highlights article.feed-large .feed-info a.feed-type {
+    color: #e4ae19;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.feed-highlights article.feed-large .feed-info a h2 {
+    font-size: 32px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.feed-highlights article.feed-large .feed-info a p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--black-light);
+    line-height: 1.4;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* =======================================================
+* 	Feed Highlights - Feed-Medium
+* ======================================================= */
+.feed-highlights article.feed-medium {
+    flex-direction: row;
+}
+
+.feed-highlights article.feed-medium .feed-info {
+    flex: 2;
+}
+
+.feed-highlights article.feed-medium .feed-info a.feed-type {
+    color: #407ac7;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.feed-highlights article.feed-medium .feed-info a h2 {
+    font-size: 26px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.feed-highlights article.feed-medium .feed-info a p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--black-light);
+    line-height: 1.4;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+/* =======================================================
+* 	Feed Highlights - Feed-Smalls
+* ======================================================= */
+.feed-highlights article.feed-small {
+    flex-direction: column-reverse;
+    position: relative;
+}
+.feed-highlights article.feed-small .feed-info {
+    justify-content: start;
+    margin-top: 15px;
+}
+
+.feed-highlights article.feed-small .feed-info a.feed-type {
+    color: #bdc3c7;
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    border: 1px solid #bdc3c7;
+    padding: 4px 16px;
+    border-radius: 30px;
+    z-index: 5;
+}
+
+.feed-highlights article.feed-small .feed-info a.feed-type:hover {
+    color: #ecf0f1;
+    border: 1px solid #ecf0f1;
+}
+
+.feed-highlights article.feed-small .feed-info a h2 {
+    font-size: 18px;
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1.2;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+}
+
+.feed-highlights article.feed-small .feed-info a p {
+    margin-top: 10px;
+    font-size: 16px;
+    color: var(--black-light);
+    line-height: 1.4;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
 
 /* =======================================================
 * 	 
