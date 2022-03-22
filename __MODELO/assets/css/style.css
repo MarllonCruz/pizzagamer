@@ -273,7 +273,7 @@ ul.nav-top--social li a:hover {
 .feed-highlights article {
     position: relative;
 	background-color: var(--white);
-	width: 100%;
+    min-width: 220px;
 	height: 390px;
 	border-radius: 10px;
 	overflow: hidden;
@@ -314,7 +314,7 @@ ul.nav-top--social li a:hover {
 }
 
 .feed-highlights article .feed-cover img{
-    max-width: 100%;
+    width: 100%;
     height: 100%;
 	object-fit: cover;
 }
@@ -464,7 +464,7 @@ ul.nav-top--social li a:hover {
 
 .feed-highlights article.feed-small .feed-info a.feed-type {
     color: #bdc3c7;
-    font-size: 10px;
+    font-size: 8px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -472,7 +472,7 @@ ul.nav-top--social li a:hover {
     top: 10px;
     left: 10px;
     border: 1px solid #bdc3c7;
-    padding: 4px 16px;
+    padding: 2px 16px;
     border-radius: 30px;
     z-index: 5;
 }
@@ -548,7 +548,7 @@ ul.nav-top--social li a:hover {
 }
 
 .feed-highlights article.feed-small.diff .feed-info .feed-type {
-   top: -5px;
+   top: -6px;
 }
 
 .feed-highlights article.feed-small.diff .feed-info a h2 {
@@ -660,6 +660,9 @@ ul.nav-top--social li a:hover {
     /* ======================================================= 
     *   Feed SlideShow
     * ======================================================= */
+    .feed-slideshow-responsive {
+        padding: 0 10px;
+    }
     .feed-slideshow {
         height: 420px;
     }
@@ -695,6 +698,36 @@ ul.nav-top--social li a:hover {
         font-size: 13px;
         letter-spacing: 2px;
     }
+
+    /* =======================================================
+    * 	Feed Highlights
+    * ======================================================= */
+    .feed-highlights-responsive {
+        padding: 0 10px;
+    }
+
+    .feed-highlights {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feed-highlights article.feed-news {
+        display: none;
+    }
+
+    .feed-highlights article.feed-large {
+        grid-column: 1 / span 3;
+        grid-row: 1 / span 1;
+    }
+    
+    .feed-highlights article.feed-medium {
+        grid-row: 3 / span 1;
+        grid-column: 1 / span 3;
+    }
+    
+    .feed-highlights article.feed-small.diff {
+        grid-column: 2 / span 2;
+        grid-row: 2 / span 1;
+    }
 }
 
 @media (max-width: 720px) {
@@ -703,5 +736,79 @@ ul.nav-top--social li a:hover {
     * ======================================================= */
     .feed-slideshow {
         display: none;
+    }
+
+    /* =======================================================
+    * 	Feed Highlights
+    * ======================================================= */
+    .feed-highlights {
+        grid-template-columns: repeat(2, 1fr);
+        grid-gap: 10px;
+    }
+
+    .feed-highlights article {
+        min-width: 200px;
+        max-width: 100%;
+    }
+    
+    .feed-highlights article.feed-large {
+        grid-column: 1 / span 2;
+        grid-row: 1 / span 1;
+    }
+    
+    .feed-highlights article.feed-medium {
+        grid-row: 3 / span 1;
+        grid-column: 1 / span 2;
+    }
+    
+    .feed-highlights article.feed-small.diff {
+        grid-column: 1 / span 2;
+        grid-row: 2 / span 1;
+    }
+
+    .feed-highlights article.feed-large .feed-info a h2,
+    .feed-highlights article.feed-medium .feed-info a h2 {
+        font-size: 24px;
+        -webkit-line-clamp: 3;
+    }
+    .feed-highlights article .feed-info a p {
+        font-size: 10px;
+    }
+
+    .feed-highlights article.feed-large .feed-info a p,
+    .feed-highlights article.feed-medium .feed-info a p {
+        -webkit-line-clamp: 4;
+    }
+
+    .feed-highlights article.feed-small.diff .feed-info a p {
+        -webkit-line-clamp: 3;
+    }
+}
+
+@media (max-width: 430px) {
+    /* =======================================================
+    * 	Feed Highlights
+    * ======================================================= */
+    .feed-highlights {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .feed-highlights article {
+    }
+
+    .feed-highlights article.feed-large {
+        grid-column: 1 / span 1;
+    }
+    
+    .feed-highlights article.feed-medium {
+        grid-column: 1 / span 1;
+    }
+    
+    .feed-highlights article.feed-small.diff {
+        grid-column: 1 / span 1;
+    }
+
+    .feed-highlights article {
+        height: 430px;
     }
 }
