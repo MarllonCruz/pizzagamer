@@ -77,3 +77,33 @@ var repeat = function(activeClass) {
 	repeater();
 }
 repeat();
+
+/* =======================================================
+*   Modal Open Video
+* ======================================================= */
+$("[data-modal]").click(function (e) {
+	e.preventDefault();
+
+	var iframe = $(".embed iframe");
+	var modal = $(this).data("modal");
+	var uri = $(this).data("uri");
+
+	iframe.attr('src', uri);
+	$(modal).fadeIn(200).css("display", "flex");
+});
+
+/* =======================================================
+*   Modal Close Video
+* ======================================================= */
+$(".j_modal_close").click(function (e) {
+	e.preventDefault();
+
+	if ($(e.target).hasClass("j_modal_close")) {
+		$(".j_modal_close").fadeOut(200);
+	}
+
+	var iframe = $(this).find("iframe");
+	if (iframe) {
+		iframe.attr("src", null);
+	}
+});
