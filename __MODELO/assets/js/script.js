@@ -76,7 +76,7 @@ var repeat = function(activeClass) {
 	}
 	repeater();
 }
-repeat();
+//repeat();
 
 /* =======================================================
 *   Modal Open Video
