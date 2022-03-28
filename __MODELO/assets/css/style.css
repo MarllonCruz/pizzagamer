@@ -814,15 +814,15 @@ footer {
 
 /* =======================================================
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
-* *	* * * * PAGE NEWS * * * * * * * * * * * * * * * * * *
+* *	* * * * PAGE NEWS && VIDEOS * * * * * * * * * * * * *
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
 * ======================================================= */
 
 /* =======================================================
-* 	NEWS
+* 	News && Others Articles 
 * ======================================================= */
 .news-page {
-    padding: 0 10px;
+    padding: 10px 10px 40px 10px;
 }
 .news-page  .news-header {
     padding: 30px 0;
@@ -879,6 +879,35 @@ footer {
     gap: 60px 40px;
 }
 
+.others-articles {
+    padding: 40px 10px 20px 10px;
+}
+
+.others-articles .others-articles-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.others-articles .others-articles-header h1 {
+    text-align: center;
+    font-size: 46px;
+    font-weight: 400;
+    margin-bottom: 2px;
+}
+
+.others-articles .others-articles-header p {
+    text-align: center;
+}
+
+.others-articles .others-articles-body {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 40px;
+}
+
+.others-articles .others-articles-body article a.box-img,
 .news_content article a.box-img {
     overflow: hidden;
     border-radius: 15px;
@@ -887,24 +916,30 @@ footer {
     margin-bottom: 5px;
 }
 
+.others-articles .others-articles-body a.box-img:hover,
 .news_content article a.box-img:hover {
     background-color: var(--black-light);
 }
 
+.others-articles .others-articles-body article a.box-img img,
 .news_content article a.box-img img {
     border-radius: 15px;
     height: 200px;
     object-fit: cover;
 }
 
+.others-articles .others-articles-body article header,
 .news_content article header {
     background-color: inherit;
 }
+
+.others-articles .others-articles-body article header .meta,
 .news_content article header .meta {
     font-size: 15px;
-    margin-bottom: 10px;
+    margin: 8px 0 12px 0;
 }
 
+.others-articles .others-articles-body article header h2,
 .news_content article header h2 {
     font-size: 24px;
     font-weight: 600;
@@ -912,11 +947,14 @@ footer {
     margin-bottom: 10px;
 }
 
+.others-articles .others-articles-body article header h2 a:hover,
+.others-articles .others-articles-body article header p a:hover,
 .news_content article header h2 a:hover,
 .news_content article header p a:hover {
     text-decoration: underline;
 }
 
+.others-articles .others-articles-body article header p,
 .news_content article header p {
     font-size: 16px;
     line-height: 1.1;
@@ -982,6 +1020,7 @@ footer {
     color: var(--black-light);
 }
 
+
 /* =======================================================
 * 	 Article Video
 * ======================================================= */
@@ -991,7 +1030,8 @@ footer {
 .article-video h3 {
     text-align: center;
     font-size: 22px;
-    margin: 0 0 10px 0;
+    margin: 0 0 15px 0;
+    line-height: 1.2;
 }
 
 .article-video .video {
@@ -1142,11 +1182,14 @@ footer {
     }
 
     /* =======================================================
-    * 	NEWS
+    * 	News && Orthers Articles
     * ======================================================= */
+    .others-articles .others-articles-body,
     .news-page .news_content {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .others-articles .others-articles-body article a.box-img img,
     .news_content article a.box-img img {
         height: 220px;
         width: 100%;
@@ -1156,7 +1199,7 @@ footer {
     * 	ARTICLE && ARTICLE VIDEO
     * ======================================================= */
     .article {
-        padding: 10px;
+        padding: 10px 20px;
     }
 
 }
@@ -1253,7 +1296,7 @@ footer {
         padding: 0px 10px;
     }
 
-     /* =======================================================
+    /* =======================================================
     * 	Feed Photo
     * ======================================================= */
     .feed-videos .body {
@@ -1261,11 +1304,9 @@ footer {
     }
 
     /* =======================================================
-    * 	NEWS
+    *   News && Orthers Articles
     * ======================================================= */
-    .news-page {
-        margin: 0 20px;
-    }
+    .others-articles .others-articles-body,
     .news-page .news_content {
         grid-template-columns: repeat(1, 1fr);
     }
