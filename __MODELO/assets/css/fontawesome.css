@@ -6280,12 +6280,12 @@ readers do not read off random characters that represent icons */
 :root, :host {
   --fa-font-brands: normal 400 1em/1 "Font Awesome 6 Brands"; }
 
-@font-face {
+/* @font-face {
   font-family: 'Font Awesome 6 Brands';
   font-style: normal;
   font-weight: 400;
   font-display: block;
-  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?a4ac62083ead21bd1ea2120fb530451b) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?8dddb1b4cd1f65b03167456d0109bfc7) format("truetype"); }
+  src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.woff2?a4ac62083ead21bd1ea2120fb530451b) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-brands-400.ttf?8dddb1b4cd1f65b03167456d0109bfc7) format("truetype"); } */
 
 .fab,
 .fa-brands {
@@ -7707,7 +7707,7 @@ readers do not read off random characters that represent icons */
 :root, :host {
   --fa-font-regular: normal 400 1em/1 "Font Awesome 6 Free"; }
 
-@font-face {
+/* @font-face {
   font-family: 'Font Awesome 6 Free';
   font-style: normal;
   font-weight: 400;
@@ -7770,4 +7770,4 @@ readers do not read off random characters that represent icons */
   font-display: block;
   src: url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.woff2?2e77423e3ed431908eda39321381f183) format("woff2"), url(/fonts/vendor/@fortawesome/fontawesome-free/webfa-v4compatibility.ttf?83a9e0357eddeb41b08be278a50d5c37) format("truetype");
   unicode-range: U+F041,U+F047,U+F065-F066,U+F07D-F07E,U+F080,U+F08B,U+F08E,U+F090,U+F09A,U+F0AC,U+F0AE,U+F0B2,U+F0D0,U+F0D6,U+F0E4,U+F0EC,U+F10A-F10B,U+F123,U+F13E,U+F148-F149,U+F14C,U+F156,U+F15E,U+F160-F161,U+F163,U+F175-F178,U+F195,U+F1F8,U+F219,U+F250,U+F252,U+F27A; }
-
+ */

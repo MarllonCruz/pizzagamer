@@ -2,8 +2,8 @@
 
 @font-face {
     font-family: 'Fredoka';
-    src: url(fonts/Fredoka.ttf);
-}
+    src: url(fonts/Fredoka.ttf) format("truetype");
+} 
 
 * {
     margin: 0;

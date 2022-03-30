@@ -1,0 +1,192 @@
+@font-face {
+  font-family: "Fredoka";
+  src: url(/fonts/Fredoka.ttf?250a4e837ebe08c527c7aaac1193aabb) format("truetype");
+}
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: "Fredoka", sans-serif;
+}
+
+.ajax_load {
+  position: fixed;
+  z-index: 20;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #131517;
+  opacity: 0.4;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
+.ajax_load .lds-ripple {
+  display: inline-block;
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+.ajax_load .lds-ripple div {
+  position: absolute;
+  border: 6px solid #fff;
+  opacity: 1;
+  border-radius: 50%;
+  -webkit-animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+          animation: lds-ripple 1s cubic-bezier(0, 0.2, 0.8, 1) infinite;
+}
+.ajax_load .lds-ripple div:nth-child(2) {
+  -webkit-animation-delay: -0.5s;
+          animation-delay: -0.5s;
+}
+
+@-webkit-keyframes lds-ripple {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+
+@keyframes lds-ripple {
+  0% {
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    opacity: 1;
+  }
+  100% {
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}
+.ajax_response {
+  width: 100%;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  color: #eb2f06;
+  margin-bottom: 20px;
+}
+
+body#login_body {
+  background-color: #131517;
+  width: 100vw;
+  height: 100vh;
+}
+body#login_body main {
+  width: 100%;
+  display: flex;
+}
+body#login_body main .cover {
+  width: 350px;
+  height: 100vh;
+  background-image: url(/images/cover.jpg?47e137fe05b82d42689c784b6eb7494b);
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+body#login_body main .area-form {
+  flex: 1;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body#login_body main .area-form form {
+  display: flex;
+  flex-direction: column;
+  width: 340px;
+  color: #FFFFFF;
+  background-color: #1e1f25;
+  padding: 30px 20px;
+  border-radius: 20px;
+  box-shadow: rgba(95, 95, 95, 0.4) 0px 2px 4px, rgba(87, 87, 87, 0.3) 0px 7px 13px -3px, rgba(92, 92, 92, 0.2) 0px -3px 0px inset;
+}
+body#login_body main .area-form form h1 {
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+body#login_body main .area-form form label,
+body#login_body main .area-form form input,
+body#login_body main .area-form form button,
+body#login_body main .area-form form div {
+  width: 100%;
+}
+body#login_body main .area-form form label {
+  margin-bottom: 2px;
+  font-size: 16px;
+  font-weight: 600;
+}
+body#login_body main .area-form form input[type=email],
+body#login_body main .area-form form input[type=password] {
+  height: 38px;
+  margin-bottom: 15px;
+  padding-left: 8px;
+  font-size: 16px;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  font-weight: 600;
+  color: #1e1f25;
+}
+body#login_body main .area-form form .remember {
+  display: block;
+  text-align: start;
+  height: 30px;
+  line-height: 30px;
+  margin-bottom: 30px;
+}
+body#login_body main .area-form form .remember label {
+  width: auto;
+  font-size: 14px;
+}
+body#login_body main .area-form form .remember input[type=checkbox] {
+  width: 20px;
+}
+body#login_body main .area-form form input[type=submit] {
+  height: 38px;
+  font-size: 20px;
+  font-weight: 600;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  letter-spacing: 2.2px;
+  cursor: pointer;
+  background-color: #2a6fff;
+  color: white;
+}
+body#login_body main .area-form form input[type=submit]:hover {
+  filter: brightness(105%);
+}
+
+@media (max-width: 740px) {
+  body#login_body main {
+    width: 100%;
+    display: flex;
+  }
+  body#login_body main .cover {
+    display: none;
+  }
+  body#login_body main .area-form {
+    padding: 0 10px;
+  }
+  body#login_body main .area-form form {
+    width: 100%;
+    max-width: 450px;
+  }
+}
