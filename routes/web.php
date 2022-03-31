@@ -1,7 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\AuthController;
-use App\Http\Controllers\Admin\DashController;
+use App\Http\Controllers\Adm\AuthController;
+use App\Http\Controllers\Adm\DashController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 

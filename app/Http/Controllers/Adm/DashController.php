@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Adm;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -10,6 +10,6 @@ class DashController extends Controller
 {
     public function home()
     {   
-        echo 'Dashboard';
+        return view('adm.dashboard.home');
     }
 }

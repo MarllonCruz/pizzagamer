@@ -13,8 +13,13 @@ const mix = require('laravel-mix');
  */
 
 mix
+    .css('resources/css/fontawesome.css', 'assets/css/fontawesome.css')
+
     .sass('resources/sass/adm/app.scss', 'assets/css/adm/app.css')
 
+    .js('resources/js/fontawesome.js', 'assets/js/fontawesome.js')
+
+    // ADM
     .js('resources/js/adm/login.js', 'assets/js/adm/login.js')
     .js('resources/js/adm/app.js', 'assets/js/adm/app.js')
 

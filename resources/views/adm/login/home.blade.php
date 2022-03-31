@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="{{ url(mix('assets/css/adm/app.css')) }}">
 </head>
 <body id="login_body">
-    @include('adm.includes.ajax_load')
+    <!-- Ajax Loading -->
+    @include('adm.common.ajax_load')
 
     <main>
         <area class="cover">
@@ -23,16 +24,11 @@
                 <div class="ajax_response"></div>
 
                 <label for="email">E-mail</label>
-                <input type="email" name="email" id="email" placeholder="seu-email@exemplo.com" value="ghostgamer@gmail.com">
+                <input type="email" name="email" id="email" placeholder="seu-email@exemplo.com">
     
                 <label for="password">Senha</label>
-                <input type="password" name="password" id="password" placeholder="********" value="123456789">
-    
-                <div class="remember">
-                    <input type="checkbox" name="remember" id="remember">
-                    <label for="remember">Lembre de mim</label>
-                </div>
-    
+                <input type="password" name="password" id="password" placeholder="********">
+            
                 <input type="submit" value="Entrar">
             </form>
         </div>

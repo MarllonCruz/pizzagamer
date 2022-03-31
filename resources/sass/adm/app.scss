@@ -5,8 +5,8 @@
 @import 'main.scss';
 
 // Includes
-@import 'includes/ajax_load.scss';
-@import 'includes/ajax_response.scss';
+@import 'common/ajax_load.scss';
+@import 'common/ajax_response.scss';
 
 // Pages
-@import 'pages/login';
+@import 'login.scss';
