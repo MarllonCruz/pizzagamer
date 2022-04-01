@@ -13,25 +13,44 @@
 * ======================================================= */
 body#adm_body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   color: #FFFFFF;
-  /* ======================================================= 
+  position: relative;
+  /* =======================================================  
   *   Sidebar (adm/common/sidebar)
   * ======================================================= */
 }
+body#adm_body #btn-menu {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  z-index: 2;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  display: none;
+}
+body#adm_body #btn-menu svg {
+  font-size: 38px;
+  color: #FFFFFF;
+}
 body#adm_body aside {
-  width: 220px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 200px;
   display: flex;
   flex-direction: column;
   background-color: #1e1f25;
-  padding: 20px 0 20px 30px;
+  padding: 50px 0 20px 30px;
 }
 body#adm_body aside .logo {
   width: 100%;
-  height: 100px;
   font-size: 18px;
   font-weight: 600;
+  margin-bottom: 50px;
 }
 body#adm_body aside nav.nav-menu {
   width: 100%;
@@ -64,11 +83,137 @@ body#adm_body aside nav.nav-menu a:hover svg, body#adm_body aside nav.nav-menu a
   color: #2a6fff;
 }
 body#adm_body main {
-  flex: 1;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 200px;
   background-color: #131517;
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
+}
+body#adm_body main header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-bottom: 40px;
+}
+body#adm_body main header span {
+  color: #FFFFFF;
+  margin: 0;
+  margin-right: 15px;
+  font-weight: 600;
+  font-size: 16px;
+}
+body#adm_body main header .profile {
+  margin: 0;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 3px solid #FFFFFF;
+}
+body#adm_body main header .profile img {
+  max-width: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+body#adm_body main section {
+  width: 100%;
+  flex: 1;
+  /* ======================================================= 
+  *   Dashboard (adm/dashboard/home)
+  * ======================================================= */
+}
+body#adm_body main section.dashboard h2 {
+  margin-bottom: 20px;
+}
+body#adm_body main section.dashboard .content {
+  display: flex;
+  gap: 30px;
+}
+body#adm_body main section.dashboard .content .left {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+body#adm_body main section.dashboard .content .left .amounts {
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  height: 160px;
+}
+body#adm_body main section.dashboard .content .left .amounts .box {
+  background-color: #1e1f25;
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+body#adm_body main section.dashboard .content .left .amounts .box h3 {
+  width: 100%;
+  letter-spacing: 1.5px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: start;
+}
+body#adm_body main section.dashboard .content .left .amounts .box .amount {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+body#adm_body main section.dashboard .content .left .amounts .box .amount span {
+  font-size: 30px;
+  font-weight: 600;
+  margin: 0;
+}
+body#adm_body main section.dashboard .content .left .amounts .box .amount svg {
+  font-size: 35px;
+  margin: 0;
+}
+body#adm_body main section.dashboard .content .left .chart-days {
+  width: 100%;
+  height: 800px;
+}
+body#adm_body main section.dashboard .content .right {
+  background-color: aqua;
+  width: 250px;
+}
+
+@media (max-width: 970px) {
+  /* ======================================================= 
+  *   Main (adm/common/template)
+  * ======================================================= */
+  body#adm_body {
+    /* ======================================================= 
+    *   Sidebar (adm/common/sidebar)
+    * ======================================================= */
+  }
+  body#adm_body #btn-menu {
+    display: flex;
+  }
+  body#adm_body aside {
+    left: -200px;
+    z-index: 10;
+    transition: all 0.4s ease-in-out;
+  }
+  body#adm_body aside.active {
+    left: 0;
+  }
+  body#adm_body main {
+    left: 0;
+  }
 }
 .ajax_load {
   position: fixed;

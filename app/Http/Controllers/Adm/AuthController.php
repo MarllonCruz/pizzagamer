@@ -28,4 +28,10 @@ class AuthController extends Controller
 
         return response()->json(['redirect' => URL::route('admin.dash')]);
     }
+
+    public function logout()
+    {
+        Auth::logout();
+        return redirect()->route('admin.login');
+    }
 }

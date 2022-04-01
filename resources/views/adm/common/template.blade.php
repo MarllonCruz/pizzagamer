@@ -16,13 +16,16 @@
     @include('adm.common.ajax_load')
     <!-- Aside -->
     @include('adm.common.sidebar')
-    
+    <button id="btn-menu">
+        <i class="fa-solid fa-bars-staggered"></i>
+    </button>
+
     <!-- Main -->
     <main>
-        <header>
-            div.
-        </header>
+        <!-- Main Header -->
+        @include('adm.common.main-header')
 
+        <!-- Content -->
         @yield('content')
     </main>
 
@@ -34,5 +37,6 @@
     <script src="{{ url('assets/js/jquery-ui.js') }}"></script>
     <!-- App Script -->
     <script src="{{ url(mix('assets/js/adm/login.js')) }}"></script>
+    <script src="{{ url(mix('assets/js/adm/app.js')) }}"></script>
 </body>
 </html>

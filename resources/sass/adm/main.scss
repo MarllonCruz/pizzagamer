@@ -14,25 +14,46 @@
 * ======================================================= */
 body#adm_body {
   width: 100vw;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   color: $white;
+  position: relative;
 
-  /* ======================================================= 
+  #btn-menu {
+    position: absolute;
+    top: 20px;
+    left: 40px;
+    z-index: 2;
+    background-color: inherit;
+    border: none;
+    cursor: pointer;
+    display: none;
+
+    svg {
+      font-size: 38px;
+      color: $white;
+    }
+  }
+
+  /* =======================================================  
   *   Sidebar (adm/common/sidebar)
   * ======================================================= */
   aside {
-    width: 220px;
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 200px;
     display: flex;
     flex-direction: column;
     background-color: $dark-light;
-    padding: 20px 0 20px 30px;
+    padding: 50px 0 20px 30px;
 
     .logo {
       width: 100%;
-      height: 100px;
       font-size: 18px;
       font-weight: 600;
+      margin-bottom: 50px;
     }
 
     nav.nav-menu {
@@ -75,14 +96,159 @@ body#adm_body {
   
 
   main {
-    flex: 1;
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 200px;
     background-color: $dark;
     display: flex;
     flex-direction: column;
     padding: 20px 40px;
 
     header {
-      
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      margin-bottom: 40px;
+
+      span {
+        color: $white;
+        margin: 0;
+        margin-right: 15px;
+        font-weight: 600;
+        font-size: 16px;
+      }
+
+      .profile {
+        margin: 0;
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border: 3px solid $white;
+
+        img {
+          max-width: 100%;
+          object-fit: cover;
+        }
+      }
+    }
+
+    section {
+      width: 100%;
+      flex: 1;
+
+      /* ======================================================= 
+      *   Dashboard (adm/dashboard/home)
+      * ======================================================= */
+      &.dashboard {
+
+        h2 {
+          margin-bottom: 20px;
+        }
+
+        .content {
+          display: flex;
+          gap: 30px;
+
+          .left {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+
+            .amounts {
+              display: grid;
+              width: 100%;
+              grid-template-columns: repeat(3, 1fr);
+              gap: 20px;
+              height: 160px;
+
+              .box {
+                background-color: $dark-light;
+                width: 100%;
+                border-radius: 10px;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
+                gap: 10px;
+
+                h3 {
+                  width: 100%;
+                  letter-spacing: 1.5px;
+                  font-size: 16px;
+                  font-weight: 600;
+                  text-align: start;
+                }
+    
+                .amount {
+                  flex: 1;
+                  display: flex;
+                  justify-content: space-between;
+                  align-items: center;
+                  width: 100%;
+
+                  span {
+                    font-size: 30px;
+                    font-weight: 600;
+                    margin: 0;
+                  }
+    
+                  svg {
+                    font-size: 35px;
+                    margin: 0;
+                  }
+                }
+              }
+            }
+
+            .chart-days {
+              width: 100%;
+              height: 800px;
+            }
+          }
+
+          .right {
+            background-color: aqua;
+            width: 250px;
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media (max-width: 970px) {
+  /* ======================================================= 
+  *   Main (adm/common/template)
+  * ======================================================= */
+  body#adm_body {
+
+    #btn-menu {
+      display: flex;
+    }
+
+    /* ======================================================= 
+    *   Sidebar (adm/common/sidebar)
+    * ======================================================= */
+    aside {
+      left: -200px;
+      z-index: 10;
+      transition: all .4s ease-in-out;
+
+      &.active {
+        left: 0;
+      }
+    }
+
+    main {
+      left: 0;
     }
   }
 }
