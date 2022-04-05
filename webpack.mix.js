@@ -20,6 +20,7 @@ mix
     .js('resources/js/fontawesome.js', 'assets/js/fontawesome.js')
 
     // ADM
+    .js('node_modules/chart.js/dist/chart.js', 'assets/js/chart.js')
     .js('resources/js/adm/login.js', 'assets/js/adm/login.js')
     .js('resources/js/adm/app.js', 'assets/js/adm/app.js')
 

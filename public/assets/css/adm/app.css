@@ -91,6 +91,7 @@ body#adm_body main {
   display: flex;
   flex-direction: column;
   padding: 20px 40px;
+  min-height: 100vh;
 }
 body#adm_body main header {
   width: 100%;
@@ -184,11 +185,34 @@ body#adm_body main section.dashboard .content .left .amounts .box .amount svg {
 }
 body#adm_body main section.dashboard .content .left .chart-days {
   width: 100%;
-  height: 800px;
+  height: 500px;
+  border-radius: 10px;
+  padding: 20px;
+  background-color: #1e1f25;
+}
+body#adm_body main section.dashboard .content .left .chart-days canvas {
+  width: 100%;
+  height: 500px;
 }
 body#adm_body main section.dashboard .content .right {
-  background-color: aqua;
-  width: 250px;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+body#adm_body main section.dashboard .content .right canvas#chartMostVisitedPages {
+  width: 100%;
+  height: 370px;
+  background-color: #1e1f25;
+  border-radius: 10px;
+  padding: 20px;
+}
+body#adm_body main section.dashboard .content .right canvas#chartDevices {
+  background-color: #1e1f25;
+  border-radius: 10px;
+  padding: 20px;
+  width: 100%;
+  height: 250px;
 }
 
 @media (max-width: 970px) {
@@ -213,6 +237,43 @@ body#adm_body main section.dashboard .content .right {
   }
   body#adm_body main {
     left: 0;
+    /* ======================================================= 
+    *   Dashboard (adm/dashboard/home)
+    * ======================================================= */
+  }
+  body#adm_body main section.dashboard .content {
+    flex-direction: column;
+  }
+  body#adm_body main section.dashboard .content .right {
+    width: 100%;
+  }
+  body#adm_body main section.dashboard .content .right canvas#chartMostVisitedPages {
+    width: 100%;
+  }
+  body#adm_body main section.dashboard .content .right canvas#chartDevices {
+    width: 100%;
+  }
+}
+@media (max-width: 720px) {
+  /* ======================================================= 
+  *   Main (adm/common/template)
+  * ======================================================= */
+  body#adm_body #btn-menu {
+    top: 28px;
+    left: 20px;
+  }
+  body#adm_body main {
+    padding: 20px;
+    /* ======================================================= 
+    *   Dashboard (adm/dashboard/home)
+    * ======================================================= */
+  }
+  body#adm_body main section.dashboard .content {
+    flex-direction: column;
+  }
+  body#adm_body main section.dashboard .content .left .amounts {
+    height: auto;
+    grid-template-columns: repeat(1, 1fr);
   }
 }
 .ajax_load {

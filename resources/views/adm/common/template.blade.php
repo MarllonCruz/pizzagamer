@@ -35,8 +35,11 @@
     <script src="{{ url('assets/js/jquery.min.js') }}"></script>
     <!-- JQuery Ui -->
     <script src="{{ url('assets/js/jquery-ui.js') }}"></script>
+    <!-- Chart -->
+    <script src="{{ url('assets/js/chart.js') }}"></script>
     <!-- App Script -->
     <script src="{{ url(mix('assets/js/adm/login.js')) }}"></script>
     <script src="{{ url(mix('assets/js/adm/app.js')) }}"></script>
+    @yield('script')
 </body>
 </html>
