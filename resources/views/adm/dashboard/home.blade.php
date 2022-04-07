@@ -178,7 +178,8 @@
           data: [10, 20, 25],
           backgroundColor: ['blue', 'red', 'green'],
           borderColor: '#1e1f25',
-          borderWidth: 5
+          borderWidth: 5,
+          borderRadius: 8,
         }
       ]
     };

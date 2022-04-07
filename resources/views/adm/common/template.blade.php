@@ -24,11 +24,12 @@
     <main>
         <!-- Main Header -->
         @include('adm.common.main-header')
-
         <!-- Content -->
         @yield('content')
     </main>
 
+    <!-- Flasher PHP -->
+    @flasher_render
     <!-- Fontawesome script -->
     <script src="{{ url('assets/js/fontawesome.js') }}"></script>
     <!-- JQuery -->
@@ -38,7 +39,6 @@
     <!-- Chart -->
     <script src="{{ url('assets/js/chart.js') }}"></script>
     <!-- App Script -->
-    <script src="{{ url(mix('assets/js/adm/login.js')) }}"></script>
     <script src="{{ url(mix('assets/js/adm/app.js')) }}"></script>
     @yield('script')
 </body>

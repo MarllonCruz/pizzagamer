@@ -26,7 +26,7 @@ class AuthController extends Controller
             return response()->json(['message' => 'E-mail e/ou a senha incorretas']);
         }
 
-        return response()->json(['redirect' => URL::route('admin.dash')]);
+        return response()->json(['redirect' => URL::route('dash')]);
     }
 
     public function logout()

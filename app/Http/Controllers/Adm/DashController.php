@@ -10,6 +10,8 @@ class DashController extends Controller
 {
     public function home()
     {   
-        return view('adm.dashboard.home');
+        return view('adm.dashboard.home', [
+            'page' => 'dash'
+        ]);
     }
 }

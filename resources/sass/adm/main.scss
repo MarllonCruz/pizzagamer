@@ -9,9 +9,7 @@
   font-family: 'Fredoka', sans-serif;
 }
 
-/* ======================================================= 
-*   Main (adm/common/template)
-* ======================================================= */
+// Main (adm/common/template)
 body#adm_body {
   width: 100vw;
   min-height: 100vh;
@@ -35,9 +33,7 @@ body#adm_body {
     }
   }
 
-  /* =======================================================  
-  *   Sidebar (adm/common/sidebar)
-  * ======================================================= */
+  // Sidebar (adm/common/sidebar)
   aside {
     position: fixed;
     left: 0;
@@ -143,15 +139,16 @@ body#adm_body {
       width: 100%;
       flex: 1;
 
-      /* ======================================================= 
-      *   Dashboard (adm/dashboard/home)
-      * ======================================================= */
-      &.dashboard {
+      h2 {
+        margin-bottom: 20px;
 
-        h2 {
-          margin-bottom: 20px;
+        span {
+          color: $gray;
         }
+      }
 
+      // Dashboard (adm/dashboard/home)
+      &.dashboard {
         .content {
           display: flex;
           gap: 30px;
@@ -245,25 +242,154 @@ body#adm_body {
             }
           }
         }
+      }
 
+       
+      // Post (adm/posts/*)
+      &.article-post {
+        .content {
+          display: flex;
+
+          .left {
+            width: 210px;
+            padding-right: 20px;
+
+            ul {
+              list-style: none;
+              padding: 0;
+
+              li {
+                padding: 8px 0 8px 10px;
+                margin: 8px 0;
+                border-radius: 8px;
+
+                &.active,
+                &:hover {
+                  background-color: $dark-light;
+                }
+
+                a {
+                  text-decoration: none;
+                  color: $white;
+                  width: 100%;
+                  display: block;
+
+                  svg {
+                    margin-right: 5px;
+                  }
+                }
+              }
+            }
+          }
+
+          .right {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+
+            // Posts-Categories (adm/posts/categories/*)
+            &.category {
+              header {
+                width: 100%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                
+                h2 {
+                  margin: 0;
+
+                  svg {
+                    padding-right: 6px;
+                  }
+                }
+
+                a {
+                  padding: 6px 12px;
+                  background-color: $blue;
+                  color: $white;
+                  border-radius: 12px;
+                  text-decoration: none;
+                  margin: 0;
+
+                  &:hover {
+                    filter: brightness(105%);
+                  }
+  
+                  svg {
+                    margin-right: 6px;
+                  }
+                }
+              }
+
+              // Posts-Categories (adm/posts/categories/create)
+              form {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+
+                label {
+                  margin: 0;
+                }
+
+                input {
+                  margin: 0;
+                  margin-bottom: 10px;
+                  height: 45px;
+                  padding: 6px;
+                  border-radius: 5px;
+                  outline: none;
+                  font-size: 16px;
+                }
+
+                input[name=description] {
+                  height: 80px;
+                }
+
+                .al-right {
+                  width: 100%;
+                  display: flex;
+                  justify-content: flex-end;
+
+                  button {
+                    margin: 0;
+                    padding: 8px 16px;
+                    background-color: $blue;
+                    color: $white;
+                    border-radius: 5px;
+                    border: none;
+                    outline: none;
+                    font-size: 16px;
+                    font-weight: bolder;
+                    cursor: pointer;
+
+                    &:hover {
+                      filter: brightness(105%);
+                    }
+
+                    svg {
+                      margin-right: 4px;
+                    }
+                  }
+                }
+              }
+            }
+            
+          }
+        }
       }
     }
   }
 }
 
 @media (max-width: 970px) {
-  /* ======================================================= 
-  *   Main (adm/common/template)
-  * ======================================================= */
+  // Main (adm/common/template)
   body#adm_body {
 
     #btn-menu {
       display: flex;
     }
-
-    /* ======================================================= 
-    *   Sidebar (adm/common/sidebar)
-    * ======================================================= */
+    
+    // Sidebar (adm/common/sidebar)
     aside {
       left: -200px;
       z-index: 10;
@@ -277,9 +403,7 @@ body#adm_body {
     main {
       left: 0;
 
-      /* ======================================================= 
-      *   Dashboard (adm/dashboard/home)
-      * ======================================================= */
+      // Dashboard (adm/dashboard/home)
       section.dashboard {
 
         .content {
@@ -298,14 +422,16 @@ body#adm_body {
           }
         }
       }
+
+      section.article-post {
+        //
+      }
     }
   }
 }
 
 @media (max-width: 720px) {
-  /* ======================================================= 
-  *   Main (adm/common/template)
-  * ======================================================= */
+  // Main (adm/common/template)
   body#adm_body {
 
     #btn-menu {
@@ -316,9 +442,7 @@ body#adm_body {
     main {
       padding: 20px;
 
-      /* ======================================================= 
-      *   Dashboard (adm/dashboard/home)
-      * ======================================================= */
+      // Dashboard (adm/dashboard/home)
       section.dashboard {
 
         .content {
@@ -332,6 +456,10 @@ body#adm_body {
             }
           }
         }
+      }
+
+      section.article-post {
+        //
       }
     }
   }

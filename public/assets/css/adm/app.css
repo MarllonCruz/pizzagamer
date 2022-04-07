@@ -8,18 +8,12 @@
   font-family: "Fredoka", sans-serif;
 }
 
-/* ======================================================= 
-*   Main (adm/common/template)
-* ======================================================= */
 body#adm_body {
   width: 100vw;
   min-height: 100vh;
   display: flex;
   color: #FFFFFF;
   position: relative;
-  /* =======================================================  
-  *   Sidebar (adm/common/sidebar)
-  * ======================================================= */
 }
 body#adm_body #btn-menu {
   position: absolute;
@@ -126,12 +120,12 @@ body#adm_body main header .profile img {
 body#adm_body main section {
   width: 100%;
   flex: 1;
-  /* ======================================================= 
-  *   Dashboard (adm/dashboard/home)
-  * ======================================================= */
 }
-body#adm_body main section.dashboard h2 {
+body#adm_body main section h2 {
   margin-bottom: 20px;
+}
+body#adm_body main section h2 span {
+  color: #b4b4b4;
 }
 body#adm_body main section.dashboard .content {
   display: flex;
@@ -214,16 +208,110 @@ body#adm_body main section.dashboard .content .right canvas#chartDevices {
   width: 100%;
   height: 250px;
 }
+body#adm_body main section.article-post .content {
+  display: flex;
+}
+body#adm_body main section.article-post .content .left {
+  width: 210px;
+  padding-right: 20px;
+}
+body#adm_body main section.article-post .content .left ul {
+  list-style: none;
+  padding: 0;
+}
+body#adm_body main section.article-post .content .left ul li {
+  padding: 8px 0 8px 10px;
+  margin: 8px 0;
+  border-radius: 8px;
+}
+body#adm_body main section.article-post .content .left ul li.active, body#adm_body main section.article-post .content .left ul li:hover {
+  background-color: #1e1f25;
+}
+body#adm_body main section.article-post .content .left ul li a {
+  text-decoration: none;
+  color: #FFFFFF;
+  width: 100%;
+  display: block;
+}
+body#adm_body main section.article-post .content .left ul li a svg {
+  margin-right: 5px;
+}
+body#adm_body main section.article-post .content .right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+body#adm_body main section.article-post .content .right.category header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+body#adm_body main section.article-post .content .right.category header h2 {
+  margin: 0;
+}
+body#adm_body main section.article-post .content .right.category header h2 svg {
+  padding-right: 6px;
+}
+body#adm_body main section.article-post .content .right.category header a {
+  padding: 6px 12px;
+  background-color: #2a6fff;
+  color: #FFFFFF;
+  border-radius: 12px;
+  text-decoration: none;
+  margin: 0;
+}
+body#adm_body main section.article-post .content .right.category header a:hover {
+  filter: brightness(105%);
+}
+body#adm_body main section.article-post .content .right.category header a svg {
+  margin-right: 6px;
+}
+body#adm_body main section.article-post .content .right.category form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+body#adm_body main section.article-post .content .right.category form label {
+  margin: 0;
+}
+body#adm_body main section.article-post .content .right.category form input {
+  margin: 0;
+  margin-bottom: 10px;
+  height: 45px;
+  padding: 6px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+body#adm_body main section.article-post .content .right.category form input[name=description] {
+  height: 80px;
+}
+body#adm_body main section.article-post .content .right.category form .al-right {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+}
+body#adm_body main section.article-post .content .right.category form .al-right button {
+  margin: 0;
+  padding: 8px 16px;
+  background-color: #2a6fff;
+  color: #FFFFFF;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
+}
+body#adm_body main section.article-post .content .right.category form .al-right button:hover {
+  filter: brightness(105%);
+}
+body#adm_body main section.article-post .content .right.category form .al-right button svg {
+  margin-right: 4px;
+}
 
 @media (max-width: 970px) {
-  /* ======================================================= 
-  *   Main (adm/common/template)
-  * ======================================================= */
-  body#adm_body {
-    /* ======================================================= 
-    *   Sidebar (adm/common/sidebar)
-    * ======================================================= */
-  }
   body#adm_body #btn-menu {
     display: flex;
   }
@@ -237,9 +325,6 @@ body#adm_body main section.dashboard .content .right canvas#chartDevices {
   }
   body#adm_body main {
     left: 0;
-    /* ======================================================= 
-    *   Dashboard (adm/dashboard/home)
-    * ======================================================= */
   }
   body#adm_body main section.dashboard .content {
     flex-direction: column;
@@ -255,18 +340,12 @@ body#adm_body main section.dashboard .content .right canvas#chartDevices {
   }
 }
 @media (max-width: 720px) {
-  /* ======================================================= 
-  *   Main (adm/common/template)
-  * ======================================================= */
   body#adm_body #btn-menu {
     top: 28px;
     left: 20px;
   }
   body#adm_body main {
     padding: 20px;
-    /* ======================================================= 
-    *   Dashboard (adm/dashboard/home)
-    * ======================================================= */
   }
   body#adm_body main section.dashboard .content {
     flex-direction: column;

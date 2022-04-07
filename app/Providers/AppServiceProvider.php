@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use Flasher\Toastr\Prime\ToastrFactory;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            'App\Repos\Contracts\ArticleRepositoryInterface',
+            'App\Repos\Eloquent\ArticleRepository'
+        );
     }
 
     /**
@@ -23,6 +27,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+      
     }
 }
