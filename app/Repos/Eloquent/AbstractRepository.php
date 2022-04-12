@@ -2,10 +2,7 @@
 
 namespace App\Repos\Eloquent;
 
-use App\Repos\Contracts\AbstractRepositoryInterface;
-use stdClass;
-
-abstract class AbstractRepository implements AbstractRepositoryInterface
+abstract class AbstractRepository 
 {   
     protected $model;
 

@@ -13,16 +13,22 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
     protected $model = Category::class;
 
     /**
+     * @param string $type = 'post'
+     * @param int $paginate = 6
+     * 
      * @return null|array
      */
-    public function handleAll()
-    {
-        return Category::orderBy('created_at', 'DESC')->paginate(5);
+    public function handleAll(string $type = 'post', int $paginate = 6)
+    {   
+        return Category::where('type', $type)
+            ->orderBy('created_at', 'DESC')    
+            ->paginate($paginate);
     }
 
     /**
      * @param array $fields
      * @param string $type
+     * 
      * @return Category
      */
     public function handleCreate(array $fields, string $type): Category
@@ -46,17 +52,10 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
      * @param Category $category
      * @param array $fields
      * 
-     * @return bool
+     * @return Category|null
      */
-    public function handleUpdate(Category $category, array $fields): bool
+    public function handleUpdate(Category $category, array $fields): ?Category
     {   
-        if ($category->uri != Str::slug($fields['title'] , '-')) {
-            $data = Category::select()->where('uri', Str::slug($fields['title'] , '-'))->first();
-            if ($data) {
-                return false;
-            }
-        }
-
         $attributes['title']       = $fields['title'];
         $attributes['description'] = $fields['description'];
         $attributes['uri']         = Str::slug($attributes['title'] , '-');
@@ -76,8 +75,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
             } 
         }
 
-        $this->update($category->id, $attributes);
-        return true;
+        return $this->update($category->id, $attributes);
     }
 
     /**

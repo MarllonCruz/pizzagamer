@@ -189,19 +189,14 @@ class PostController extends Controller
             return redirect()->back();
         }
         
-        $validator = Validator::make($request->all(), $categoryRequest->rules(), $categoryRequest->messages());
+        $validator = Validator::make($request->all(), $categoryRequest->rules($category->id), $categoryRequest->messages());
         if ($validator->fails()) {
             $this->notify->error('Dados estão incorretos!');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
         $fields = $request->only(['title', 'description', 'cover-remove', 'cover']);
-        $result = $this->category->handleUpdate($category, $fields);
-        if (!$result) {
-            $this->notify->error('Dados estão incorretos!');
-            $validator->errors()->add('title', 'Esse titulo já existe na outra categoria');
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
+        $category = $this->category->handleUpdate($category, $fields);
 
         $this->notify->success("Categoria " . $category->title .  " foi alterado com sucesso");
         return redirect()->route('artigos.categorias.edit', ['category' => $category->id]);
@@ -228,5 +223,5 @@ class PostController extends Controller
         $this->category->handleDelete($category);
         $this->notify->success("Categoria {$category->title} deleta com sucesso!");
         return redirect()->route('artigos.categorias.index');
-    }
+    }   
 }
