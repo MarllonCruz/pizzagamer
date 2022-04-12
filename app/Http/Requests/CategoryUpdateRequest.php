@@ -2,12 +2,12 @@
 
 namespace App\Http\Requests;
 
-class CategoryRequest
+class CategoryUpdateRequest
 {      
     public function rules(): array
     {
         return [
-            'title' => 'required|unique:categories',
+            'title' => 'required',
             'description' => 'required',
             'cover' => 'file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400'
         ];
@@ -16,9 +16,8 @@ class CategoryRequest
     public function messages(): array
     {   
         return [
-            'title.required' => 'Preenche campo titulo',
-            'title.unique' => 'Esse titulo já existe na outra categoria',
-            'description.required' => 'Preenche campo descrição',
+            'title.required' => 'Campo titulo não pode ser vazio',
+            'description.required' => 'Campo descrição não pode ser vazio',
             'cover.file' => 'O arquivo da capa tem que ser jpg ou png',
             'cover.mimes' =>  'O arquivo da capa tem que ser jpg ou png',
             'cover.dimensions' => 'minimo dimensão da imagem 620 de largura e 400 de altura',

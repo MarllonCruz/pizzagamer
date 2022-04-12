@@ -2,7 +2,9 @@
 
 namespace App\Repos\Contracts;
 
+use Illuminate\Database\Eloquent\Collection;
+
 interface ArticleRepositoryInterface
 {
-    public function all();
+    public function find(int $id);
 }

@@ -13,6 +13,27 @@
                <h2><i class="fa-solid fa-pen-to-square"></i> Categorias</h2>
                <a href="{{ route('artigos.categorias.create') }}"><i class="fa-solid fa-square-plus"></i> Nova categoria</a>
             </header>
+            <div class="categories">
+               @foreach ($categories as $category)
+                  <div class="category">
+                     <div class="cover">
+                       @if (!empty($category->cover))
+                          <img src="{{ url('storage/' . $category->cover) }}" alt="">      
+                       @endif
+                     </div>
+                     <div class="info">
+                        <h2>{{ $category->title }}</h2>
+                        <p>{{ $category->description }}</p>
+                        <div class="btns">
+                           <a href="{{ route('artigos.categorias.edit', ['category' => $category->id]) }}"><i class="fa-solid fa-pen"></i> Editar</a>
+                           <a href=""><i class="fa-solid fa-trash-can"></i> Deletar</a>
+                        </div>
+                     </div>
+                  </div>
+               @endforeach
+            </div>
+            
+            {{ $categories->links('adm.common.pagination-custom') }}
          </div>
       </div>
    </section>

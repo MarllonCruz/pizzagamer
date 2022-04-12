@@ -30,6 +30,7 @@
 
     <!-- Flasher PHP -->
     @flasher_render
+
     <!-- Fontawesome script -->
     <script src="{{ url('assets/js/fontawesome.js') }}"></script>
     <!-- JQuery -->
@@ -40,6 +41,7 @@
     <script src="{{ url('assets/js/chart.js') }}"></script>
     <!-- App Script -->
     <script src="{{ url(mix('assets/js/adm/app.js')) }}"></script>
+    
     @yield('script')
 </body>
 </html>

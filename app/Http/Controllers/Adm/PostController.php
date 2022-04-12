@@ -2,13 +2,37 @@
 
 namespace App\Http\Controllers\Adm;
 
-use App\Http\Controllers\Controller;
-use App\Http\Requests\CategoryRequest;
-use Flasher\Toastr\Prime\ToastrFactory;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Supports\Notify;
+use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\CategoryUpdateRequest;
+use Illuminate\Support\Facades\Validator;
+use App\Repos\Contracts\CategoryRepositoryInterface as Category;
+use App\Repos\Contracts\ArticleRepositoryInterface as Article;
 
 class PostController extends Controller
-{
+{   
+    /** @var Notify */
+    protected $notify;
+
+    /** @var Category */
+    protected $category;
+
+    /** @var Article */
+    protected $article;
+
+     /**
+     * Constructor
+     * @param Notify $notify
+     */
+    public function __construct(Notify $notify, Category $category, Article $article)
+    {
+        $this->notify   = $notify;
+        $this->category = $category;
+        $this->article  = $article;
+    }
+
     /**
      * @return \Illuminate\Http\Response
      */
@@ -86,24 +110,21 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function categoriasIndex()
-    {   
+    {  
+        $categories = $this->category->handleAll();
+
         return view('adm.posts.categories.home', [
             'page' => 'post',
-            'menu' => 'category'
+            'menu' => 'category',
+            'categories' => $categories
         ]);
     }
 
     /**
      * @return \Illuminate\Http\Response
      */
-    public function categoriasCreate(ToastrFactory $flasher)
+    public function categoriasCreate()
     {   
-        // $build1 = $flasher->type('error')
-        //     ->message('your custom message messagemessagemessagemessage message message')
-        //     ->priority(2)
-        //     ->option('timer', 5000)->flash();
-
-
         return view('adm.posts.categories.create', [
             'page' => 'post',
             'menu' => 'category'
@@ -111,25 +132,83 @@ class PostController extends Controller
     }
 
     /**
-     * @param CategoryRequest $request
+     * @param Request $request
+     * @param CategoryRequest $categoryRequest
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function categoriasStore(CategoryRequest $request)
-    {
-       dd($request->all());
+    public function categoriasStore(Request $request, CategoryRequest $categoryRequest)
+    {   
+        $validator = Validator::make($request->all(), $categoryRequest->rules(), $categoryRequest->messages());
+
+        if ($validator->fails()) {
+            $this->notify->error('Dados estão incorretos!');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $fields   = $request->only('title', 'description', 'cover');
+        $category = $this->category->handleCreate($fields, 'post');
+
+        $this->notify->success("Categoria " . $category->title .  " foi criado com sucesso");
+        return redirect()->route('artigos.categorias.create');
     }
 
-    public function categoriasEdit($category)
-    {
-       
+    /**
+     * @param int $category
+     * @param CategoryRepositoryInterface $categoryRepository
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function categoriasEdit(int $category_id)
+    {   
+        $category = $this->category->find($category_id);
+        
+        if (!$category) {
+            $this->notify->warning('Categoria não encotrando para editar');
+            return redirect()->route('artigos.categorias.index');
+        } 
+
+        return view('adm.posts.categories.edit', [
+            'page' => 'post',
+            'menu' => 'category',
+            'category' => $category
+        ]);
     }
 
-    public function categoriasUpdate(Request $request, $category)
-    {
-       
+     /**
+     * @param Request $request 
+     * @param int $category
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function categoriasUpdate(Request $request, int $category_id, CategoryUpdateRequest $categoryRequest)
+    {   
+        $category = $this->category->find($category_id);
+        if (!$category) {
+            $this->notify->warning('Categoria não encotrando para editar');
+            return redirect()->back();
+        }
+        
+        $validator = Validator::make($request->all(), $categoryRequest->rules(), $categoryRequest->messages());
+        if ($validator->fails()) {
+            $this->notify->error('Dados estão incorretos!');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $fields = $request->only(['title', 'description', 'cover-remove', 'cover']);
+        $result = $this->category->handleUpdate($category, $fields);
+        if (!$result) {
+            $this->notify->error('Dados estão incorretos!');
+            $validator->errors()->add('title', 'Esse titulo já existe na outra categoria');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $this->notify->success("Categoria " . $category->title .  " foi alterado com sucesso");
+        return redirect()->route('artigos.categorias.edit', ['category' => $category->id]);
+
     }
 
-    public function categoriasDestroy($category)
+    public function categoriasDestroy(int $category_id)
     {
        
     }
