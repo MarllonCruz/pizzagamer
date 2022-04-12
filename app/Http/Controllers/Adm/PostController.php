@@ -154,8 +154,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param int $category
-     * @param CategoryRepositoryInterface $categoryRepository
+     * @param int $category_id
      * 
      * @return \Illuminate\Http\Response
      */
@@ -177,7 +176,8 @@ class PostController extends Controller
 
      /**
      * @param Request $request 
-     * @param int $category
+     * @param int $category_id
+     * @param CategoryUpdateRequest $categoryRequest
      * 
      * @return \Illuminate\Http\Response
      */
@@ -205,11 +205,28 @@ class PostController extends Controller
 
         $this->notify->success("Categoria " . $category->title .  " foi alterado com sucesso");
         return redirect()->route('artigos.categorias.edit', ['category' => $category->id]);
-
     }
 
+    /**
+     * @param int $category_id
+     * 
+     * @return \Illuminate\Http\Response
+     */
     public function categoriasDestroy(int $category_id)
     {
-       
+        $category = $this->category->find($category_id);
+        if (!$category) {
+            $this->notify->warning('Categoria não encotrando para deletar');
+            return redirect()->route('artigos.categorias.index');
+        }
+
+        if($category->countPosts() > 0) {
+            $this->notify->error("Categoria {$category->title} tem artigos poriso não pode ser deletado!");
+            return redirect()->route('artigos.categorias.index');
+        }
+
+        $this->category->handleDelete($category);
+        $this->notify->success("Categoria {$category->title} deleta com sucesso!");
+        return redirect()->route('artigos.categorias.index');
     }
 }

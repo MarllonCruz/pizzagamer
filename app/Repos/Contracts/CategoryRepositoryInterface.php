@@ -14,4 +14,6 @@ interface CategoryRepositoryInterface
     public function handleCreate(array $fields, string $type): Category;
 
     public function handleUpdate(Category $category, array $fields): bool;
+
+    public function handleDelete(Category $category): void;
 }

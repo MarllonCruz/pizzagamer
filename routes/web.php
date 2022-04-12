@@ -21,14 +21,14 @@ Route::prefix('/admin')->group(function () {
         Route::post('/artigos/criar', [PostController::class, 'store'])->name('artigos.store');
         Route::get('/artigos/{post}/editar', [PostController::class, 'edit'])->name('artigos.edit');
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
-        Route::delete('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
+        Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
         // Post-Category Crud
         Route::get('/artigos/categorias', [PostController::class, 'categoriasIndex'])->name('artigos.categorias.index');
         Route::get('/artigos/categorias/criar', [PostController::class, 'categoriasCreate'])->name('artigos.categorias.create');
         Route::post('/artigos/categorias/criar', [PostController::class, 'categoriasStore'])->name('artigos.categorias.store');
         Route::get('/artigos/categorias/{category}/editar', [PostController::class, 'categoriasEdit'])->name('artigos.categorias.edit');
         Route::post('/artigos/categorias/{category}/editar', [PostController::class, 'categoriasUpdate'])->name('artigos.categorias.update');
-        Route::delete('/artigos/categorias/{category}/deletar', [PostController::class, 'categoriasDestroy'])->name('artigos.categorias.destroy');
+        Route::get('/artigos/categorias/{category}/deletar', [PostController::class, 'categoriasDestroy'])->name('artigos.categorias.destroy');
     });
 });
 

@@ -12,4 +12,10 @@ class Category extends Model
     protected $fillable = [
         'title', 'type', 'uri', 'description', 'cover'
     ];
+
+    public function countPosts()
+    {
+        // Article::select()->where('category_id', $this->attributes['id'])
+        return $this->hasMany(Article::class)->count();
+    }
 }

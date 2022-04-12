@@ -45,6 +45,7 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
      /**
      * @param Category $category
      * @param array $fields
+     * 
      * @return bool
      */
     public function handleUpdate(Category $category, array $fields): bool
@@ -77,5 +78,15 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
         $this->update($category->id, $attributes);
         return true;
+    }
+
+    /**
+     * @param Category $category
+     * 
+     * @return void
+     */
+    public function handleDelete(Category $category): void
+    {
+        $this->delete($category->id);
     }
 }

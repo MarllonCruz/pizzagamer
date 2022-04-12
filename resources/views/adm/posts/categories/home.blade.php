@@ -22,11 +22,11 @@
                        @endif
                      </div>
                      <div class="info">
-                        <h2>{{ $category->title }}</h2>
+                        <h2>{{ $category->title }} <span>[{{ $category->countPosts() }} Artigo(s)]</span></h2>
                         <p>{{ $category->description }}</p>
                         <div class="btns">
                            <a href="{{ route('artigos.categorias.edit', ['category' => $category->id]) }}"><i class="fa-solid fa-pen"></i> Editar</a>
-                           <a href=""><i class="fa-solid fa-trash-can"></i> Deletar</a>
+                           <a href="{{ route('artigos.categorias.destroy', ['category' => $category->id]) }}" onclick="return confirm('Tem certeza que deseja excluir categoria {{ $category->title }} ?')"><i class="fa-solid fa-trash-can"></i> Deletar</a>
                         </div>
                      </div>
                   </div>
