@@ -8,29 +8,21 @@ use App\Supports\Notify;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use Illuminate\Support\Facades\Validator;
-use App\Repos\Contracts\CategoryRepositoryInterface as Category;
-use App\Repos\Contracts\ArticleRepositoryInterface as Article;
+use App\Repos\Eloquent\CategoryRepository;
+use App\Repos\Eloquent\ArticleRepository;
 
 class PostController extends Controller
 {   
     /** @var Notify */
     protected $notify;
 
-    /** @var Category */
-    protected $category;
-
-    /** @var Article */
-    protected $article;
-
      /**
      * Constructor
      * @param Notify $notify
      */
-    public function __construct(Notify $notify, Category $category, Article $article)
+    public function __construct(Notify $notify)
     {
         $this->notify   = $notify;
-        $this->category = $category;
-        $this->article  = $article;
     }
 
     /**
@@ -107,11 +99,13 @@ class PostController extends Controller
     }
 
     /**
+     * @param CategoryRepository $categoryRepository
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function categoriasIndex()
+    public function categoriasIndex(CategoryRepository $categoryRepository)
     {  
-        $categories = $this->category->handleAll();
+        $categories = $categoryRepository->handleAll();
 
         return view('adm.posts.categories.home', [
             'page' => 'post',
@@ -140,14 +134,14 @@ class PostController extends Controller
     public function categoriasStore(Request $request, CategoryRequest $categoryRequest)
     {   
         $validator = Validator::make($request->all(), $categoryRequest->rules(), $categoryRequest->messages());
-
         if ($validator->fails()) {
             $this->notify->error('Dados estão incorretos!');
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
+        $categoryRepository = (new CategoryRepository());
         $fields   = $request->only('title', 'description', 'cover');
-        $category = $this->category->handleCreate($fields, 'post');
+        $category = $categoryRepository->handleCreate($fields, 'post');
 
         $this->notify->success("Categoria " . $category->title .  " foi criado com sucesso");
         return redirect()->route('artigos.categorias.create');
@@ -155,12 +149,13 @@ class PostController extends Controller
 
     /**
      * @param int $category_id
+     * @param CategoryRepository $categoryRepository
      * 
      * @return \Illuminate\Http\Response
      */
-    public function categoriasEdit(int $category_id)
+    public function categoriasEdit(int $category_id, CategoryRepository $categoryRepository)
     {   
-        $category = $this->category->find($category_id);
+        $category = $categoryRepository->find($category_id);
         
         if (!$category) {
             $this->notify->warning('Categoria não encotrando para editar');
@@ -178,15 +173,16 @@ class PostController extends Controller
      * @param Request $request 
      * @param int $category_id
      * @param CategoryUpdateRequest $categoryRequest
+     * @param CategoryRepository $categoryRepository
      * 
      * @return \Illuminate\Http\Response
      */
-    public function categoriasUpdate(Request $request, int $category_id, CategoryUpdateRequest $categoryRequest)
+    public function categoriasUpdate(Request $request, int $category_id, CategoryUpdateRequest $categoryRequest, CategoryRepository $categoryRepository)
     {   
-        $category = $this->category->find($category_id);
+        $category = $categoryRepository->find($category_id);
         if (!$category) {
             $this->notify->warning('Categoria não encotrando para editar');
-            return redirect()->back();
+            return redirect()->route('artigos.categorias.index');
         }
         
         $validator = Validator::make($request->all(), $categoryRequest->rules($category->id), $categoryRequest->messages());
@@ -196,7 +192,7 @@ class PostController extends Controller
         }
 
         $fields = $request->only(['title', 'description', 'cover-remove', 'cover']);
-        $category = $this->category->handleUpdate($category, $fields);
+        $category = $categoryRepository->handleUpdate($category, $fields);
 
         $this->notify->success("Categoria " . $category->title .  " foi alterado com sucesso");
         return redirect()->route('artigos.categorias.edit', ['category' => $category->id]);
@@ -204,12 +200,13 @@ class PostController extends Controller
 
     /**
      * @param int $category_id
+     * @param CategoryRepository $categoryRepository
      * 
      * @return \Illuminate\Http\Response
      */
-    public function categoriasDestroy(int $category_id)
+    public function categoriasDestroy(int $category_id, CategoryRepository $categoryRepository)
     {
-        $category = $this->category->find($category_id);
+        $category = $categoryRepository->find($category_id);
         if (!$category) {
             $this->notify->warning('Categoria não encotrando para deletar');
             return redirect()->route('artigos.categorias.index');
@@ -220,7 +217,7 @@ class PostController extends Controller
             return redirect()->route('artigos.categorias.index');
         }
 
-        $this->category->handleDelete($category);
+        $categoryRepository->handleDelete($category);
         $this->notify->success("Categoria {$category->title} deleta com sucesso!");
         return redirect()->route('artigos.categorias.index');
     }   

@@ -8,7 +8,7 @@ use App\Repos\Eloquent\AbstractRepository;
 use App\Repos\Contracts\CategoryRepositoryInterface;
 use App\Supports\Tools;
 
-class CategoryRepository extends AbstractRepository implements CategoryRepositoryInterface
+class CategoryRepository extends AbstractRepository
 {
     protected $model = Category::class;
 
@@ -40,9 +40,8 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
         if (isset($fields['cover'])) {
             $tools = (new Tools());
-            $file = $fields['cover'];
 
-            $attributes['cover'] = $tools->fileUpload($file, 'category/');
+            $attributes['cover'] = $tools->fileUpload($fields['cover'], 'category/');
         }
 
         return $this->create($attributes);
@@ -52,9 +51,9 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
      * @param Category $category
      * @param array $fields
      * 
-     * @return Category|null
+     * @return Category
      */
-    public function handleUpdate(Category $category, array $fields): ?Category
+    public function handleUpdate(Category $category, array $fields): Category
     {   
         $attributes['title']       = $fields['title'];
         $attributes['description'] = $fields['description'];
@@ -62,17 +61,11 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
 
         if (isset($fields['cover']) || isset($fields['cover-remove'])) {
             $tools = (new Tools());
+            $tools->removeFileUpload($category->cover);
 
             if (isset($fields['cover']) && !empty($fields['cover'])) {
-                $file = $fields['cover'];
-                $tools->removeFileUpload($category->cover);
-
-                $attributes['cover'] = $tools->fileUpload($file, 'category/');
-            } elseif (isset($fields['cover-remove'])) {
-                $tools->removeFileUpload($category->cover);
-
-                $attributes['cover'] = null;
-            } 
+                $attributes['cover'] = $tools->fileUpload($fields['cover'], 'category/');
+            }
         }
 
         return $this->update($category->id, $attributes);
@@ -84,7 +77,12 @@ class CategoryRepository extends AbstractRepository implements CategoryRepositor
      * @return void
      */
     public function handleDelete(Category $category): void
-    {
+    {   
+        if (!empty($category->cover)) {
+            $tools = (new Tools());
+            $tools->removeFileUpload($category->cover);
+        } 
+
         $this->delete($category->id);
     }
 }
