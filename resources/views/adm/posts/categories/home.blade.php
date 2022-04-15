@@ -2,7 +2,7 @@
 
 @section('content')
    <section class="article-post">
-      <h2>Artigos</h2>
+      <h2>Artigos/<span>categorias</span></h2>
 
       <div class="content">
          <div class="left">

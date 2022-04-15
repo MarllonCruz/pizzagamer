@@ -7,7 +7,7 @@ class CategoryRequest
     public function rules(): array
     {
         return [
-            'title' => 'required|unique:categories',
+            'title' => 'required|max:20|unique:categories',
             'description' => 'required',
             'cover' => 'file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400'
         ];
@@ -17,6 +17,7 @@ class CategoryRequest
     {   
         return [
             'title.required' => 'Preenche campo titulo',
+            'title.max' => 'Máximo de caracteres é 20',
             'title.unique' => 'Esse titulo já existe na outra categoria',
             'description.required' => 'Preenche campo descrição',
             'cover.file' => 'O arquivo da capa tem que ser jpg ou png',

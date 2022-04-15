@@ -18,6 +18,7 @@ class PostController extends Controller
 
      /**
      * Constructor
+     * 
      * @param Notify $notify
      */
     public function __construct(Notify $notify)
@@ -39,9 +40,20 @@ class PostController extends Controller
     /**
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
-        //
+    public function create(CategoryRepository $categoryRepository)
+    {   
+        $categories = $categoryRepository->handleAll('post', null, 'ASC');
+        
+        if (!$categories) {
+            $this->notify->warning('Não pode criar artigo porque não existem categoria... precisa criar uma');
+            return redirect()->route('artigos.index');
+        }
+
+        return view('adm.posts.create', [
+            'page' => 'post',
+            'menu' => 'new-post',
+            'categories' => $categories
+        ]);
     }
 
     /**
@@ -105,7 +117,7 @@ class PostController extends Controller
      */
     public function categoriasIndex(CategoryRepository $categoryRepository)
     {  
-        $categories = $categoryRepository->handleAll();
+        $categories = $categoryRepository->handleAll('post', 6);
 
         return view('adm.posts.categories.home', [
             'page' => 'post',

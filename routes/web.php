@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Adm\AuthController;
 use App\Http\Controllers\Adm\DashController;
+use App\Http\Controllers\Adm\MceUploadController;
 use App\Http\Controllers\Adm\PostController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
@@ -10,6 +11,9 @@ Route::prefix('/admin')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('/login', [AuthController::class, 'login']);
     Route::get('/logout', [AuthController::class, 'logout'])->name('admin.logout');
+
+    // MCE Upload
+    Route::post('/mce_upload', MceUploadController::class)->name('mce_uplaod');
 
 
     Route::middleware([Authenticate::class])->group(function () {
@@ -22,6 +26,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/artigos/{post}/editar', [PostController::class, 'edit'])->name('artigos.edit');
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
         Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
+
         // Post-Category Crud
         Route::get('/artigos/categorias', [PostController::class, 'categoriasIndex'])->name('artigos.categorias.index');
         Route::get('/artigos/categorias/criar', [PostController::class, 'categoriasCreate'])->name('artigos.categorias.create');

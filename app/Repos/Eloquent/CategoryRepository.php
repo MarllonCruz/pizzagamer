@@ -18,11 +18,15 @@ class CategoryRepository extends AbstractRepository
      * 
      * @return null|array
      */
-    public function handleAll(string $type = 'post', int $paginate = 6)
+    public function handleAll(string $type = 'post', int $paginate = null, string $orderBy = 'DESC')
     {   
-        return Category::where('type', $type)
-            ->orderBy('created_at', 'DESC')    
-            ->paginate($paginate);
+        $categories = Category::where('type', $type)->orderBy('created_at', $orderBy);   
+
+        if (!$paginate) {
+            return $categories->get();
+        }
+
+        return $categories->paginate($paginate);  
     }
 
     /**
@@ -33,18 +37,20 @@ class CategoryRepository extends AbstractRepository
      */
     public function handleCreate(array $fields, string $type): Category
     {   
-        $attributes['title']       = $fields['title'];
-        $attributes['description'] = $fields['description'];
-        $attributes['type']        = $type;
-        $attributes['uri']         = Str::slug($attributes['title'] , '-');
+        $category = new Category();
+        $category->title       = $fields['title'];
+        $category->description = $fields['description'];
+        $category->type        = $type;
+        $category->uri         = Str::slug($category['title'] , '-');
 
         if (isset($fields['cover'])) {
             $tools = (new Tools());
 
-            $attributes['cover'] = $tools->fileUpload($fields['cover'], 'category/');
+            $category->cover = $tools->fileUpload($fields['cover'], 'category/');
         }
 
-        return $this->create($attributes);
+        $category->save();
+        return $category;
     }
 
      /**
@@ -55,20 +61,22 @@ class CategoryRepository extends AbstractRepository
      */
     public function handleUpdate(Category $category, array $fields): Category
     {   
-        $attributes['title']       = $fields['title'];
-        $attributes['description'] = $fields['description'];
-        $attributes['uri']         = Str::slug($attributes['title'] , '-');
+        $category->title       = $fields['title'];
+        $category->description = $fields['description'];
+        $category->uri         = Str::slug($category->title , '-');
 
         if (isset($fields['cover']) || isset($fields['cover-remove'])) {
             $tools = (new Tools());
             $tools->removeFileUpload($category->cover);
+            $category->cover = null;
 
             if (isset($fields['cover']) && !empty($fields['cover'])) {
-                $attributes['cover'] = $tools->fileUpload($fields['cover'], 'category/');
+                $category->cover = $tools->fileUpload($fields['cover'], 'category/');
             }
         }
 
-        return $this->update($category->id, $attributes);
+        $category->save();
+        return $category;
     }
 
     /**
@@ -83,6 +91,6 @@ class CategoryRepository extends AbstractRepository
             $tools->removeFileUpload($category->cover);
         } 
 
-        $this->delete($category->id);
+        $category->delete();
     }
 }

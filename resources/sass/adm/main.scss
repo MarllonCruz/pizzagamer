@@ -9,6 +9,33 @@
   font-family: 'Fredoka', sans-serif;
 }
 
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+
+}
+
+.form {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+input {
+  height: 30px;
+}
+
+select {
+  margin: 0;
+  margin-bottom: 2px;
+  height: 44px;
+  padding: 6px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 16px;
+}
+
 // Main (adm/common/template)
 body#adm_body {
   width: 100vw;
@@ -327,7 +354,9 @@ body#adm_body {
             flex-direction: column;
 
             // Posts-Categories (adm/posts/categories/*)
-            &.category {
+            // Post (adm/post/*)
+            &.category,
+            &.post {
               header {
                 width: 100%;
                 display: flex;
@@ -460,6 +489,8 @@ body#adm_body {
                 flex-direction: column;
                 width: 100%;
 
+
+
                 label {
                   margin: 0;
                   margin-top: 10px;
@@ -486,6 +517,11 @@ body#adm_body {
                   text-align: start;
                   font-size: 16px;
                   color: #ff3f34;
+                }
+
+                span.mce-txt,
+                span.mce-wordcount {
+                  color: #333;
                 }
 
                 input[name=description] {
@@ -669,32 +705,31 @@ body#adm_body {
   }
 }
 
-@media (max-width: 400px) {
-    // Main (adm/common/template)
-    body#adm_body {
-  
-      main {
-  
-        section.article-post {
-          .content {
+@media (max-width: 430px) {
+  // Main (adm/common/template)
+  body#adm_body {
 
-            .right {
-  
-              &.category {
-                // Posts-Categories (adm/posts/categories/home)
+    main {
 
-                header {
-                  flex-direction: column;
-                  align-items: start;
-                  gap: 30px;
-                  margin: 0 0 20px 0;
-                }
+      section.article-post {
+        .content {
 
-                .categories {
-  
-                  .category {
-  
-                  }
+          .right {
+
+            &.category {
+              // Posts-Categories (adm/posts/categories/home)
+
+              header {
+                flex-direction: column;
+                align-items: start;
+                gap: 30px;
+                margin: 0 0 20px 0;
+              }
+
+              .categories {
+
+                .category {
+
                 }
               }
             }
@@ -702,4 +737,13 @@ body#adm_body {
         }
       }
     }
+  }
+
+  .form-group {
+    flex-direction: column;
+
+    .form {
+      margin: 0;
+    }
+  }
 }

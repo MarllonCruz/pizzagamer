@@ -1,0 +1,41 @@
+/* MCE Upload */
+.mce_upload {
+    display: none;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.2);
+
+    .mce_upload_box {
+        margin: auto;
+        width: 400px;
+        max-width: 90%;
+        background: #2d3436;
+        padding: 30px;
+        text-align: center;
+        border-radius: 10px;
+
+        label {
+            .mce_response {
+                display: block;
+                color: #ff3f34;
+                padding: 5px 0;
+            }
+
+            label.legend {
+                display: block;
+            }
+        }
+        
+        .btn {
+            margin-top: 15px;
+            width: 100%;
+            height: 30px;
+            font-size: 18px;
+        }
+    }
+}
+

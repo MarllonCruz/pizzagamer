@@ -1,12 +1,14 @@
 // Variables
-@import 'variables';
-
-// Main
-@import 'main.scss';
+@import '../variables.scss';
 
 // Includes
 @import 'common/ajax_load.scss';
 @import 'common/ajax_response.scss';
+@import 'common/mce_upload.scss';
+
+// Main
+@import 'main.scss';
+
 
 // Pages
 @import 'login.scss';
