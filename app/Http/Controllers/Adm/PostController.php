@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Supports\Notify;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
+use App\Http\Requests\PostCreateRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Repos\Eloquent\CategoryRepository;
 use App\Repos\Eloquent\ArticleRepository;
@@ -60,8 +61,15 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request, PostCreateRequest $postRequest)
+    {   
+        $validator = Validator::make($request->all(), $postRequest->rules(), $postRequest->messages());
+        
+        if ($validator->fails()) {
+            $this->notify->error('Dados estão incorretos!');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
         dd($request->all());
     }
 

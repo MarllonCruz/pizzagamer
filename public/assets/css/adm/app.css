@@ -539,7 +539,9 @@ body#adm_body main section.article-post .content .right.category form input, bod
   outline: none;
   font-size: 16px;
 }
-body#adm_body main section.article-post .content .right.category form input.is-invalid, body#adm_body main section.article-post .content .right.post form input.is-invalid {
+body#adm_body main section.article-post .content .right.category form input.is-invalid,
+body#adm_body main section.article-post .content .right.category form select.is-invalid, body#adm_body main section.article-post .content .right.post form input.is-invalid,
+body#adm_body main section.article-post .content .right.post form select.is-invalid {
   border: 2px solid #ff3f34;
 }
 body#adm_body main section.article-post .content .right.category form span, body#adm_body main section.article-post .content .right.post form span {

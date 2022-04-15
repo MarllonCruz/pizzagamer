@@ -508,7 +508,8 @@ body#adm_body {
                   font-size: 16px;
                 }
 
-                input.is-invalid {
+                input.is-invalid,
+                select.is-invalid {
                   border: 2px solid #ff3f34;
                 }
 

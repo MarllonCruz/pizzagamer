@@ -24,7 +24,7 @@
                @enderror
                
                <label for="description">*Descrição</label>
-               <input type="text"  placeholder=" Descrição" 
+               <input type="text" name="description" placeholder=" Descrição" 
                   value="{{ old('description') }}"  @error('description') class="is-invalid" @enderror>
                @error('description')
                   <span class="alert alert-danger">{{ $message }}</span>
@@ -33,11 +33,14 @@
                <div class="form-group">
                     <div class="form">
                         <label for="category_id">*Categoria</label>
-                        <select name="category_id" id="category_id">
+                        <select name="category_id" id="category_id" @error('category_id') class="is-invalid" @enderror>
                             @foreach ($categories as $category)
                                 <option value="{{ $category->id }}">{{ $category->title }}</option>
                             @endforeach
                         </select>
+                        @error('category_id')
+                            <span class="alert alert-danger">{{ $message }}</span>
+                        @enderror
                     </div>
 
                     <div class="form">
@@ -64,6 +67,9 @@
 
                <label>*Conteúdo</label>
                <textarea name="content" class="mce"></textarea>
+                @error('content')
+                    <span class="alert alert-danger">{{ $message }}</span>
+                @enderror
 
                <div class="al-right">
                   <button type="submit"><i class="fa-solid fa-square-check"></i> Criar Artigo</button>
