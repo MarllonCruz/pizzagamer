@@ -537,6 +537,7 @@ body#adm_body main section.article-post .content .right.category form input, bod
   padding: 6px;
   border-radius: 5px;
   outline: none;
+  border: none;
   font-size: 16px;
 }
 body#adm_body main section.article-post .content .right.category form input.is-invalid,

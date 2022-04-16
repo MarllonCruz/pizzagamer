@@ -24,17 +24,20 @@ class PostController extends Controller
      */
     public function __construct(Notify $notify)
     {
-        $this->notify   = $notify;
+        $this->notify = $notify;
     }
 
     /**
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(ArticleRepository $articleRepository)
+    {   
+        $articles = $articleRepository->handleAll('post', 9);
+
         return view('adm.posts.home', [
             'page' => 'post',
-            'menu' => 'posts'
+            'menu' => 'posts',
+            'articles' => $articles
         ]);
     }
 
@@ -70,7 +73,18 @@ class PostController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-        dd($request->all());
+        $articleRepository = (new ArticleRepository());
+        $fields = $request->only('title', 'description', 'category_id', 'opening_at', 'status', 
+            'content', 'cover');
+        $article = $articleRepository->handleCreate($fields, 'post');
+
+        if (!$article) {
+            $this->notify->error($articleRepository->getMessage());
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $this->notify->success("Artigo {$article->title} foi criado com sucesso");
+        return redirect()->route('artigos.categorias.create');
     }
 
     /**
