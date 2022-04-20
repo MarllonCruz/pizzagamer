@@ -43,7 +43,6 @@ abstract class AbstractRepository
     {
         return app($this->model);
     }
-
     
     /**
      * @param string $message

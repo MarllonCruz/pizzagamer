@@ -14,7 +14,7 @@
                <area />
             </header>
 
-            <form action="{{ route('artigos.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('artigos.update', ['post' => $article->id]) }}" method="post" enctype="multipart/form-data">
                @csrf
                <label for="title">*Titulo</label>
                <input type="text" name="title" placeholder=" Titulo" 
@@ -68,11 +68,6 @@
                <div class="cover-box">
                     @if (!empty($article->cover))
                         <img src="{{ url('storage/' . $article->cover) }}" alt="">      
-
-                        <div class="input-cover">
-                            <input type="checkbox" name="cover-remove">
-                            Remover capa atual ou escolher outra imagem abaixo
-                        </div>
                     @endif
                 </div>
                <input type="file" name="cover">

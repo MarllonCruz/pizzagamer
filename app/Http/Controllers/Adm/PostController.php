@@ -8,7 +8,7 @@ use App\Supports\Notify;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Requests\PostCreateRequest;
-use App\Models\Article;
+use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Repos\Eloquent\CategoryRepository;
 use App\Repos\Eloquent\ArticleRepository;
@@ -130,15 +130,35 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
-     *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  int $article_id
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(Request $request, int $article_id, ArticleRepository $articleRepository)
+    {   
+        $article   = $articleRepository->find($article_id);
+        if (!$article) {
+            $this->notify->warning('Artigo não encotrando para editar');
+            return redirect()->route('artigos.index');
+        }
+
+        $postRequest = (new PostUpdateRequest());
+        $validator   = Validator::make($request->all(), $postRequest->rules($article->id), $postRequest->messages());
+        if ($validator->fails()) {
+            $this->notify->error('Dados estão incorretos!');
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $article = $articleRepository->handleUpdate($article, $validator->validated(), 'post');
+        if (!$article) {
+            $this->notify->error($articleRepository->getMessage());
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $this->notify->success("Artigo {$article->title} foi atualizado com sucesso");
+        return redirect()->route('artigos.edit', ['post' => $article->id]);
     }
 
     /**

@@ -49,7 +49,7 @@ body#adm_body {
   margin: 0;
   padding: 25px 10px 15px 10px;
 }
-.pagination-content .pagination-content ul.pagination {
+.pagination-content ul.pagination {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -655,7 +655,8 @@ section.article-post .content {
   font-size: 13px;
 }
 .list-post .post a {
-  font-size: 18px;
+  font-size: 17px;
+  text-align: center;
 }
 .list-post .post a:hover {
   color: #b4b4b4;

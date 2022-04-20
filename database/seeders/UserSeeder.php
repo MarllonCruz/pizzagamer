@@ -6,8 +6,10 @@ use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
 use Illuminate\Support\Str;
-use Illuminate\Database\Seeder;
 use Faker\Generator as Faker;
+use Illuminate\Database\Seeder;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Support\Facades\Storage;
 
 class UserSeeder extends Seeder
 {
@@ -18,8 +20,14 @@ class UserSeeder extends Seeder
      */
     public function run(Faker $faker)
     {   
+        date_default_timezone_set('America/Sao_Paulo');
+
         $user     = User::factory()->create();  
         $category = Category::factory()->create();
+
+        // clear files image no path storage
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/app/public/article/factory');
 
         for ($i=0; $i < 15; $i++) { 
             $title = $faker->sentence(6);

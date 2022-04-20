@@ -26,8 +26,8 @@ class CreateArticlesTable extends Migration
             $table->integer('views');
             $table->string('type')->comment('[post, video]');
             $table->string('status')->comment('[active, draft, trash]');
-            $table->timestamp('opening_at')->comment('data do lançamento do artigo');
-            $table->timestamp('deleted_at')->nullable();
+            $table->date('opening_at')->comment('data do lançamento do artigo');
+            $table->date('deleted_at')->nullable();
             $table->timestamps();
         });
     }

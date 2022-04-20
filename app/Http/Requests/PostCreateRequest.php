@@ -2,16 +2,19 @@
 
 namespace App\Http\Requests;
 
+use Illuminate\Validation\Rule;
+
 class PostCreateRequest
 {      
     public function rules(): array
     {
         return [
-            'title' => 'required|max:30|unique:articles',
+            'title' => 'required|max:50|unique:articles',
             'description' => 'required',
             'category_id' => 'required|exists:categories,id',
-            'cover' => 'required|file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400',
-            'content' => 'required'
+            'cover' => 'file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400',
+            'content' => 'required',
+            'status' => Rule::in(['active', 'trash', 'draft']),
         ];
     }
 
@@ -19,7 +22,7 @@ class PostCreateRequest
     {   
         return [
             'title.required' => 'Preenche campo titulo',
-            'title.max' => 'Máximo de caracteres é 20',
+            'title.max' => 'Máximo de caracteres é 50',
             'title.unique' => 'Esse titulo já existe no outro artigo',
             'description.required' => 'Preenche campo descrição',
             'category_id.required' => 'Escolhe uma categoria',
