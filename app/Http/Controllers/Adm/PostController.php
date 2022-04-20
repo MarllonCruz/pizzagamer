@@ -111,9 +111,22 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Article $article)
+    public function edit(int $article_id, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
     {
-        dd($article);
+        $article   = $articleRepository->find($article_id);
+        $categories = $categoryRepository->handleAll('post', null, 'ASC');
+        
+        if (!$article || !$categories) {
+            $this->notify->warning('Artigo não encotrando para editar');
+            return redirect()->route('artigos.index');
+        }
+
+        return view('adm.posts.edit', [
+            'page'       => 'post',
+            'menu'       => 'new-post',
+            'categories' => $categories,
+            'article'    => $article
+        ]);
     }
 
     /**
