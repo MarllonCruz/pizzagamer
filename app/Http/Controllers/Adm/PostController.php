@@ -8,6 +8,7 @@ use App\Supports\Notify;
 use App\Http\Requests\CategoryRequest;
 use App\Http\Requests\CategoryUpdateRequest;
 use App\Http\Requests\PostCreateRequest;
+use App\Models\Article;
 use Illuminate\Support\Facades\Validator;
 use App\Repos\Eloquent\CategoryRepository;
 use App\Repos\Eloquent\ArticleRepository;
@@ -110,9 +111,9 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Article $article)
     {
-        //
+        dd($article);
     }
 
     /**
