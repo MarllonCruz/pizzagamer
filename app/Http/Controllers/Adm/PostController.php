@@ -28,6 +28,8 @@ class PostController extends Controller
     }
 
     /**
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
     public function index(ArticleRepository $articleRepository)
@@ -42,6 +44,8 @@ class PostController extends Controller
     }
 
     /**
+     * @param CategoryRepository $categoryRepository
+     * 
      * @return \Illuminate\Http\Response
      */
     public function create(CategoryRepository $categoryRepository)
@@ -62,6 +66,8 @@ class PostController extends Controller
 
     /**
      * @param  \Illuminate\Http\Request  $request
+     * @param PostCreateRequest $postRequest
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request, PostCreateRequest $postRequest)

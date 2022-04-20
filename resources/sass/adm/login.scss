@@ -1,3 +1,16 @@
+@import '../variables.scss';
+
+@font-face {
+  font-family: 'Fredoka';
+  src: url(../../fonts/Fredoka.ttf) format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0 auto;
+  font-family: 'Fredoka', sans-serif;
+}
+
 body#login_body {
   background-color: $dark;
   width: 100vw;

@@ -1,14 +1,18 @@
 // Variables
 @import '../variables.scss';
 
+// Boot
+@import 'boot.scss';
+
 // Includes
 @import 'common/ajax_load.scss';
 @import 'common/ajax_response.scss';
 @import 'common/mce_upload.scss';
-
-// Main
-@import 'main.scss';
+@import 'common/main.scss';
 
 
 // Pages
 @import 'login.scss';
+@import 'sidebar.scss';
+@import 'dashoboard.scss';
+@import 'post.scss';

@@ -15,7 +15,6 @@ class Category extends Model
 
     public function countPosts()
     {
-        // Article::select()->where('category_id', $this->attributes['id'])
         return $this->hasMany(Article::class)->count();
     }
 }

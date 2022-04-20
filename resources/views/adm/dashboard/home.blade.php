@@ -31,12 +31,16 @@
               </div>
               
               <div class="chart-days">
-                <canvas style="width: 100%; height: 100%" id="chartDays"></canvas>
+                <canvas style="width: 100%; height: 100%; margin: 0;" id="chartDays"></canvas>
               </div>
         </div>
         <div class="right">
-            <canvas  style="max-width: 100%; height: 370px" id="chartMostVisitedPages"></canvas>
-            <canvas  style="max-width: 100%; height: 250px;" id="chartDevices"></canvas>
+          <div class="chart-most-visited-pages">
+            <canvas style="width: 100%; height: 100%; margin: 0;" id="chartMostVisitedPages"></canvas>
+          </div>
+          <div class="chart-devices">
+            <canvas style="height: 180px; margin: 0;" id="chartDevices"></canvas>
+          </div>
         </div>
       </div>
    </section>
@@ -117,9 +121,6 @@
       'Page 3',
       'Page 4',
       'Page 5',
-      'Page 6',
-      'Page 7',
-      'Page 8'
     ];
 
     const dataPages = {
@@ -128,7 +129,7 @@
         label: 'Visualização',
         backgroundColor: '#fff',
         borderColor: '#fff',
-        data: [2, 10, 5, 2, 20, 30, 2, 9],
+        data: [2, 10, 5, 2, 20],
         borderRadius: 5,
       }]
     };

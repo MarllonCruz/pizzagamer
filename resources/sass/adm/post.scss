@@ -1,0 +1,388 @@
+// Post (adm/posts/*)
+section.article-post .content {
+  display: flex;
+}
+
+.left {
+  width: 210px;
+  padding-right: 20px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 8px 0 8px 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+
+      &.active,
+      &:hover {
+        background-color: $dark-light;
+      }
+
+      a {
+        text-decoration: none;
+        color: $white;
+        width: 100%;
+        display: block;
+
+        svg {
+          margin-right: 5px;
+        }
+      }
+    }
+  }
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+
+  // Posts-Categories (adm/posts/categories/*)
+  // Post (adm/post/*)
+  &.category,
+  &.post {
+    header {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      
+      h2 {
+        margin: 0;
+
+        svg {
+          padding-right: 6px;
+        }
+      }
+
+      a {
+        padding: 6px 12px;
+        background-color: $blue;
+        color: $white;
+        border-radius: 12px;
+        text-decoration: none;
+        margin: 0;
+
+        &:hover {
+          filter: brightness(105%);
+        }
+
+        svg {
+          margin-right: 6px;
+        }
+      }
+    }
+  }
+}
+
+// Posts (adm/posts/home)
+.list-post {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+
+  .post {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+
+    .status-post {
+      display: flex;
+      flex-wrap: wrap;
+      column-gap: 6px;
+      font-size: 13px;
+    }
+
+    a {
+      font-size: 18px;
+    }
+
+    a:hover {
+      color: $gray;
+      text-decoration: underline;
+    }
+
+    img {
+      width: 100%;
+      height: 160px;
+      object-fit: cover;
+      border-radius: 15px;
+    }
+
+    .btns {
+      margin-top: 5px;
+
+      a {
+        text-decoration: none;
+        font-size: 14px;
+
+        svg {
+          margin-right: 2px;
+        }
+
+        &:first-child {
+          margin-right: 8px;
+        }
+
+        &:first-child:hover {
+          color: #f9ca24;
+        }
+
+        &:last-child:hover {
+          color: #ff3f34;
+        }
+      }
+    }
+  }
+}
+
+// Posts-Categories (adm/posts/categories/home)
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  .category {
+    width: 100%;
+    height: 180px;
+    background-color: $dark-light;
+    padding: 20px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 25px;
+
+    .cover {
+      background-color: $dark;
+      width: 220px;
+      height: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+      margin: 0;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .info {
+      margin: 0;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      height: 100%;
+
+      h2 {
+        font-size: 22px;
+        font-weight: 600;
+        color: $white;
+        margin: 0;
+        margin-bottom: 10px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 1;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 30px;
+      }
+
+      p {
+        margin: 0;
+        color: $gray;
+        font-size: 14px;
+        text-overflow: ellipsis;
+        display: -webkit-box;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        height: 54px;
+      }
+
+      .btns {
+        width: 100%;
+        margin-top: 30px;
+        display: flex;
+        gap: 28px;
+
+        a {
+          text-decoration: none;
+          color: $white;
+          margin: 0;
+
+          svg {
+            margin-right: 2px;
+          }
+
+          &:first-child:hover {
+            color: #f9ca24;
+          }
+
+          &:last-child:hover {
+            color: #ff3f34;
+          }
+        }
+      }
+    }
+  }
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+
+  label {
+    margin: 0;
+    margin-top: 10px;
+    margin-bottom: 2px;
+    font-size: 18px;
+  }
+  
+  input {
+    margin: 0;
+    margin-bottom: 2px;
+    height: 45px;
+    padding: 6px;
+    border-radius: 5px;
+    outline: none;
+    border: none;
+    font-size: 16px;
+  }
+
+  input.is-invalid,
+  select.is-invalid {
+    border: 2px solid #ff3f34;
+  }
+
+  span {
+    width: 100%;
+    text-align: start;
+    font-size: 16px;
+    color: #ff3f34;
+  }
+
+  span.mce-txt,
+  span.mce-wordcount {
+    color: #333;
+  }
+
+  input[name=description] {
+    height: 80px;
+  }
+
+  .cover-box {
+    margin: 5px 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    .input-cover {
+      margin: 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 5px;
+      padding: 10px 0 5px 0;
+
+      input {
+        height: auto;
+        margin: 0;
+        margin-top: 4px;
+      }
+    }
+
+    img {
+      max-width: 100%;
+      max-height: 150px;
+      margin: 0;
+    }
+  }
+
+  .al-right {
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+
+    button {
+      margin: 0;
+      padding: 8px 16px;
+      background-color: $blue;
+      color: $white;
+      border-radius: 5px;
+      border: none;
+      outline: none;
+      font-size: 16px;
+      font-weight: bolder;
+      cursor: pointer;
+      margin-top: 20px;
+
+      &:hover {
+        filter: brightness(105%);
+      }
+
+      svg {
+        margin-right: 4px;
+      }
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  section.article-post .content {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .left {
+    margin: 0;
+    margin-bottom: 20px;
+  }
+
+  .right {
+    width: 100%;
+  }
+
+  .list-post {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  // Posts-Categories (adm/posts/categories/home)
+  .right.category {
+    .categories {
+      .category {
+        flex-direction: column;
+        height: 350px;
+
+        .cover {
+          width: 100%;
+          height: 180px;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 430px) {
+  .right.category {
+    // Posts-Categories (adm/posts/categories/home)
+
+    header {
+      flex-direction: column;
+      align-items: start;
+      gap: 30px;
+      margin: 0 0 20px 0;
+    }
+  } 
+
+  .list-post {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

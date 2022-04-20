@@ -12,27 +12,27 @@
             <header>
                <h2><i class="fa-solid fa-pen-to-square"></i> Artigos</h2>
             </header>
-            {{-- <div class="categories">
-               @foreach ($categories as $category)
-                  <div class="category">
-                     <div class="cover">
-                       @if (!empty($category->cover))
-                          <img src="{{ url('storage/' . $category->cover) }}" alt="">      
-                       @endif
+
+            <div class="list-post">
+               @foreach ($articles as $article)
+                  <div class="post">
+                     <img src="{{ url('storage/' . $article->cover) }}" alt="">      
+                     <a href="">{{ $article->title }}</a>
+                     <div class="status-post">
+                        <span><i class="fa-solid fa-clock"></i> {{ date_fmt($article->updated_at, 'd/m/Y H:i') }}</span>
+                        <span><i class="fa-solid fa-bookmark"></i> {{ $article->category->title }}</span>
+                        <span><i class="fa-solid fa-user"></i> {{ $article->user->first_name }}</span>
+                        <span><i class="fa-solid fa-pen-to-square"></i> {{ $article->statusPtBr() }}</span>
                      </div>
-                     <div class="info">
-                        <h2>{{ $category->title }} <span>[{{ $category->countPosts() }} Artigo(s)]</span></h2>
-                        <p>{{ $category->description }}</p>
-                        <div class="btns">
-                           <a href="{{ route('artigos.categorias.edit', ['category' => $category->id]) }}"><i class="fa-solid fa-pen"></i> Editar</a>
-                           <a href="{{ route('artigos.categorias.destroy', ['category' => $category->id]) }}" onclick="return confirm('Tem certeza que deseja excluir categoria {{ $category->title }} ?')"><i class="fa-solid fa-trash-can"></i> Deletar</a>
-                        </div>
+                     <div class="btns">
+                        <a href="{{ route('artigos.edit', ['post' => $article->id]) }}"><i class="fa-solid fa-pen"></i> Editar</a>
+                        <a href="{{ route('artigos.destroy', ['post' => $article->id]) }}" onclick="return confirm('Tem certeza que deseja excluir categoria {{ $article->title }} ?')"><i class="fa-solid fa-trash-can"></i> Deletar</a>
                      </div>
                   </div>
                @endforeach
             </div>
-            
-            {{ $categories->links('adm.common.pagination-custom') }} --}}
+
+            {{ $articles->links('adm.common.pagination-custom') }}
          </div>
       </div>
    </section>

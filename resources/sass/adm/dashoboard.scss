@@ -1,0 +1,141 @@
+// Dashboard (adm/dashboard/home)
+section.dashboard {
+
+  .content {
+    display: flex;
+    gap: 10px;
+
+    .left {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin: 0;
+      width: 100%;
+  
+      .amounts {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+        height: 160px;
+  
+        .box {
+          background-color: $dark-light;
+          width: 100%;
+          border-radius: 10px;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 10px;
+  
+          h3 {
+            width: 100%;
+            letter-spacing: 1.5px;
+            font-size: 16px;
+            font-weight: 600;
+            text-align: start;
+          }
+  
+          .amount {
+            flex: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+  
+            span {
+              font-size: 30px;
+              font-weight: 600;
+              margin: 0;
+            }
+  
+            svg {
+              font-size: 35px;
+              margin: 0;
+            }
+          }
+        }
+      }
+  
+      .chart-days {
+        width: 100%;
+        height: 500px;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: $dark-light;
+  
+        canvas {
+          width: 100%;
+          height: 500px;
+        }
+      }
+    }
+  
+    .right {
+      width: 300px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+  
+      .chart-most-visited-pages {
+        width: 100%;
+        height: 330px;
+        background-color: $dark-light;
+        border-radius: 10px;
+        padding: 20px;
+      }
+  
+      .chart-devices {
+        background-color: $dark-light;
+        border-radius: 10px;
+        padding: 20px;
+        width: 100%;
+        flex: 1;
+      }
+    }
+  }
+  }
+  
+
+@media (max-width: 970px) {
+  section.dashboard {
+
+    .content {
+      flex-direction: column;
+
+      .left {
+        width: 100%;
+        padding: 0;
+      }
+      .right {
+        width: 100%;
+
+        canvas#chartMostVisitedPages {
+          width: 100%;
+        }
+
+        canvas#chartDevices {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 720px) {
+  section.dashboard {
+
+    .content {
+      flex-direction: column;
+
+      .left {
+
+        .amounts {
+          height: auto;
+          grid-template-columns: repeat(1, 1fr);
+        }
+      }
+    }
+  }
+}

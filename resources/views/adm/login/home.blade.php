@@ -7,7 +7,7 @@
     <title>Ghost Gamer | Admin</title>
 
     <!-- App Style -->
-    <link rel="stylesheet" href="{{ url(mix('assets/css/adm/app.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('assets/css/adm/login.css')) }}">
 </head>
 <body id="login_body">
     <!-- Ajax Loading -->

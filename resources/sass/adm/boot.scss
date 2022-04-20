@@ -1,0 +1,131 @@
+@font-face {
+  font-family: 'Fredoka';
+  src: url(../../fonts/Fredoka.ttf) format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  font-family: 'Fredoka', sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+// Forms default
+.form-group {
+  display: flex;
+  gap: 10px;
+  margin: 0;
+
+  .form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  input {
+    height: 45px;
+  }
+
+  select {
+    margin: 0;
+    margin-bottom: 2px;
+    height: 45px;
+    padding: 6px;
+    border-radius: 5px;
+    outline: none;
+    font-size: 16px;
+  }
+}
+
+// Main (adm/common/template)
+body#adm_body {
+  width: 100vw;
+  min-height: 100vh;
+  display: flex;
+  color: $white;
+  position: relative;
+  overflow-x: hidden;
+}
+
+// Pagination
+.pagination-content {
+  margin: 0;
+  padding: 25px 10px 15px 10px;
+
+  .pagination-content ul.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 10px;
+    padding: 0;
+  }
+
+  ul.pagination li {
+    list-style: none;
+    margin: 0;
+  }
+  
+  ul.pagination li.disabled {
+    display: none;
+  }
+  
+  ul.pagination li a,
+  ul.pagination li span {
+    color: $white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: $dark-light;
+  }
+  
+  ul.pagination li span {
+    background-color: $blue;
+  }
+}
+
+// Button Menu
+#btn-menu {
+  position: absolute;
+  top: 20px;
+  left: 40px;
+  z-index: 2;
+  background-color: inherit;
+  border: none;
+  cursor: pointer;
+  display: none;
+
+  svg {
+    font-size: 38px;
+    color: $white;
+  }
+}
+
+@media (max-width: 970px) {
+  #btn-menu {
+    display: flex;
+  }
+}
+
+@media (max-width: 720px) {
+  #btn-menu {
+    top: 28px;
+    left: 20px;
+  }
+}
+
+@media (max-width: 430px) {
+  .form-group {
+    flex-direction: column;
+
+    .form {
+      margin: 0;
+    }
+  }
+}
