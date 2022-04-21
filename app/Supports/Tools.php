@@ -3,13 +3,13 @@
 namespace App\Supports;
 
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class Tools
 {
     public function fileUpload($file, $path)
     {
-        $fileName = mb_substr($file->store('public/' . $path . date('Y/m')), 7);
-        
+        $fileName = mb_substr(Storage::putFile('public/' . $path  . date('Y/m'), $file), 7);
         return $fileName;
     }
 

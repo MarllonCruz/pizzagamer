@@ -121,6 +121,7 @@ class PostController extends Controller
             return redirect()->route('artigos.index');
         }
 
+
         return view('adm.posts.edit', [
             'page'       => 'post',
             'menu'       => 'new-post',
