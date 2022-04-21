@@ -44,9 +44,11 @@
     <script src="{{ url('assets/js/jquery.form.js') }}"></script>
     <!-- Chart -->
     <script src="{{ url('assets/js/chart.js') }}"></script>
+    <!-- TinyMCE -->
+    <script src="{{ url("assets/js/tinymce/tinymce.min.js") }}"></script> 
     <!-- App Script -->
     <script src="{{ url(mix('assets/js/adm/app.js')) }}"></script>
-
+    <!-- Section script -->
     @yield('script')
 </body>
 </html>

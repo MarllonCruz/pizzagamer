@@ -1,82 +1,4 @@
 // Post (adm/posts/*)
-section.article-post .content {
-  display: flex;
-}
-
-.left {
-  width: 210px;
-  padding-right: 20px;
-
-  ul {
-    list-style: none;
-    padding: 0;
-
-    li {
-      padding: 8px 0 8px 10px;
-      margin: 8px 0;
-      border-radius: 8px;
-
-      &.active,
-      &:hover {
-        background-color: $dark-light;
-      }
-
-      a {
-        text-decoration: none;
-        color: $white;
-        width: 100%;
-        display: block;
-
-        svg {
-          margin-right: 5px;
-        }
-      }
-    }
-  }
-}
-
-.right {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-
-  // Posts-Categories (adm/posts/categories/*)
-  // Post (adm/post/*)
-  &.category,
-  &.post {
-    header {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      
-      h2 {
-        margin: 0;
-
-        svg {
-          padding-right: 6px;
-        }
-      }
-
-      a {
-        padding: 6px 12px;
-        background-color: $blue;
-        color: $white;
-        border-radius: 12px;
-        text-decoration: none;
-        margin: 0;
-
-        &:hover {
-          filter: brightness(105%);
-        }
-
-        svg {
-          margin-right: 6px;
-        }
-      }
-    }
-  }
-}
 
 // Posts (adm/posts/home)
 .list-post {
@@ -337,20 +259,6 @@ form {
 }
 
 @media (max-width: 720px) {
-  section.article-post .content {
-    flex-direction: column;
-    width: 100%;
-  }
-
-  .left {
-    margin: 0;
-    margin-bottom: 20px;
-  }
-
-  .right {
-    width: 100%;
-  }
-
   .list-post {
     grid-template-columns: repeat(2, 1fr);
   }

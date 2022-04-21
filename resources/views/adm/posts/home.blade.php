@@ -1,7 +1,7 @@
 @extends('adm.common.template')
 
 @section('content')
-   <section class="article-post">
+   <section>
       <h2>Artigos</h2>
 
       <div class="content">

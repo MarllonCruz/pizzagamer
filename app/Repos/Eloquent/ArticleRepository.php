@@ -13,6 +13,13 @@ class ArticleRepository extends AbstractRepository
 {
     protected $model = Article::class;
 
+    /**
+    * @param string $type 'post', 'video'
+    * @param int|null $paginate
+    * @param string $orderBy = 'DESC'
+    * 
+    * @return Article|null
+    */
     public function handleAll(string $type, int $paginate = null, string $orderBy = 'DESC')
     {
         $articles = Article::where('type', $type)->orderBy('created_at', $orderBy);   

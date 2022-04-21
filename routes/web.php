@@ -4,6 +4,7 @@ use App\Http\Controllers\Adm\AuthController;
 use App\Http\Controllers\Adm\DashController;
 use App\Http\Controllers\Adm\MceUploadController;
 use App\Http\Controllers\Adm\PostController;
+use App\Http\Controllers\Adm\SlideController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
@@ -35,6 +36,11 @@ Route::prefix('/admin')->group(function () {
         Route::get('/artigos/categorias/{category}/editar', [PostController::class, 'categoriasEdit'])->name('artigos.categorias.edit');
         Route::post('/artigos/categorias/{category}/editar', [PostController::class, 'categoriasUpdate'])->name('artigos.categorias.update');
         Route::get('/artigos/categorias/{category}/deletar', [PostController::class, 'categoriasDestroy'])->name('artigos.categorias.destroy');
+
+        // SLides
+        Route::get('/slides', [SlideController::class, 'index'])->name('slides.index');
+        Route::get('/slides/criar', [SlideController::class, 'create'])->name('slides.create');
+        Route::post('/slides/criar', [SlideController::class, 'store'])->name('slides.store');
     });
 });
 
