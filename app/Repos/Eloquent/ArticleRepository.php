@@ -8,7 +8,6 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
-use App\Repos\Contracts\ArticleRepositoryInterface;
 
 class ArticleRepository extends AbstractRepository 
 {
@@ -64,6 +63,13 @@ class ArticleRepository extends AbstractRepository
         return $article;
     }
 
+    /**
+    * @param Article $article
+    * @param array $fields
+    * @param string $type 'post', 'video'
+    * 
+    * @return Article|null
+    */
     public function handleUpdate(Article $article, array $fields, string $type): ?Article
     {   
         $category = Category::where('id', $fields['category_id'])->where('type', $type)->first();
@@ -90,5 +96,18 @@ class ArticleRepository extends AbstractRepository
 
         $article->save();
         return $article;
+    }
+
+    /**
+     * @param Article $article
+     */
+    public function handleDelete(Article $article): void
+    {
+        if (!empty($article->cover)) {
+            $tools = (new Tools());
+            $tools->removeFileUpload($article->cover);
+        }
+
+        $article->delete();
     }
 }

@@ -23,6 +23,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/artigos', [PostController::class, 'index'])->name('artigos.index');
         Route::get('/artigos/criar', [PostController::class, 'create'])->name('artigos.create');
         Route::post('/artigos/criar', [PostController::class, 'store'])->name('artigos.store');
+        Route::get('/artigos/{post}/show', [PostController::class, 'show'])->name('artigos.show');
         Route::get('/artigos/{post}/editar', [PostController::class, 'edit'])->name('artigos.edit');
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
         Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');

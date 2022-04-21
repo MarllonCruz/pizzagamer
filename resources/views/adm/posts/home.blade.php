@@ -17,7 +17,7 @@
                @foreach ($articles as $article)
                   <div class="post">
                      <img src="{{ url('storage/' . $article->cover) }}" alt="">      
-                     <a href="">{{ $article->title }}</a>
+                     <a href="{{ route('artigos.show', ['post' => $article->id]) }}">{{ $article->title }}</a>
                      <div class="status-post">
                         <span><i class="fa-solid fa-clock"></i> {{ date_fmt($article->updated_at, 'd/m/Y H:i') }}</span>
                         <span><i class="fa-solid fa-bookmark"></i> {{ $article->category->title }}</span>

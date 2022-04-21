@@ -12,6 +12,7 @@ use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Repos\Eloquent\CategoryRepository;
 use App\Repos\Eloquent\ArticleRepository;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {   
@@ -66,7 +67,7 @@ class PostController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
+     * @param Request  $request
      * @param PostCreateRequest $postRequest
      * 
      * @return \Illuminate\Http\Response
@@ -100,15 +101,24 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $article_id, ArticleRepository $articleRepository)
     {
-        //
+        $article = $articleRepository->find($article_id);
+        if (!$article) {
+            $this->notify->warning('Artigo não encotrando para editar');
+            return redirect()->route('artigos.index');
+        }
+
+        return view('adm.posts.show', [
+            'article' => $article
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
+     * @param int $article_id
+     * @param ArticleRepository $articleRepository
+     * @param CategoryRepository $categoryRepository
+     * 
      * @return \Illuminate\Http\Response
      */
     public function edit(int $article_id, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
@@ -131,8 +141,8 @@ class PostController extends Controller
     }
 
     /**
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int $article_id
+     * @param Request  $request
+     * @param int $article_id
      * @param ArticleRepository $articleRepository
      * 
      * @return \Illuminate\Http\Response
@@ -163,14 +173,23 @@ class PostController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param int $article_id
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
-        //
+    public function destroy(int $article_id, ArticleRepository $articleRepository)
+    {   
+        $article   = $articleRepository->find($article_id);
+        if (!$article) {
+            $this->notify->warning('Artigo não encotrando para editar');
+            return redirect()->route('artigos.index');
+        }
+
+        $articleRepository->handleDelete($article, Auth::user());
+
+        $this->notify->success("Artigo {$article->title} deleta com sucesso!");
+        return redirect()->route('artigos.index');
     }
 
     /**

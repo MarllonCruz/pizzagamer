@@ -79,6 +79,80 @@ body#adm_body {
   background-color: #2a6fff;
 }
 
+/*WYSH HTMLCHARS*/
+.htmlchars {
+  color: var(--color-default);
+}
+
+.htmlchars :first-child {
+  margin-top: 0;
+}
+
+.htmlchars h2,
+.htmlchars h3,
+.htmlchars h4,
+.htmlchars h5 {
+  margin: 40px 0 20px 0;
+  font-weight: 600;
+}
+
+.htmlchars h2 {
+  font-size: 1.8em;
+}
+
+.htmlchars h3 {
+  font-size: 1.6em;
+}
+
+.htmlchars h4 {
+  font-size: 1.4em;
+}
+
+.htmlchars h5 {
+  font-size: 1.2em;
+}
+
+.htmlchars p {
+  margin-top: 25px;
+}
+
+.htmlchars ul,
+.htmlchars ol {
+  margin: 20px 0 20px 40px;
+}
+
+.htmlchars ul {
+  list-style: circle;
+}
+
+.htmlchars ol li,
+.htmlchars ul li {
+  margin-top: 5px;
+}
+
+.htmlchars a {
+  color: #2a6fff;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.htmlchars a:hover {
+  text-decoration: underline;
+}
+
+.htmlchars img {
+  margin-top: 30px;
+  border-radius: 10px;
+}
+
+.htmlchars pre {
+  padding: 20px;
+  border-radius: 5px;
+  background: #EEEEEE;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
 #btn-menu {
   position: absolute;
   top: 20px;
