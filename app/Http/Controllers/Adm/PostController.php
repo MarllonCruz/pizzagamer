@@ -27,6 +27,10 @@ class PostController extends Controller
     public function __construct(Notify $notify)
     {
         $this->notify = $notify;
+        
+        $this->middleware('permission.crud.post', ['except' => [
+            'index', 'categoriasIndex'
+        ]]);
     }
 
     /**
