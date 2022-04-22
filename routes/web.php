@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Adm\AuthController;
 use App\Http\Controllers\Adm\DashController;
+use App\Http\Controllers\Adm\HighlightController;
 use App\Http\Controllers\Adm\MceUploadController;
 use App\Http\Controllers\Adm\PostController;
 use App\Http\Controllers\Adm\SlideController;
@@ -43,6 +44,14 @@ Route::prefix('/admin')->group(function () {
         Route::post('/slides/criar', [SlideController::class, 'store'])->name('slides.store');
         Route::post('/slides/sortable', [SlideController::class, 'sortable'])->name('slides.sortable');
         Route::get('/slides/{slide}/deletar', [SlideController::class, 'destroy'])->name('slides.destroy');
+
+        // Highlights
+        Route::get('/destaques', [HighlightController::class, 'index'])->name('destaques.index');
+        Route::get('/destaques/{highlight}/criar', [HighlightController::class, 'create'])->name('destaques.create');
+        Route::post('/destaques/{highlight}/criar', [HighlightController::class, 'store'])->name('destaques.store');
+        Route::get('/destaques/{highlight}/editar', [HighlightController::class, 'edit'])->name('destaques.edit');
+        Route::post('/destaques/{highlight}/editar', [HighlightController::class, 'update'])->name('destaques.update');
+        Route::get('/destaques/{highlight}/deletar', [HighlightController::class, 'destroy'])->name('destaques.destroy');
     });
 });
 
