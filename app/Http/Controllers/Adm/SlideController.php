@@ -102,6 +102,7 @@ class SlideController extends Controller
 
     /** 
     * @param int $slide_id
+    * @param SlideRepository $slideRepositor
     * 
     * @return \Illuminate\Http\Response
     */

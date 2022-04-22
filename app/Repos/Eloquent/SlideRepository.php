@@ -37,6 +37,9 @@ class SlideRepository extends AbstractRepository
     }
 
     /**
+     * @param int $id
+     * @param string $order
+     * 
      * @return void
      */
     public function updateOrder(int $id, string $order): void
@@ -46,7 +49,10 @@ class SlideRepository extends AbstractRepository
         $data->save(); 
     }
 
-    public function remove(Slide $slide)
+    /**
+     * @return void
+     */
+    public function remove(Slide $slide): void
     {
         $slide->article_id = null;
         $slide->save();
