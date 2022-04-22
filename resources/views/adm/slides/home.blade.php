@@ -30,7 +30,7 @@
                <ul class="slide" id="sortable" data-route="{{ route('slides.sortable') }}">
                   @foreach ($slides as $slide)
                      @if (!$slide->article)
-                        <li class="item empty">
+                        <li class="item empty" data-id="{{ $slide->id }}">
                            <p><i class="fa-solid fa-face-frown-open"></i> Vazio</p>
                         </li>
                      @else
