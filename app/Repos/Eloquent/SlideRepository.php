@@ -35,4 +35,14 @@ class SlideRepository extends AbstractRepository
         $slide->save();
         return true;
     }
+
+    /**
+     * @return void
+     */
+    public function updateOrder(int $id, string $order): void
+    {
+        $data = Slide::find($id);
+        $data->order = $order;
+        $data->save(); 
+    }
 }

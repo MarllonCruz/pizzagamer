@@ -69,8 +69,16 @@ class SlideController extends Controller
         return redirect()->route('slides.index');
     }
 
-    public function sortable(Request $request)
-    {
-        //
+    public function sortable(Request $request, SlideRepository $slideRepository)
+    {   
+        $list = (gettype($request->list) == "string") ? json_decode($request->list) : $request->list;
+        $order = 1;
+        
+        foreach ($list as $id) {
+            $slideRepository->updateOrder(intval($id), $order);
+            $order ++;
+        }
+
+        return response()->json(["success"=> true, 200]);
     }
 }

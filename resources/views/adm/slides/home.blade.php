@@ -34,7 +34,7 @@
                            <p><i class="fa-solid fa-face-frown-open"></i> Vazio</p>
                         </li>
                      @else
-                        <li class="item">
+                        <li class="item" data-id="{{ $slide->id }}">
                            <p>{{ $slide->article->title }} ({{ $slide->article->category->title }})</p>
                         </li>
                      @endif
@@ -49,26 +49,26 @@
 @section('script')
    <script src="{{ url('assets/js/jquery-sortable.js') }}"></script>
    <script>
-      // Ajax Sortable by [JQuery]
-      // async function requestAjaxByJQuery(route) {
-      //    list = [];
-      //    $(".item").each((index, obj)=> {
-      //       list.push($(obj).attr("data-id")); 
-      //    });
+      //Ajax Sortable by [JQuery]
+      async function requestAjaxByJQuery(route) {
+         list = [];
+         $(".item").each((index, obj)=> {
+            list.push($(obj).attr("data-id")); 
+         });
 
-      //    $.ajax({
-      //       url: route,
-      //       data: {
-      //          "_token": $('meta[name="csrf-token"]').attr('content'),
-      //          "list": list
-      //       },
-      //       type: "POST",
-      //       dataType: "json",
-      //       success: function (su) {
-      //          console.log(su);
-      //       }
-      //    });
-      // }
+         $.ajax({
+            url: route,
+            data: {
+               "_token": $('meta[name="csrf-token"]').attr('content'),
+               "list": list
+            },
+            type: "POST",
+            dataType: "json",
+            success: function (su) {
+               console.log(su);
+            }
+         });
+      }
 
       // SortableJS
       var route = $('#sortable').data('route');
