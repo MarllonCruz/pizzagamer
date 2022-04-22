@@ -23,6 +23,12 @@ a {
   display: flex;
   flex-direction: column;
 }
+.form-group input,
+.form-group select,
+.form-group button {
+  border: none;
+  outline: none;
+}
 .form-group input {
   height: 45px;
 }
@@ -1011,7 +1017,47 @@ form .al-right button svg {
   border-radius: 5px;
   font-size: 20px;
 }
+.list-slides ul.slide li:hover {
+  cursor: move;
+}
 .list-slides ul.slide li.empty svg {
   margin: 0;
   margin-left: 5px;
+}
+
+.add {
+  width: 100%;
+}
+.add form {
+  display: flex;
+}
+.add form select {
+  width: 100%;
+  padding: 10px 5px;
+  border-radius: 5px;
+  outline: none;
+  font-size: 18px;
+}
+.add form select option {
+  font-size: 18px;
+  padding: 15px 5px;
+  width: 100%;
+}
+.add form button {
+  margin: 0;
+  padding: 8px 16px;
+  width: 150px;
+  background-color: #2a6fff;
+  color: #FFFFFF;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bolder;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.add form button:hover {
+  filter: brightness(105%);
+}
+.add form button svg {
+  margin-right: 4px;
 }

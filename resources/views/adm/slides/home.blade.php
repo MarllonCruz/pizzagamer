@@ -27,20 +27,60 @@
                   <li>10</li>
                </ul>
 
-               <ul class="slide">
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
-                  <li class="empty">Vazio <i class="fa-solid fa-face-frown-open"></i></li>
+               <ul class="slide" id="sortable" data-route="{{ route('slides.sortable') }}">
+                  @foreach ($slides as $slide)
+                     @if (!$slide->article_id)
+                        <li class="item">
+                           <a href="{{ route('slides.create') }}">Adicionar</a>
+                        </li>
+                     @else
+                        <li class="item">
+                           <p>Titulo: {{ $slide->article->title }} ({{ $slide->article->category->title }})</p>
+                        </li>
+                     @endif
+                  @endforeach
                </ul>
             </div>
          </div>
       </div>
    </section>
+@endsection
+
+@section('script')
+   <script src="{{ url('assets/js/jquery-sortable.js') }}"></script>
+   <script>
+      // Ajax Sortable by [JQuery]
+      // async function requestAjaxByJQuery(route) {
+      //    list = [];
+      //    $(".item").each((index, obj)=> {
+      //       list.push($(obj).attr("data-id")); 
+      //    });
+
+      //    $.ajax({
+      //       url: route,
+      //       data: {
+      //          "_token": $('meta[name="csrf-token"]').attr('content'),
+      //          "list": list
+      //       },
+      //       type: "POST",
+      //       dataType: "json",
+      //       success: function (su) {
+      //          console.log(su);
+      //       }
+      //    });
+      // }
+
+      // SortableJS
+      var route = $('#sortable').data('route');
+
+      var el = document.getElementById('sortable');
+      Sortable.create(el, {
+         group: 'shared',
+         swapThreshold: 0.90,
+         animation: 300,
+         onUpdate: async function() {
+            requestAjaxByJQuery(route);
+         }
+      });
+   </script>
 @endsection

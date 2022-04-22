@@ -15,9 +15,8 @@ class CreateSlidesTable extends Migration
     {
         Schema::create('slides', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('article_id')->constrained('articles')->onUpdate('cascade')->onDelete('cascade');
+            $table->bigInteger('article_id')->nullable();
             $table->integer('order');
-            $table->timestamps();
         });
     }
 

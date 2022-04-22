@@ -8,6 +8,7 @@ use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
+use Illuminate\Support\Arr;
 
 class ArticleRepository extends AbstractRepository 
 {
@@ -29,6 +30,15 @@ class ArticleRepository extends AbstractRepository
         }
 
         return $articles->paginate($paginate);  
+    }
+
+    /**
+    * @return array|object|mixed|null
+    */
+    public function listPostsActive()
+    {
+        $articles = Article::where('type', 'post')->where('status', 'active')->get();
+        return $articles;
     }
 
     /**

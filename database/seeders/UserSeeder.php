@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
+use App\Models\Slide;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
@@ -28,8 +29,10 @@ class UserSeeder extends Seeder
         // clear files image no path storage
         $file = new Filesystem;
         $file->cleanDirectory('storage/app/public/article/factory');
+    
 
         for ($i=0; $i < 15; $i++) { 
+
             $title = $faker->sentence(6);
             $content = "<h3>{$faker->sentence(6)}</h3><p></p>
                         <p>{$faker->sentence(10)}</p><p></p>
@@ -39,7 +42,7 @@ class UserSeeder extends Seeder
             
             $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
 
-            Article::create([
+            $article = Article::create([
                 'user_id'     => $user->id,
                 'category_id' => $category->id,
                 'title'       => $title,

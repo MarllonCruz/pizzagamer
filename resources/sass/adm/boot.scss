@@ -26,6 +26,13 @@ a {
     flex-direction: column;
   }
 
+  input,
+  select,
+  button {
+    border: none;
+    outline: none;
+  }
+
   input {
     height: 45px;
   }

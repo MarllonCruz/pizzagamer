@@ -42,12 +42,59 @@
       border-radius: 5px;
       font-size: 20px;
 
+      &:hover {
+        cursor: move;
+      }
+
       &.empty {
 
         svg {
           margin: 0;
           margin-left: 5px;
         }
+      }
+    }
+  }
+}
+
+.add {
+  width: 100%;
+
+  form {
+    display: flex;
+
+    select {
+      width: 100%;
+      padding: 10px 5px;
+      border-radius: 5px;
+      outline: none;
+      font-size: 18px;
+
+      option {
+        font-size: 18px;
+        padding: 15px 5px;
+        width: 100%;
+      }
+    }
+
+    button {
+      margin: 0;
+      padding: 8px 16px;
+      width: 150px;
+      background-color: $blue;
+      color: $white;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bolder;
+      cursor: pointer;
+      margin-top: 10px;
+
+      &:hover {
+        filter: brightness(105%);
+      }
+
+      svg {
+        margin-right: 4px;
       }
     }
   }
