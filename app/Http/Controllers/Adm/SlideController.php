@@ -58,6 +58,15 @@ class SlideController extends Controller
         }
         
         $slideRepository = (new SlideRepository());
+        $result = $slideRepository->add($article);
+
+        if (!$result) {
+            $this->notify->error($slideRepository->getMessage());
+            return redirect()->back();
+        }
+
+        $this->notify->success('Adicionado com sucesso!');
+        return redirect()->route('slides.index');
     }
 
     public function sortable(Request $request)

@@ -29,13 +29,13 @@
 
                <ul class="slide" id="sortable" data-route="{{ route('slides.sortable') }}">
                   @foreach ($slides as $slide)
-                     @if (!$slide->article_id)
-                        <li class="item">
-                           <a href="{{ route('slides.create') }}">Adicionar</a>
+                     @if (!$slide->article)
+                        <li class="item empty">
+                           <p><i class="fa-solid fa-face-frown-open"></i> Vazio</p>
                         </li>
                      @else
                         <li class="item">
-                           <p>Titulo: {{ $slide->article->title }} ({{ $slide->article->category->title }})</p>
+                           <p>{{ $slide->article->title }} ({{ $slide->article->category->title }})</p>
                         </li>
                      @endif
                   @endforeach

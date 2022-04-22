@@ -2,13 +2,15 @@
 
 namespace App\Repos\Eloquent;
 
+use App\Models\Slide;
 use App\Models\Article;
 use App\Supports\Tools;
 use App\Models\Category;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
-use Illuminate\Support\Arr;
 
 class ArticleRepository extends AbstractRepository 
 {
@@ -36,9 +38,18 @@ class ArticleRepository extends AbstractRepository
     * @return array|object|mixed|null
     */
     public function listPostsActive()
-    {
-        $articles = Article::where('type', 'post')->where('status', 'active')->get();
-        return $articles;
+    {   
+        $slides = Slide::select('article_id')->where('article_id', '!=', 'null')->get();
+
+        $ids = [];
+        foreach ($slides as $slide) {
+            $ids[] = $slide->article_id;
+        }
+
+        return Article::select()->whereNotIn('id', $ids)
+            ->where('type', 'post')
+            ->where('status', 'active')
+            ->get();
     }
 
     /**

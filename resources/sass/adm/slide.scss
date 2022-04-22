@@ -31,7 +31,7 @@
     flex-direction: column;
     gap: 5px;
 
-    li {
+    li.item {
       margin: 0;
       display: flex;
       justify-content: center;
@@ -40,17 +40,20 @@
       background-color: $dark-light;
       font-weight: 600;
       border-radius: 5px;
-      font-size: 20px;
+      font-size: 16px;
 
       &:hover {
         cursor: move;
       }
 
-      &.empty {
+      a,
+      p {
+        text-decoration: none;
+        font-size: 16px;
 
         svg {
-          margin: 0;
-          margin-left: 5px;
+          margin-right: 5px;
+          font-size: 20px;
         }
       }
     }
