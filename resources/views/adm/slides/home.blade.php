@@ -36,6 +36,9 @@
                      @else
                         <li class="item" data-id="{{ $slide->id }}">
                            <p>{{ $slide->article->title }} ({{ $slide->article->category->title }})</p>
+                           <a class="remove" href="{{ route('slides.destroy', ['slide' => $slide->id]) }}" onclick="return confirm('Tem certeza que remover {{ $slide->article->title }} ?')">
+                              <i class="fa-solid fa-trash-can"></i> Remover
+                           </a>
                         </li>
                      @endif
                   @endforeach

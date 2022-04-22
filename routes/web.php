@@ -42,6 +42,7 @@ Route::prefix('/admin')->group(function () {
         Route::get('/slides/criar', [SlideController::class, 'create'])->name('slides.create');
         Route::post('/slides/criar', [SlideController::class, 'store'])->name('slides.store');
         Route::post('/slides/sortable', [SlideController::class, 'sortable'])->name('slides.sortable');
+        Route::get('/slides/{slide}/deletar', [SlideController::class, 'destroy'])->name('slides.destroy');
     });
 });
 

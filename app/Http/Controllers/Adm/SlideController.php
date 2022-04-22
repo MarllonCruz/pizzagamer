@@ -23,10 +23,11 @@ class SlideController extends Controller
         $this->notify = $notify;
     }
 
-     /** 
-     * 
-     * @return \Illuminate\Http\Response
-     */
+    /** 
+    * @param SlideRepository $slideRepository
+    * 
+    * @return \Illuminate\Http\Response
+    */
     public function index(SlideRepository $slideRepository)
     {   
         $slides = $slideRepository->all();
@@ -38,6 +39,11 @@ class SlideController extends Controller
         ]);
     }
 
+    /** 
+    * @param ArticleRepository $articleRepository
+    * 
+    * @return \Illuminate\Http\Response
+    */
     public function create(ArticleRepository $articleRepository)
     {
         $articles = $articleRepository->listPostsActive();
@@ -49,6 +55,12 @@ class SlideController extends Controller
         ]);
     }
 
+    /** 
+    * @param Request $request
+    * @param ArticleRepository $articleRepository
+    * 
+    * @return \Illuminate\Http\Response
+    */
     public function store(Request $request, ArticleRepository $articleRepository)
     {   
         $article = $articleRepository->find($request->article_id);
@@ -69,6 +81,12 @@ class SlideController extends Controller
         return redirect()->route('slides.index');
     }
 
+    /** 
+    * @param Request $request
+    * @param SlideRepository $slideRepository
+    * 
+    * @return \Illuminate\Http\Response
+    */
     public function sortable(Request $request, SlideRepository $slideRepository)
     {   
         $list = (gettype($request->list) == "string") ? json_decode($request->list) : $request->list;
@@ -80,5 +98,23 @@ class SlideController extends Controller
         }
 
         return response()->json(["success"=> true, 200]);
+    }
+
+    /** 
+    * @param int $slide_id
+    * 
+    * @return \Illuminate\Http\Response
+    */
+    public function destroy(int $slide_id, SlideRepository $slideRepository)
+    {
+        $slide = $slideRepository->find($slide_id);
+        if (!$slide) {
+            $this->notify->error('Não foi possivel encontra slide para remover o artigo... Por favor tente novamente');
+            return redirect()->route('slides.index');
+        }
+
+        $slideRepository->remove($slide);
+        $this->notify->success('Artigo removido com sucesso');
+        return redirect()->route('slides.index');
     }
 }

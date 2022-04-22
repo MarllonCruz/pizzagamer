@@ -33,9 +33,11 @@
 
     li.item {
       margin: 0;
+      padding: 0 15px;
       display: flex;
-      justify-content: center;
+      justify-content: space-between;
       align-items: center;
+      gap: 10px;
       height: 65px;
       background-color: $dark-light;
       font-weight: 600;
@@ -50,12 +52,32 @@
       p {
         text-decoration: none;
         font-size: 16px;
+        margin: 0;
 
         svg {
           margin-right: 5px;
           font-size: 20px;
         }
       }
+
+
+      a.remove {
+        font-size: 14px;
+        right: 10px;
+        display: flex;
+        flex-direction: column;
+        
+        &:hover {
+          color: #ff3f34;
+        }
+
+        svg {
+          margin-right: 1px;
+          font-size: 12px;
+          margin: 0;
+        }
+      }
+      
     }
   }
 }
@@ -99,6 +121,15 @@
       svg {
         margin-right: 4px;
       }
+    }
+  }
+}
+
+@media (max-width: 920px) {
+  ul.slide {
+
+    li.item {
+      
     }
   }
 }

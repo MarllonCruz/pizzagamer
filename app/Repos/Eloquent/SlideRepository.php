@@ -25,7 +25,7 @@ class SlideRepository extends AbstractRepository
      */
     public function add(Article $article): bool
     {
-        $slide = Slide::select()->where('article_id', null)->first();
+        $slide = Slide::select()->where('article_id', null)->orderBy('order')->first();
         if (!$slide) {
             $this->setMessage('Todos slides estão lotado... Precisa remover pelo menos 1 para adicionar');
             return false;
@@ -44,5 +44,11 @@ class SlideRepository extends AbstractRepository
         $data = Slide::find($id);
         $data->order = $order;
         $data->save(); 
+    }
+
+    public function remove(Slide $slide)
+    {
+        $slide->article_id = null;
+        $slide->save();
     }
 }

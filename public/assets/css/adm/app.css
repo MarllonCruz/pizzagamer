@@ -1008,9 +1008,11 @@ form .al-right button svg {
 }
 .list-slides ul.slide li.item {
   margin: 0;
+  padding: 0 15px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
+  gap: 10px;
   height: 65px;
   background-color: #1e1f25;
   font-weight: 600;
@@ -1024,11 +1026,26 @@ form .al-right button svg {
 .list-slides ul.slide li.item p {
   text-decoration: none;
   font-size: 16px;
+  margin: 0;
 }
 .list-slides ul.slide li.item a svg,
 .list-slides ul.slide li.item p svg {
   margin-right: 5px;
   font-size: 20px;
+}
+.list-slides ul.slide li.item a.remove {
+  font-size: 14px;
+  right: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.list-slides ul.slide li.item a.remove:hover {
+  color: #ff3f34;
+}
+.list-slides ul.slide li.item a.remove svg {
+  margin-right: 1px;
+  font-size: 12px;
+  margin: 0;
 }
 
 .add {
