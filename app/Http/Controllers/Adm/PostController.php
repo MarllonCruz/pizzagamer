@@ -45,7 +45,8 @@ class PostController extends Controller
         return view('adm.posts.home', [
             'page' => 'post',
             'menu' => 'posts',
-            'articles' => $articles
+            'articles' => $articles,
+            'search' => null
         ]);
     }
 
@@ -197,13 +198,28 @@ class PostController extends Controller
     }
 
     /**
-     * @param string $search
+     * 
      * 
      * @return \Illuminate\Http\Response
      */
-    public function search(string $search)
+    public function search(string $search = null, Request $request)
     {
-        dd($search);
+        if ($request->only('s')) {
+            return response()->json(['redirect' => route('artigos.search', ['search' => $request->s])]);
+        }
+
+        $articles = [];
+        if (!empty($search)) {
+            $articleRepository = (new ArticleRepository());
+            $articles = $articleRepository->handleSearch($search);
+        } 
+
+        return view('adm.posts.home', [
+            'page' => 'post',
+            'menu' => 'posts',
+            'articles' => $articles,
+            'search' => $search
+        ]);
     }
 
     /**

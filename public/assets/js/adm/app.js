@@ -12,6 +12,31 @@ $(function () {
       aside.removeClass('active');
     });
   });
+}); // Search Post
+
+$("#form-post-search").submit(function (e) {
+  e.preventDefault();
+  var form = $(this);
+  var load = $(".ajax_load");
+  form.ajaxSubmit({
+    url: form.attr("action"),
+    type: "POST",
+    dataType: "json",
+    beforeSend: function beforeSend() {
+      load.fadeIn(200).css("display", "flex");
+    },
+    success: function success(response) {
+      //redirect
+      if (response.redirect) {
+        window.location.href = response.redirect;
+      } else {
+        load.fadeOut(200);
+      }
+    },
+    error: function error(response) {
+      load.fadeOut(200);
+    }
+  });
 }); // TinyMCE INIT
 
 tinyMCE.init({

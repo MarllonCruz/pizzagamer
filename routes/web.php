@@ -29,9 +29,9 @@ Route::prefix('/admin')->group(function () {
         Route::get('/artigos/{post}/editar', [PostController::class, 'edit'])->name('artigos.edit');
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
         Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
-        
+
         // Post Search
-        Route::get('/artigos/pesquisar', [PostController::class, 'search'])->name('artigos.search.ajax');
+        Route::post('/artigos/pesquisar', [PostController::class, 'search'])->name('artigos.search.ajax');
         Route::get('/artigos/pesquisar/{search}', [PostController::class, 'search'])->name('artigos.search');
 
         // Post-Category Crud

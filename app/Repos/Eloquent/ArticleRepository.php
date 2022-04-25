@@ -138,4 +138,17 @@ class ArticleRepository extends AbstractRepository
 
         $article->delete();
     }
+
+    /**
+     * @param string $search
+     * 
+     * @return null|array|mixed
+     */
+    public function handleSearch(string $search)
+    {
+        $articles = Article::where('title','LIKE','%' . $search .'%')
+                            ->orWhere('description','LIKE','%' . $search . '%')
+                            ->paginate(6);
+        return $articles;
+    }
 }

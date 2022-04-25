@@ -10,6 +10,34 @@ $(function () {
     });
 });
 
+// Search Post
+$("#form-post-search").submit(function (e) {
+    e.preventDefault();
+
+    var form = $(this);
+    var load = $(".ajax_load");
+
+    form.ajaxSubmit({
+        url: form.attr("action"),
+        type: "POST",
+        dataType: "json",
+        beforeSend: function () {
+            load.fadeIn(200).css("display", "flex");
+        },
+        success: function (response) {
+             //redirect
+             if (response.redirect) {
+                window.location.href = response.redirect;
+            } else {
+                load.fadeOut(200);
+            }
+        },
+        error: function (response) {
+            load.fadeOut(200);
+        }
+    });
+});
+
 // TinyMCE INIT
 tinyMCE.init({
     selector: "textarea.mce",

@@ -12,9 +12,10 @@
             <header>
                <h2><i class="fa-solid fa-pen-to-square"></i> Artigos</h2>
 
-               <form class="form-search" action="{{ route('artigos.search') }}" method="get">
+               <form class="form-search" id="form-post-search" action="{{ route('artigos.search.ajax') }}" method="post">
+                  @csrf
                   <button><i class="fa-solid fa-magnifying-glass"></i></button>
-                  <input type="text" name="search">
+                  <input type="text" name="s" value="{{ $search }}">
                </form>
             </header>
 
