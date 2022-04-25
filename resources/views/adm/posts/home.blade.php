@@ -11,6 +11,11 @@
          <div class="right post">
             <header>
                <h2><i class="fa-solid fa-pen-to-square"></i> Artigos</h2>
+
+               <form class="form-search" action="{{ route('artigos.search') }}" method="get">
+                  <button><i class="fa-solid fa-magnifying-glass"></i></button>
+                  <input type="text" name="search">
+               </form>
             </header>
 
             <div class="list-post">

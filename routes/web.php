@@ -21,7 +21,7 @@ Route::prefix('/admin')->group(function () {
     Route::middleware([Authenticate::class])->group(function () {
         Route::get('/', [DashController::class, 'home'])->name('dash');
 
-        // Post CRUD
+        // Post CRUD 
         Route::get('/artigos', [PostController::class, 'index'])->name('artigos.index');
         Route::get('/artigos/criar', [PostController::class, 'create'])->name('artigos.create');
         Route::post('/artigos/criar', [PostController::class, 'store'])->name('artigos.store');
@@ -29,6 +29,10 @@ Route::prefix('/admin')->group(function () {
         Route::get('/artigos/{post}/editar', [PostController::class, 'edit'])->name('artigos.edit');
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
         Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
+        
+        // Post Search
+        Route::get('/artigos/pesquisar', [PostController::class, 'search'])->name('artigos.search.ajax');
+        Route::get('/artigos/pesquisar/{search}', [PostController::class, 'search'])->name('artigos.search');
 
         // Post-Category Crud
         Route::get('/artigos/categorias', [PostController::class, 'categoriasIndex'])->name('artigos.categorias.index');

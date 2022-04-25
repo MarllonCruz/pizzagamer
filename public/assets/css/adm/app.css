@@ -417,6 +417,34 @@ header .profile img {
   -o-object-fit: cover;
      object-fit: cover;
 }
+header .form-search {
+  width: 150px;
+  height: 30px;
+  margin: 0;
+  background-color: #FFFFFF;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  padding: 2px;
+  align-items: center;
+}
+header .form-search button {
+  border: none;
+  outline: none;
+  background-color: inherit;
+  height: 100%;
+  cursor: pointer;
+}
+header .form-search button svg {
+  color: #131517;
+  font-size: 18px;
+}
+header .form-search input {
+  height: inherit;
+  flex: 1;
+  margin: 0;
+  width: 100%;
+}
 
 section {
   width: 100%;

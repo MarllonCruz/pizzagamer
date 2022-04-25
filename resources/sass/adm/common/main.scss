@@ -41,6 +41,38 @@ header {
       object-fit: cover;
     }
   }
+
+  .form-search {
+    width: 150px;
+    height: 30px;
+    margin: 0;
+    background-color: $white;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: row;
+    padding: 2px;
+    align-items: center;
+
+    button {
+      border: none;
+      outline: none;
+      background-color: inherit;
+      height: 100%;
+      cursor: pointer;
+
+      svg {
+        color: $dark;
+        font-size: 18px;
+      }
+    }
+
+    input {
+      height: inherit;
+      flex: 1;
+      margin: 0;
+      width: 100%;
+    }
+  }
 }
     
 section {

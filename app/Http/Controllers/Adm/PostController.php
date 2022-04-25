@@ -197,6 +197,16 @@ class PostController extends Controller
     }
 
     /**
+     * @param string $search
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function search(string $search)
+    {
+        dd($search);
+    }
+
+    /**
      * @param CategoryRepository $categoryRepository
      * 
      * @return \Illuminate\Http\Response
