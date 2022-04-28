@@ -24,14 +24,19 @@ class UserSeeder extends Seeder
         date_default_timezone_set('America/Sao_Paulo');
 
         $user     = User::factory()->create();  
-        $category = Category::factory()->create();
+
+        $categoryPost = Category::create([
+            'title'       => 'Evento',
+            'description' => $faker->paragraph(),
+            'type'        => 'post',
+            'uri'         => Str::slug('Evento' , '-')
+        ]);
 
         // clear files image no path storage
         $file = new Filesystem;
         $file->cleanDirectory('storage/app/public/article/factory');
-    
 
-        for ($i=0; $i < 15; $i++) { 
+        for ($i=0; $i < 12; $i++) { 
 
             $title = $faker->sentence(6);
             $content = "<h3>{$faker->sentence(6)}</h3><p></p>
@@ -42,9 +47,9 @@ class UserSeeder extends Seeder
             
             $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
 
-            $article = Article::create([
+            Article::create([
                 'user_id'     => $user->id,
-                'category_id' => $category->id,
+                'category_id' => $categoryPost->id,
                 'title'       => $title,
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
@@ -52,6 +57,34 @@ class UserSeeder extends Seeder
                 'cover'       => 'article/factory/' . $cover,
                 'views'       => 0,
                 'type'        => 'post',
+                'status'      => 'active',
+                'opening_at'  => date('Y-m-d H:i:s')
+            ]);
+        }
+
+        $categoryVideo = Category::create([
+            'title'       => 'Evento',
+            'description' => $faker->paragraph(),
+            'type'        => 'video',
+            'uri'         => Str::slug('Evento' , '-')
+        ]);
+
+        for ($i=0; $i < 10; $i++) { 
+
+            $title = $faker->sentence(6);
+            
+            $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
+
+            Article::create([
+                'user_id'     => $user->id,
+                'category_id' => $categoryVideo->id,
+                'title'       => $title,
+                'uri'         => Str::slug($title, '-'),
+                'description' => $faker->sentence(10),
+                'cover'       => 'article/factory/' . $cover,
+                'video'       => 'bDngcOQ8Img',
+                'views'       => 0,
+                'type'        => 'video',
                 'status'      => 'active',
                 'opening_at'  => date('Y-m-d H:i:s')
             ]);

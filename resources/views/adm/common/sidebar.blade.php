@@ -15,7 +15,7 @@
         <a href="{{ route('destaques.index') }}" 
         @if($page == 'highlights') ?? class="active" @endif><i class="fa-solid fa-bookmark"></i> Destaques
         </a>
-        <a href="" 
+        <a href="{{ route('videos.index') }}" 
             @if($page == 'video') ?? class="active" @endif><i class="fa-solid fa-clapperboard"></i> Videos
         </a>
         <a href="" 

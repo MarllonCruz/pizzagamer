@@ -15,9 +15,9 @@
 </head>
 <body id="adm_body">
     <!-- Ajax Loading -->
-    @include('adm.common.ajax_load')
+    @include('adm.common.ajax-load')
     <!-- MCE Upload -->
-    @include('adm.common.mce_upload')
+    @include('adm.common.mce-upload')
     <!-- Aside -->
     @include('adm.common.sidebar')
     <!-- Button menu by aside -->
@@ -28,7 +28,7 @@
     <!-- Main -->
     <main>
         <!-- Main Header -->
-        @include('adm.common.main_header')
+        @include('adm.common.main-header')
         <!-- Content -->
         @yield('content')
     </main>

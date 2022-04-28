@@ -20,7 +20,7 @@ class CreateArticlesTable extends Migration
             $table->string('title');
             $table->string('uri')->unique();
             $table->string('description');
-            $table->text('content');
+            $table->text('content')->nullable();
             $table->string('cover');
             $table->string('video')->nullable();
             $table->integer('views');

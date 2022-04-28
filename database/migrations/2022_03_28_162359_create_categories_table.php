@@ -17,7 +17,7 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('title');
             $table->string('type')->comment('[post, video]');
-            $table->string('uri')->unique();
+            $table->string('uri');
             $table->text('description');
             $table->string('cover')->nullable();
             $table->timestamps();
