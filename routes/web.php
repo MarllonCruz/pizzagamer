@@ -53,8 +53,6 @@ Route::prefix('/admin')->group(function () {
         Route::get('/destaques', [HighlightController::class, 'index'])->name('destaques.index');
         Route::get('/destaques/{highlight}/criar', [HighlightController::class, 'create'])->name('destaques.create');
         Route::post('/destaques/{highlight}/criar', [HighlightController::class, 'store'])->name('destaques.store');
-        Route::get('/destaques/{highlight}/editar', [HighlightController::class, 'edit'])->name('destaques.edit');
-        Route::post('/destaques/{highlight}/editar', [HighlightController::class, 'update'])->name('destaques.update');
         Route::get('/destaques/{highlight}/deletar', [HighlightController::class, 'destroy'])->name('destaques.destroy');
     });
 });

@@ -16,6 +16,7 @@ class CreateHighlightsTable extends Migration
         Schema::create('highlights', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('article_id')->nullable();
+            $table->string('title');
             $table->string('position');
         });
     }

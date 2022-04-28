@@ -13,18 +13,27 @@ class HighlightSeeder extends Seeder
      * @return void
      */
     public function run()
-    {
-        for ($i=1; $i <= 5 ; $i++) { 
+    {   
+        for ($i=1; $i <= 4 ; $i++) { 
             Highlight::create([
-                'position' => 'small'
+                'position' => 'small',
+                'title' => 'Pequeno'
             ]);
         }
+
         Highlight::create([
-            'position' => 'medium'
+            'position' => 'small diff',
+            'title' => 'Pequeno(p)'
         ]);
 
         Highlight::create([
-            'position' => 'large'
+            'position' => 'medium',
+            'title' => 'Médio'
+        ]);
+
+        Highlight::create([
+            'position' => 'large',
+            'title' => 'Grande'
         ]);
     }
 }

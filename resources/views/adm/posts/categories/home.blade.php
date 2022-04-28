@@ -13,6 +13,7 @@
                <h2><i class="fa-solid fa-pen-to-square"></i> Categorias</h2>
                <a href="{{ route('artigos.categorias.create') }}"><i class="fa-solid fa-square-plus"></i> Nova categoria</a>
             </header>
+            
             <div class="categories">
                @foreach ($categories as $category)
                   <div class="category">

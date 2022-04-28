@@ -148,7 +148,8 @@ class ArticleRepository extends AbstractRepository
     {
         $articles = Article::where('title','LIKE','%' . $search .'%')
                             ->orWhere('description','LIKE','%' . $search . '%')
-                            ->paginate(6);
+                            ->where('type', 'post')
+                            ->paginate(9);
         return $articles;
     }
 }

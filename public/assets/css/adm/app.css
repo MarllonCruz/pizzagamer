@@ -1112,3 +1112,47 @@ form .al-right button svg {
 .add form button svg {
   margin-right: 4px;
 }
+
+.highlights {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.highlights .highlight {
+  width: 100%;
+  height: 150px;
+  background-color: #1e1f25;
+  padding: 20px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.highlights h2 {
+  font-size: 22px;
+  font-weight: 600;
+  color: #FFFFFF;
+  margin: 0;
+}
+.highlights p {
+  margin: 0;
+  color: #b4b4b4;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  height: 60px;
+  line-height: 60px;
+}
+.highlights a {
+  margin: 0;
+}
+.highlights a.add:hover {
+  color: #2a6fff;
+}
+.highlights a.remove:hover {
+  color: #ff3f34;
+}

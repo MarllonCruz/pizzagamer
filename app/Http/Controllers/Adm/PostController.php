@@ -198,7 +198,8 @@ class PostController extends Controller
     }
 
     /**
-     * 
+     * @param null|string $search
+     * @param Request $request
      * 
      * @return \Illuminate\Http\Response
      */
