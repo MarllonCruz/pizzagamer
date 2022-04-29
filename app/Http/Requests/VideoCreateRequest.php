@@ -2,19 +2,26 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\RuleYoutube;
+use App\Rules\RuleYoutubeExistWatch;
 use Illuminate\Validation\Rule;
+use Illuminate\Foundation\Http\FormRequest;
 
-class PostCreateRequest
-{      
-    public function rules(): array
+class VideoCreateRequest extends FormRequest
+{
+    public function authorize()
+    {
+        return true;
+    }
+
+    public function rules()
     {
         return [
             'title' => 'required|max:100|unique:articles',
             'description' => 'required',
-            'category_id' => 'required|exists:categories,id',
             'cover' => 'required|file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400',
-            'content' => 'required',
             'status' => Rule::in(['active', 'trash', 'draft']),
+            'video' => ['required', new RuleYoutube, new RuleYoutubeExistWatch]
         ];
     }
 
@@ -25,14 +32,12 @@ class PostCreateRequest
             'title.max' => 'Máximo de caracteres é 100',
             'title.unique' => 'Esse titulo já existe no outro artigo',
             'description.required' => 'Preenche campo descrição',
-            'category_id.required' => 'Escolhe uma categoria',
-            'category_id.exists' => 'ID da categoria não encontrado',
             'cover.file' => 'O arquivo da capa tem que ser jpg ou png',
             'cover.mimes' =>  'O arquivo da capa tem que ser jpg ou png',
             'cover.dimensions' => 'minimo dimensão da imagem 620 de largura e 400 de altura',
             'cover.size' => 'maximo do tamanho da imagem é 8MB (8192 KB)',
             'cover.required' => 'Precisa ter uma imagem na capa',
-            'content.required' => 'Preenche campo do conteúdo'
+            'video.required' => 'Precisa ter um link do video no Youtube'
         ];
     }
 }

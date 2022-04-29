@@ -2,19 +2,19 @@
 
 @section('content')
    <section>
-      <h2>Artigos</h2>
+      <h2>Videos</h2>
 
       <div class="content">
          <div class="left">
-            @include('adm.posts.common.menu', ['menu', $menu])
+            @include('adm.videos.common.menu', ['menu', $menu])
          </div>
          <div class="right post">
             <header>
-               <h2><i class="fa-solid fa-square-plus"></i>Nova Artigo</h2>
+               <h2><i class="fa-solid fa-square-plus"></i>Novo Video</h2>
                <area />
             </header>
 
-            <form action="{{ route('artigos.store') }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('videos.store') }}" method="post" enctype="multipart/form-data">
                @csrf
                <label for="title">*Titulo</label>
                <input type="text" name="title" placeholder=" Titulo" 
@@ -30,19 +30,14 @@
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
 
-               <div class="form-group">
-                    <div class="form">
-                        <label for="category_id">*Categoria</label>
-                        <select name="category_id" id="category_id" @error('category_id') class="is-invalid" @enderror>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->title }}</option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                            <span class="alert alert-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
+               <label for="video">*Link do video youtube</label>
+               <input type="text" name="video" placeholder=" Exp: https://www.youtube.com/watch?v=JORwlHKBvbI" 
+               value="{{ old('video') }}"  @error('video') class="is-invalid" @enderror>
+               @error('video')
+                  <span class="alert alert-danger">{{ $message }}</span>
+               @enderror
 
+               <div class="form-group">
                     <div class="form">
                         <label for="description">Data de estreia</label>
                         <input type="date"  name="opening_at"
@@ -65,14 +60,8 @@
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
 
-               <label>*Conteúdo</label>
-               <textarea name="content" class="mce"></textarea>
-                @error('content')
-                    <span class="alert alert-danger">{{ $message }}</span>
-                @enderror
-
                <div class="al-right">
-                  <button type="submit"><i class="fa-solid fa-square-check"></i> Criar Artigo</button>
+                  <button type="submit"><i class="fa-solid fa-square-check"></i> Criar Video</button>
                </div>
             </form>
          </div>

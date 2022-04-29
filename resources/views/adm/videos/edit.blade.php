@@ -6,7 +6,7 @@
 
       <div class="content">
          <div class="left">
-            @include('adm.posts.common.menu', ['menu', $menu])
+            @include('adm.videos.common.menu', ['menu', $menu])
          </div>
          <div class="right post">
             <header>

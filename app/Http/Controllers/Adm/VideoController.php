@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Adm;
 use App\Supports\Notify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\VideoCreateRequest;
 use App\Repos\Eloquent\ArticleRepository;
+use App\Repos\Eloquent\CategoryRepository;
 
 class VideoController extends Controller
 {   
@@ -43,15 +45,15 @@ class VideoController extends Controller
         ]);
     }
 
-
     /**
-     * Show the form for creating a new resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        return view('adm.videos.create', [
+            'page' => 'video',
+            'menu' => 'new-video'
+        ]);
     }
 
     /**
@@ -60,9 +62,14 @@ class VideoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
+    public function store(VideoCreateRequest $request, ArticleRepository $articleRepository)
+    {   
+        $fields = $request->only('title', 'description', 'opening_at', 'status', 
+        'video', 'cover');
+        $article = $articleRepository->handleCreate($fields, 'video');
+
+        $this->notify->success("Video {$article->title} foi criado com sucesso");
+        return redirect()->route('videos.create');
     }
 
     /**

@@ -11,7 +11,7 @@
 </head>
 <body id="login_body">
     <!-- Ajax Loading -->
-    @include('adm.common.ajax_load')
+    @include('adm.common.ajax-load')
 
     <main>
         <area class="cover">

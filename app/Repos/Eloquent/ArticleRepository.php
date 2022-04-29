@@ -60,15 +60,13 @@ class ArticleRepository extends AbstractRepository
      */
     public function handleCreate(array $fields, string $type): ?Article
     {   
-        $category = Category::where('id', $fields['category_id'])->where('type', $type)->first();
-        if (!$category) {
-            $this->setMessage('ID da categoria não encontrado');
-            return null;
-        }
-
-        if (!isset($fields['cover']) || empty($fields['cover'])) {
-            $this->setMessage('Precisa ter uma imagem na capa');
-            return null;
+        if (isset($fields['category_id'])) {
+            $category = Category::where('id', $fields['category_id'])->where('type', $type)->first();
+            
+            if (!$category && $type == 'post') {
+                $this->setMessage('ID da categoria não encontrado');
+                return null;
+            }
         }
 
         $article = new Article();
@@ -78,15 +76,19 @@ class ArticleRepository extends AbstractRepository
         $article->title       = $fields['title'];
         $article->description = $fields['description'];
         $article->user_id     = $user->id;
-        $article->category_id = $fields['category_id'];
+        $article->category_id = $fields['category_id'] ?? null;
         $article->type        = $type;
         $article->uri         = Str::slug($article->title , '-');
         $article->opening_at  = $fields['opening_at'] ?? date('Y-m-d');
         $article->status      = $fields['status'];
-        $article->content     = $fields['content'];
+        $article->content     = $fields['content'] ?? null;
         $article->cover       = $tools->fileUpload($fields['cover'], 'article/');
         $article->views       = 0;
 
+        if ($type == 'video') {
+            $article->video = str_replace("watch?v=", "embed/", $fields['video']);
+        } 
+        
         $article->save();
         return $article;
     }

@@ -22,8 +22,5 @@
     </style>
 </head>
 <body>
-    <div class="htmlchars">
-        {!! $article->content !!}
-    </div>
 </body>
 </html>

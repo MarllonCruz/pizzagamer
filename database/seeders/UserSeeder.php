@@ -62,22 +62,14 @@ class UserSeeder extends Seeder
             ]);
         }
 
-        $categoryVideo = Category::create([
-            'title'       => 'Evento',
-            'description' => $faker->paragraph(),
-            'type'        => 'video',
-            'uri'         => Str::slug('Evento' , '-')
-        ]);
 
         for ($i=0; $i < 10; $i++) { 
 
             $title = $faker->sentence(6);
-            
             $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
 
             Article::create([
                 'user_id'     => $user->id,
-                'category_id' => $categoryVideo->id,
                 'title'       => $title,
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
