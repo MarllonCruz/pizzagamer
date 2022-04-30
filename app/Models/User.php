@@ -25,4 +25,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password'
     ];
+
+    public function fullName()
+    {
+        return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
+    }
 }

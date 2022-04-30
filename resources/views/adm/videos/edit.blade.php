@@ -2,7 +2,7 @@
 
 @section('content')
    <section>
-      <h2>Artigos</h2>
+      <h2>Videos</h2>
 
       <div class="content">
          <div class="left">
@@ -10,14 +10,16 @@
          </div>
          <div class="right post">
             <header>
-               <h2><i class="fa-solid fa-square-plus"></i>Editar Artigo</h2>
+               <h2><i class="fa-solid fa-square-plus"></i>Editar Video</h2>
                <area />
             </header>
 
-            <form action="{{ route('artigos.update', ['post' => $article->id]) }}" method="post" enctype="multipart/form-data">
+            <form action="{{ route('videos.update', ['video' => $article->id]) }}" method="post" enctype="multipart/form-data">
                @csrf
+               <input type="hidden" name="id" value="{{ $article->id }}">
+
                <label for="title">*Titulo</label>
-               <input type="text" name="title" placeholder=" Titulo" 
+               <input type="text" name="title" placeholder=" Titulo" id="title"
                   value="@if(old('title')) {{old('title')}} @else {{$article->title}} @endif" 
                   @error('title') class="is-invalid" @enderror>
                @error('title')
@@ -25,33 +27,25 @@
                @enderror
                
                <label for="description">*Descrição</label>
-               <input type="text" name="description" placeholder=" Descrição" 
+               <input type="text" name="description" placeholder=" Descrição" id="description"
                   value="@if(old('description')) {{old('description')}} @else {{$article->description}} @endif"  
                   @error('description') class="is-invalid" @enderror>
                @error('description')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
 
+               <label for="video">*Link do video youtube</label>
+               <input type="text" name="video" id="video" placeholder=" Exp: https://www.youtube.com/watch?v=JORwlHKBvbI" 
+               value="@if(old('video')) {{old('video')}} @else {{$article->video}} @endif" @error('video') class="is-invalid" @enderror>
+               @error('video')
+                  <span class="alert alert-danger">{{ $message }}</span>
+               @enderror
+
                <div class="form-group">
                     <div class="form">
-                        <label for="category_id">*Categoria</label>
-                        <select name="category_id" id="category_id" @error('category_id') class="is-invalid" @enderror>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category->id }}"
-                                    @if($article->category_id == $category->id) selected @endif>
-                                    {{ $category->title }}
-                                </option>
-                            @endforeach
-                        </select>
-                        @error('category_id')
-                            <span class="alert alert-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
-
-                    <div class="form">
                         <label for="description">Data de estreia</label>
-                        <input type="date"  name="opening_at"
-                            value="{{ date_fmt($article->opening_at, 'Y-m-d') }}">
+                        <input type="datetime-local"  name="opening_at" id="opeming_at"
+                            value="{{ date_fmt($article->opening_at, 'Y-m-d\TH:i') }}">
                     </div>
 
                     <div class="form">
@@ -70,16 +64,10 @@
                         <img src="{{ url('storage/' . $article->cover) }}" alt="">      
                     @endif
                 </div>
-               <input type="file" name="cover">
+               <input type="file" name="cover" id="cover">
                @error('cover')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
-
-               <label>*Conteúdo</label>
-               <textarea name="content" class="mce">{{ $article->content }}</textarea>
-                @error('content')
-                    <span class="alert alert-danger">{{ $message }}</span>
-                @enderror
 
                <div class="al-right">
                   <button type="submit"><i class="fa-solid fa-square-check"></i> Salvar Artigo</button>

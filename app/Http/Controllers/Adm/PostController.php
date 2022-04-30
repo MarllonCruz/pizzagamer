@@ -110,7 +110,7 @@ class PostController extends Controller
     {
         $article = $articleRepository->find($article_id);
         if (!$article) {
-            $this->notify->warning('Artigo não encotrando para editar');
+            $this->notify->warning('Artigo não encotrando');
             return redirect()->route('artigos.index');
         }
 
@@ -191,7 +191,7 @@ class PostController extends Controller
             return redirect()->route('artigos.index');
         }
 
-        $articleRepository->handleDelete($article, Auth::user());
+        $articleRepository->handleDelete($article);
 
         $this->notify->success("Artigo {$article->title} deleta com sucesso!");
         return redirect()->route('artigos.index');
@@ -212,7 +212,7 @@ class PostController extends Controller
         $articles = [];
         if (!empty($search)) {
             $articleRepository = (new ArticleRepository());
-            $articles = $articleRepository->handleSearch($search);
+            $articles = $articleRepository->handleSearch($search, 'post');
         } 
 
         return view('adm.posts.home', [

@@ -23,7 +23,7 @@ class UserFactory extends Factory
             'level' => '10',
             'genre' => null,
             'datebirth' => $this->faker->date(),
-            'photo' => 'default.jpg',
+            'photo' => 'media/profile/default.jpg',
             'document' => $this->faker->ean8()
         ];
     }

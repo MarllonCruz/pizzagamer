@@ -18,6 +18,7 @@ abstract class AbstractRepository
     public function __construct()
     {
         $this->model = $this->resolveModel();
+        date_default_timezone_set('America/Sao_Paulo');
     }
 
     /**

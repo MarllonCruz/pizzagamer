@@ -17,7 +17,7 @@
             <form action="{{ route('artigos.update', ['post' => $article->id]) }}" method="post" enctype="multipart/form-data">
                @csrf
                <label for="title">*Titulo</label>
-               <input type="text" name="title" placeholder=" Titulo" 
+               <input type="text" name="title" placeholder=" Titulo" id="title"
                   value="@if(old('title')) {{old('title')}} @else {{$article->title}} @endif" 
                   @error('title') class="is-invalid" @enderror>
                @error('title')
@@ -25,7 +25,7 @@
                @enderror
                
                <label for="description">*Descrição</label>
-               <input type="text" name="description" placeholder=" Descrição" 
+               <input type="text" name="description" placeholder=" Descrição" id="description"
                   value="@if(old('description')) {{old('description')}} @else {{$article->description}} @endif"  
                   @error('description') class="is-invalid" @enderror>
                @error('description')
@@ -49,9 +49,9 @@
                     </div>
 
                     <div class="form">
-                        <label for="description">Data de estreia</label>
-                        <input type="date"  name="opening_at"
-                            value="{{ date_fmt($article->opening_at, 'Y-m-d') }}">
+                        <label for="opening_at">Data de estreia</label>
+                        <input type="datetime-local"  name="opening_at" id="opening_at"
+                            value="{{ date_fmt($article->opening_at, 'Y-m-d\TH:i') }}">
                     </div>
 
                     <div class="form">
@@ -70,7 +70,7 @@
                         <img src="{{ url('storage/' . $article->cover) }}" alt="">      
                     @endif
                 </div>
-               <input type="file" name="cover">
+               <input type="file" name="cover" id="cover">
                @error('cover')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror

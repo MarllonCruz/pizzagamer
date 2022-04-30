@@ -74,7 +74,7 @@ class UserSeeder extends Seeder
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
                 'cover'       => 'article/factory/' . $cover,
-                'video'       => 'bDngcOQ8Img',
+                'video'       => 'https://www.youtube.com/embed/X8NFkUQNeek',
                 'views'       => 0,
                 'type'        => 'video',
                 'status'      => 'active',

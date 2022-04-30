@@ -17,21 +17,21 @@
             <form action="{{ route('videos.store') }}" method="post" enctype="multipart/form-data">
                @csrf
                <label for="title">*Titulo</label>
-               <input type="text" name="title" placeholder=" Titulo" 
+               <input type="text" name="title" placeholder=" Titulo" id="title"
                   value="{{ old('title') }}" @error('title') class="is-invalid" @enderror>
                @error('title')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
                
                <label for="description">*Descrição</label>
-               <input type="text" name="description" placeholder=" Descrição" 
+               <input type="text" name="description" placeholder=" Descrição" id="description"
                   value="{{ old('description') }}"  @error('description') class="is-invalid" @enderror>
                @error('description')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror
 
                <label for="video">*Link do video youtube</label>
-               <input type="text" name="video" placeholder=" Exp: https://www.youtube.com/watch?v=JORwlHKBvbI" 
+               <input type="text" name="video" id="video" placeholder=" Exp: https://www.youtube.com/watch?v=JORwlHKBvbI" 
                value="{{ old('video') }}"  @error('video') class="is-invalid" @enderror>
                @error('video')
                   <span class="alert alert-danger">{{ $message }}</span>
@@ -39,8 +39,8 @@
 
                <div class="form-group">
                     <div class="form">
-                        <label for="description">Data de estreia</label>
-                        <input type="date"  name="opening_at"
+                        <label for="opening_at">Data de estreia</label>
+                        <input type="datetime-local"  name="opening_at" id="opening_at"
                             value="{{ old('opening_at') }}">
                     </div>
 
@@ -55,7 +55,7 @@
                </div>
 
                <label for="cover">*Capa</label>
-               <input type="file" name="cover">
+               <input type="file" name="cover" id="cover">
                @error('cover')
                   <span class="alert alert-danger">{{ $message }}</span>
                @enderror

@@ -6,6 +6,7 @@ use App\Supports\Notify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\VideoCreateRequest;
+use App\Http\Requests\VideoUpdateRequest;
 use App\Repos\Eloquent\ArticleRepository;
 use App\Repos\Eloquent\CategoryRepository;
 
@@ -57,15 +58,16 @@ class VideoController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
+     * @param VideoCreateRequest $request
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
     public function store(VideoCreateRequest $request, ArticleRepository $articleRepository)
     {   
         $fields = $request->only('title', 'description', 'opening_at', 'status', 
         'video', 'cover');
+        
         $article = $articleRepository->handleCreate($fields, 'video');
 
         $this->notify->success("Video {$article->title} foi criado com sucesso");
@@ -73,52 +75,115 @@ class VideoController extends Controller
     }
 
     /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
+     * @param int $article_id
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $article_id, ArticleRepository $articleRepository)
     {
-        //
+        $article = $articleRepository->find($article_id);
+        if (!$article) {
+            $this->notify->warning('Video não encotrando');
+            return redirect()->route('artigos.index');
+        }
+
+        return view('adm.videos.show', [
+            'article' => $article
+        ]);
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
+    * @param int $article_id
+    * @param ArticleRepository $articleRepository
+    * 
+    * @return \Illuminate\Http\Response
+    */
+    public function edit(int $article_id, ArticleRepository $articleRepository)
     {
-        //
+        $article = $articleRepository->findType($article_id, 'video');
+        if (!$article) {
+           $this->notify->warning('Video não encotrando para editar');
+           return redirect()->route('videos.index');
+        }
+
+        $article->video = str_replace("embed/", "watch?v=", $article->video);
+
+        return view('adm.videos.edit', [
+           'page'       => 'video',
+           'menu'       => 'videos',
+           'article'    => $article
+        ]);
     }
 
     /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param Request  $request
+     * @param int $article_id
+     * @param ArticleRepository $articleRepository
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
+    public function update(VideoUpdateRequest $request, int $article_id, ArticleRepository $articleRepository)
+    {    
+        $article = $articleRepository->findType($article_id, 'video');
+
+        if (!$article && $request->id != $article_id) {
+            $this->notify->warning('Video não encotrando para editar');
+            return redirect()->route('videos.index');
+        }
+
+        $fields  = $request->only('title', 'description', 'opening_at', 'status', 'video', 'cover');
+        $article = $articleRepository->handleUpdate($article, $fields, 'video');
+
+        $this->notify->success("Video {$article->title} foi atualizado com sucesso");
+        return redirect()->route('videos.edit', ['video' => $article->id]);
+    }
+
+
+    /**
+     * @param int $article_id
+     * @param ArticleRepository $articleRepository
+     * 
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(int $article_id, ArticleRepository $articleRepository)
+    {   
+        $article = $articleRepository->findType($article_id, 'video');
+
+        if (!$article) {
+            $this->notify->warning('Artigo não encotrando para editar');
+            return redirect()->route('artigos.index');
+        }
+
+        $articleRepository->handleDelete($article);
+
+        $this->notify->success("Video {$article->title} deleta com sucesso!");
+        return redirect()->route('videos.index');
     }
 
     /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
+     * @param null|string $search
+     * @param Request $request
+     * 
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function search(string $search = null, Request $request)
     {
-        //
-    }
+        if ($request->only('s')) {
+            return response()->json(['redirect' => route('videos.search', ['search' => $request->s])]);
+        }
 
-    public function search()
-    {
-        
+        $articles = [];
+        if (!empty($search)) {
+            $articleRepository = (new ArticleRepository());
+            $articles = $articleRepository->handleSearch($search, 'video');
+        } 
+
+        return view('adm.videos.home', [
+            'page' => 'video',
+            'menu' => 'videos',
+            'articles' => $articles,
+            'search' => $search
+        ]);
     }
 }

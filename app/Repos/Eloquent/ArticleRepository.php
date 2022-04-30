@@ -6,15 +6,24 @@ use App\Models\Slide;
 use App\Models\Article;
 use App\Supports\Tools;
 use App\Models\Category;
-use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
 
 class ArticleRepository extends AbstractRepository 
 {
     protected $model = Article::class;
+
+    /**
+     * @param int $id
+     * @param string $type
+     * 
+     * @return Article|null
+     */
+    public function findType(int $id, string $type): ?Article
+    {
+        return Article::select()->where('id', $id)->where('type', $type)->first();
+    }
 
     /**
     * @param string $type 'post', 'video'
@@ -25,7 +34,7 @@ class ArticleRepository extends AbstractRepository
     */
     public function handleAll(string $type, int $paginate = null, string $orderBy = 'DESC')
     {
-        $articles = Article::where('type', $type)->orderBy('created_at', $orderBy);   
+        $articles = Article::where('type', $type)->orderBy('id', $orderBy);   
 
         if (!$paginate) {
             return $articles->get();
@@ -79,7 +88,7 @@ class ArticleRepository extends AbstractRepository
         $article->category_id = $fields['category_id'] ?? null;
         $article->type        = $type;
         $article->uri         = Str::slug($article->title , '-');
-        $article->opening_at  = $fields['opening_at'] ?? date('Y-m-d');
+        $article->opening_at  = $fields['opening_at'] ?? date('Y-m-d H:i:s');
         $article->status      = $fields['status'];
         $article->content     = $fields['content'] ?? null;
         $article->cover       = $tools->fileUpload($fields['cover'], 'article/');
@@ -102,20 +111,23 @@ class ArticleRepository extends AbstractRepository
     */
     public function handleUpdate(Article $article, array $fields, string $type): ?Article
     {   
-        $category = Category::where('id', $fields['category_id'])->where('type', $type)->first();
-        if (!$category) {
-            $this->setMessage('ID da categoria não encontrado');
-            return null;
+        if (isset($fields['category_id'])) {
+            $category = Category::where('id', $fields['category_id'])->where('type', $type)->first();
+            
+            if (!$category && $type == 'post') {
+                $this->setMessage('ID da categoria não encontrado');
+                return null;
+            }
         }
 
         $article->title       = $fields['title'];
         $article->description = $fields['description'];
-        $article->category_id = $fields['category_id'];
+        $article->category_id = $fields['category_id'] ?? null;
         $article->type        = $type;
         $article->uri         = Str::slug($article->title , '-');
-        $article->opening_at  = $fields['opening_at'] ?? date('Y-m-d');
+        $article->opening_at  = $fields['opening_at'] ?? date('Y-m-d H:i:s');
         $article->status      = $fields['status'];
-        $article->content     = $fields['content'];
+        $article->content     = $fields['content'] ?? null;
 
         if (isset($fields['cover']) && !empty($fields['cover'])) {
             $tools = (new Tools());
@@ -123,6 +135,10 @@ class ArticleRepository extends AbstractRepository
 
             $article->cover = $tools->fileUpload($fields['cover'], 'article/');
         }
+
+        if ($type == 'video') {
+            $article->video = str_replace("watch?v=", "embed/", $fields['video']);
+        } 
 
         $article->save();
         return $article;
@@ -146,11 +162,10 @@ class ArticleRepository extends AbstractRepository
      * 
      * @return null|array|mixed
      */
-    public function handleSearch(string $search)
+    public function handleSearch(string $search, string $type)
     {
-        $articles = Article::where('title','LIKE','%' . $search .'%')
-                            ->orWhere('description','LIKE','%' . $search . '%')
-                            ->where('type', 'post')
+        $articles = Article::where('title','LIKE','%' . $search .'%')->where('type', $type)
+                            ->orWhere('description','LIKE','%' . $search . '%')->where('type', $type)
                             ->paginate(9);
         return $articles;
     }
