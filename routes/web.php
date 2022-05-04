@@ -1,14 +1,15 @@
 <?php
 
-use App\Http\Controllers\Adm\AuthController;
-use App\Http\Controllers\Adm\DashController;
-use App\Http\Controllers\Adm\HighlightController;
-use App\Http\Controllers\Adm\MceUploadController;
-use App\Http\Controllers\Adm\PostController;
-use App\Http\Controllers\Adm\SlideController;
-use App\Http\Controllers\Adm\VideoController;
 use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Adm\AuthController;
+use App\Http\Controllers\Adm\DashController;
+use App\Http\Controllers\Adm\PostController;
+use App\Http\Controllers\Adm\UserController;
+use App\Http\Controllers\Adm\SlideController;
+use App\Http\Controllers\Adm\VideoController;
+use App\Http\Controllers\Adm\HighlightController;
+use App\Http\Controllers\Adm\MceUploadController;
 
 Route::prefix('/admin')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
@@ -22,7 +23,7 @@ Route::prefix('/admin')->group(function () {
     Route::middleware([Authenticate::class])->group(function () {
         Route::get('/', [DashController::class, 'home'])->name('dash');
 
-        // Post CRUD 
+        // Posts CRUD 
         Route::get('/artigos', [PostController::class, 'index'])->name('artigos.index');
         Route::get('/artigos/criar', [PostController::class, 'create'])->name('artigos.create');
         Route::post('/artigos/criar', [PostController::class, 'store'])->name('artigos.store');
@@ -31,11 +32,11 @@ Route::prefix('/admin')->group(function () {
         Route::post('/artigos/{post}/editar', [PostController::class, 'update'])->name('artigos.update');
         Route::get('/artigos/{post}/deletar', [PostController::class, 'destroy'])->name('artigos.destroy');
 
-        // Post Search
+        // Posts Search
         Route::post('/artigos/pesquisar', [PostController::class, 'search'])->name('artigos.search.ajax');
         Route::get('/artigos/pesquisar/{search}', [PostController::class, 'search'])->name('artigos.search');
 
-        // Post-Category CRUD
+        // Posts-Categories CRUD
         Route::get('/artigos/categorias', [PostController::class, 'categoriasIndex'])->name('artigos.categorias.index');
         Route::get('/artigos/categorias/criar', [PostController::class, 'categoriasCreate'])->name('artigos.categorias.create');
         Route::post('/artigos/categorias/criar', [PostController::class, 'categoriasStore'])->name('artigos.categorias.store');
@@ -56,7 +57,7 @@ Route::prefix('/admin')->group(function () {
         Route::post('/destaques/{highlight}/criar', [HighlightController::class, 'store'])->name('destaques.store');
         Route::get('/destaques/{highlight}/deletar', [HighlightController::class, 'destroy'])->name('destaques.destroy');
 
-        // Video CRUD 
+        // Videos CRUD 
         Route::get('/videos', [VideoController::class, 'index'])->name('videos.index');
         Route::get('/videos/criar', [VideoController::class, 'create'])->name('videos.create');
         Route::post('/videos/criar', [VideoController::class, 'store'])->name('videos.store');
@@ -65,9 +66,18 @@ Route::prefix('/admin')->group(function () {
         Route::post('/videos/{video}/editar', [VideoController::class, 'update'])->name('videos.update');
         Route::get('/videos/{video}/deletar', [VideoController::class, 'destroy'])->name('videos.destroy');
 
-        // Video Search
+        // Videos Search
         Route::post('/videos/pesquisar', [VideoController::class, 'search'])->name('videos.search.ajax');
         Route::get('/videos/pesquisar/{search}', [VideoController::class, 'search'])->name('videos.search');
+
+        // Users CRUD
+        Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
+        Route::get('/usuarios/criar', [UserController::class, 'create'])->name('usuarios.create');
+        Route::post('/usuarios/criar', [UserController::class, 'store'])->name('usuarios.store');
+        Route::get('/usuarios/{video}/show', [UserController::class, 'show'])->name('usuarios.show');
+        Route::get('/usuarios/{video}/editar', [UserController::class, 'edit'])->name('usuarios.edit');
+        Route::post('/usuarios/{video}/editar', [UserController::class, 'update'])->name('usuarios.update');
+        Route::get('/usuarios/{video}/deletar', [UserController::class, 'destroy'])->name('usuarios.destroy');
     });
 });
 

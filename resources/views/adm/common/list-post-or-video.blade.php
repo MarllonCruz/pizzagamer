@@ -10,7 +10,7 @@
              @if (isset($article->category->title))
                <span><i class="fa-solid fa-bookmark"></i> {{ $article->category->title }}</span>
              @endif
-             <span><i class="fa-solid fa-user"></i> {{ $article->user->first_name }}</span>
+             <span><i class="fa-solid fa-user"></i> {{ $article->user->fullName() }}</span>
              <span><i class="fa-solid fa-pen-to-square"></i> {{ $article->statusPtBr() }}</span>
           </div>
 

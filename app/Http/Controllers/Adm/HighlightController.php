@@ -34,7 +34,7 @@ class HighlightController extends Controller
         $highlights = $highlightRepository->all();
 
         return view('adm.highlights.home', [
-            'page' => 'highlights',
+            'page' => 'highlight',
             'menu' => 'highlight',
             'highlights' => $highlights
         ]);
@@ -58,7 +58,7 @@ class HighlightController extends Controller
         $articles = $articleRepository->listPostsActive();
 
         return view('adm.highlights.add', [
-            'page' => 'highlights',
+            'page' => 'highlight',
             'menu' => 'highlight',
             'highlight' => $highlight,
             'articles' => $articles

@@ -65,8 +65,7 @@ class VideoController extends Controller
      */
     public function store(VideoCreateRequest $request, ArticleRepository $articleRepository)
     {   
-        $fields = $request->only('title', 'description', 'opening_at', 'status', 
-        'video', 'cover');
+        $fields = $request->only('title', 'description', 'opening_at', 'status', 'video', 'cover');
         
         $article = $articleRepository->handleCreate($fields, 'video');
 
@@ -83,6 +82,7 @@ class VideoController extends Controller
     public function show(int $article_id, ArticleRepository $articleRepository)
     {
         $article = $articleRepository->find($article_id);
+
         if (!$article) {
             $this->notify->warning('Video não encotrando');
             return redirect()->route('artigos.index');
@@ -102,6 +102,7 @@ class VideoController extends Controller
     public function edit(int $article_id, ArticleRepository $articleRepository)
     {
         $article = $articleRepository->findType($article_id, 'video');
+
         if (!$article) {
            $this->notify->warning('Video não encotrando para editar');
            return redirect()->route('videos.index');

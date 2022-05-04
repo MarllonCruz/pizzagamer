@@ -13,12 +13,12 @@
             @if($page == 'slide') ?? class="active" @endif><i class="fa-solid fa-sliders"></i> Slides
         </a>
         <a href="{{ route('destaques.index') }}" 
-        @if($page == 'highlights') ?? class="active" @endif><i class="fa-solid fa-bookmark"></i> Destaques
+        @if($page == 'highlight') ?? class="active" @endif><i class="fa-solid fa-bookmark"></i> Destaques
         </a>
         <a href="{{ route('videos.index') }}" 
             @if($page == 'video') ?? class="active" @endif><i class="fa-solid fa-clapperboard"></i> Videos
         </a>
-        <a href="" 
+        <a href="{{ route('usuarios.index') }}" 
             @if($page == 'user') ?? class="active" @endif><i class="fa-solid fa-user"></i> Usuários
         </a>
         <a href="{{ route('admin.logout') }}">
