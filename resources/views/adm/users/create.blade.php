@@ -57,7 +57,7 @@
                <div class="form-group">
                   <div class="form">
                      <label for="document">CPF:</label>
-                     <input type="number"  name="document" id="document"
+                     <input type="text"  name="document" id="document"
                            value="{{ old('document') }}">
                         @error('document')
                            <span class="alert alert-danger">{{ $message }}</span>

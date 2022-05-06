@@ -19,15 +19,27 @@ class User extends Authenticatable
         'genre',
         'datebirth',
         'document',
-        'photo'
-    ];
-
-    protected $hidden = [
+        'photo',
         'password'
     ];
 
     public function fullName()
     {
         return $this->attributes['first_name'] . " " . $this->attributes['last_name'];
+    }
+
+    public function level()
+    {
+        switch($this->attributes['level']) {
+            case '1':
+                return 'Visitante';
+            break;
+            case '6':
+                return 'Administrador';
+            break;
+            case '10':
+                return 'Lider';
+            break;
+        }
     }
 }

@@ -128,7 +128,7 @@ class VideoController extends Controller
     {    
         $article = $articleRepository->findType($article_id, 'video');
 
-        if (!$article && $request->id != $article_id) {
+        if (!$article || $request->id != $article->id) {
             $this->notify->warning('Video não encotrando para editar');
             return redirect()->route('videos.index');
         }

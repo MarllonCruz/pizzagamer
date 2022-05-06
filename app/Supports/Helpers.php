@@ -41,5 +41,5 @@ function date_fmt_custom(string $date = null): string
     $formatMin  = "i";
 
     $date = (empty($date) ? "now" : $date);
-    return (new DateTime($date))->format($formatDate) . " - " . (new DateTime($date))->format($formatHour) . "h" . (new DateTime($date))->format($formatMin) . "m";
+    return (new DateTime($date))->format($formatDate) . " ás " . (new DateTime($date))->format($formatHour) . "h" . (new DateTime($date))->format($formatMin);
 }

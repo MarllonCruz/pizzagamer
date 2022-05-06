@@ -74,10 +74,14 @@ Route::prefix('/admin')->group(function () {
         Route::get('/usuarios', [UserController::class, 'index'])->name('usuarios.index');
         Route::get('/usuarios/criar', [UserController::class, 'create'])->name('usuarios.create');
         Route::post('/usuarios/criar', [UserController::class, 'store'])->name('usuarios.store');
-        Route::get('/usuarios/{video}/show', [UserController::class, 'show'])->name('usuarios.show');
-        Route::get('/usuarios/{video}/editar', [UserController::class, 'edit'])->name('usuarios.edit');
-        Route::post('/usuarios/{video}/editar', [UserController::class, 'update'])->name('usuarios.update');
-        Route::get('/usuarios/{video}/deletar', [UserController::class, 'destroy'])->name('usuarios.destroy');
+        Route::get('/usuarios/{user}/show', [UserController::class, 'show'])->name('usuarios.show');
+        Route::get('/usuarios/{user}/editar', [UserController::class, 'edit'])->name('usuarios.edit');
+        Route::post('/usuarios/{user}/editar', [UserController::class, 'update'])->name('usuarios.update');
+        Route::get('/usuarios/{user}/deletar', [UserController::class, 'destroy'])->name('usuarios.destroy');
+
+        // Videos Search
+        Route::post('/usuarios/pesquisar', [UserController::class, 'search'])->name('usuarios.search.ajax');
+        Route::get('/usuarios/pesquisar/{search}', [UserController::class, 'search'])->name('usuarios.search');
     });
 });
 
