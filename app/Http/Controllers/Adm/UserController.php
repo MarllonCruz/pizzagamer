@@ -23,9 +23,9 @@ class UserController extends Controller
    {
        $this->notify = $notify;
        
-       $this->middleware('permission.crud.post', ['except' => [
-           'index', 'show'
-       ]]);
+        $this->middleware('permission.crud.user', ['except' => [
+           'index', 'show', 'create', 'edit', 'search'
+        ]]);
    }
 
    /**
@@ -38,7 +38,7 @@ class UserController extends Controller
         $users = $userRepository->handleAll(9);
         
         return view('adm.users.home', [
-            'page' => 'users',
+            'page' => 'user',
             'menu' => 'list',
             'users' => $users,
             'search' => null
@@ -51,7 +51,7 @@ class UserController extends Controller
     public function create()
     {   
         return view('adm.users.create', [
-            'page' => 'users',
+            'page' => 'user',
             'menu' => 'new'
         ]);
     }
@@ -86,7 +86,7 @@ class UserController extends Controller
         }
 
         return view('adm.users.edit', [
-            'page' => 'users',
+            'page' => 'user',
             'menu' => 'list',
             'user'    => $user
         ]);
@@ -111,7 +111,7 @@ class UserController extends Controller
         $this->notify->success("Usuário {$user->fullName()} foi atualizado com sucesso");
 
         return view('adm.users.edit', [
-            'page' => 'users',
+            'page' => 'user',
             'menu' => 'list',
             'user'    => $user
         ]);
@@ -162,7 +162,7 @@ class UserController extends Controller
         } 
 
         return view('adm.users.home', [
-            'page' => 'users',
+            'page' => 'user',
             'menu' => 'list',
             'users' => $users,
             'search' => $search

@@ -7,7 +7,7 @@ use App\Supports\Notify;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class PermissionCrudPost
+class PermissionCrudUser
 {   
      /** @var Notify */
      protected $notify;
@@ -21,7 +21,7 @@ class PermissionCrudPost
     {
         $this->notify = $notify;
     }
-
+    
     /**
      * Handle an incoming request.
      *
@@ -30,10 +30,10 @@ class PermissionCrudPost
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle(Request $request, Closure $next)
-    {   
+    {
         $user = Auth::user();
-        if (intval($user->level) <= 5) {
-            $this->notify->warning('Você não tem permissão fazer ações no setores artigos, video, slides, destaques e usuários');
+        if (intval($user->level) <= 9) {
+            $this->notify->warning('Você não tem permissão fazer ações no setor usuários');
             return redirect()->back();
         }
 

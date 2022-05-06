@@ -25,7 +25,7 @@ class VideoController extends Controller
         $this->notify = $notify;
         
         $this->middleware('permission.crud.post', ['except' => [
-            'index', 'show'
+            'index', 'show', 'create', 'edit', 'search'
         ]]);
     }
 

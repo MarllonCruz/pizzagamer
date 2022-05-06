@@ -29,7 +29,7 @@ class PostController extends Controller
         $this->notify = $notify;
         
         $this->middleware('permission.crud.post', ['except' => [
-            'index', 'categoriasIndex', 'show'
+            'index', 'show', 'create', 'edit', 'search', 'categoriasIndex', 'categoriasCreate', 'categoriasEdit'
         ]]);
     }
 
