@@ -12,16 +12,24 @@ const mix = require('laravel-mix');
  |
  */
 
-mix
+mix 
+    // All
     .css('resources/css/fontawesome.css', 'assets/css/fontawesome.css')
+
+    .js('resources/js/fontawesome.js', 'assets/js/fontawesome.js')
     
+    // Adm
     .sass('resources/sass/adm/app.scss', 'assets/css/adm/app.css')
     .sass('resources/sass/adm/login.scss', 'assets/css/adm/login.css')
     
-    .js('resources/js/fontawesome.js', 'assets/js/fontawesome.js')
 
     .js('node_modules/chart.js/dist/chart.js', 'assets/js/chart.js')
     .js('resources/js/adm/login.js', 'assets/js/adm/login.js')
     .js('resources/js/adm/app.js', 'assets/js/adm/app.js')
 
+    // Web
+    .js('resources/js/web/app.js', 'assets/js/web/app.js')
+    
+
     .version();
+

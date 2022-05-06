@@ -6,11 +6,17 @@ use App\Http\Controllers\Adm\AuthController;
 use App\Http\Controllers\Adm\DashController;
 use App\Http\Controllers\Adm\PostController;
 use App\Http\Controllers\Adm\UserController;
+use App\Http\Controllers\Web\HomeController;
 use App\Http\Controllers\Adm\SlideController;
 use App\Http\Controllers\Adm\VideoController;
 use App\Http\Controllers\Adm\HighlightController;
 use App\Http\Controllers\Adm\MceUploadController;
 
+
+// Web
+Route::get('/', HomeController::class)->name('home');
+
+// Adm
 Route::prefix('/admin')->group(function () {
     Route::get('/login', [AuthController::class, 'index'])->name('admin.login');
     Route::post('/login', [AuthController::class, 'login']);
@@ -18,7 +24,6 @@ Route::prefix('/admin')->group(function () {
 
     // MCE Upload
     Route::post('/mce_upload', MceUploadController::class)->name('mce_uplaod');
-
 
     Route::middleware([Authenticate::class])->group(function () {
         Route::get('/', [DashController::class, 'home'])->name('dash');
