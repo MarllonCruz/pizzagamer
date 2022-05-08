@@ -7,14 +7,21 @@ use App\Http\Controllers\Adm\DashController;
 use App\Http\Controllers\Adm\PostController;
 use App\Http\Controllers\Adm\UserController;
 use App\Http\Controllers\Web\HomeController;
+use App\Http\Controllers\Web\ListController;
 use App\Http\Controllers\Adm\SlideController;
 use App\Http\Controllers\Adm\VideoController;
+use App\Http\Controllers\Web\PostShowController;
 use App\Http\Controllers\Adm\HighlightController;
 use App\Http\Controllers\Adm\MceUploadController;
+use App\Http\Controllers\Web\VideoShowController;
 
 
 // Web
 Route::get('/', HomeController::class)->name('home');
+Route::get('/listagem/{type}', [ListController::class, 'list'])->name('listagem');
+Route::get('/listagem/{type}/{search}', [ListController::class, 'search'])->name('listagem.search');
+Route::get('/artigo/{slug}', PostShowController::class)->name('artigo');
+Route::get('/video/{slug}', VideoShowController::class)->name('video');
 
 // Adm
 Route::prefix('/admin')->group(function () {

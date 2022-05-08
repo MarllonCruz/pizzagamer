@@ -61,6 +61,10 @@ var repeat = function(activeClass) {
 				activeSlide.classList.remove('active');
 			});
 
+			btns.forEach((btn) => {
+				btn.classList.remove('active');
+			});
+
 			slides[i].classList.add('active');
 			btns[i].classList.add('active');
 			i++;
@@ -76,7 +80,7 @@ var repeat = function(activeClass) {
 	}
 	repeater();
 }
-//repeat();
+repeat();
 
 /* =======================================================
 *   Modal Open Video

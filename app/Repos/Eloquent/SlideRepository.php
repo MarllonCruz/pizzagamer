@@ -19,6 +19,33 @@ class SlideRepository extends AbstractRepository
     }
 
     /**
+     * @return array
+     */
+    public function allFront()
+    {   
+        $slides = $this->all();
+
+        $data = [];
+        foreach ($slides as $slide) {
+            if ($slide->article) {
+                $data[] = $slide->article;
+            }
+        }
+
+        /**
+         * if there is no article on the slides
+         * get article fakes
+         */
+        if (empty($data)) {
+            for ($i=0; $i < 5; $i++) { 
+                $data[] = Article::inRandomOrder()->where('type', 'post')->first();
+            }
+        }
+
+        return $data;
+    }
+
+    /**
      * @param Article $article
      * 
      * @return bool

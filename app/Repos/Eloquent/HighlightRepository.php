@@ -19,6 +19,22 @@ class HighlightRepository extends AbstractRepository
     }
 
     /**
+     * @return array
+     */
+    public function allFront()
+    {   
+        $highlights = $this->all();
+
+        $data = [];
+        foreach ($highlights as $key => $highlight) {
+            $data[$key] = $highlight->article ?? Article::inRandomOrder()->where('type', 'post')->first();
+            $data[$key]['position'] = $highlight->position;
+        }
+
+        return $data;
+    }
+
+    /**
      * @param Article $article
      * @param int $highlight_id
      * 

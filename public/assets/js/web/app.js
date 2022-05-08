@@ -73,6 +73,9 @@ var repeat = function repeat(activeClass) {
         activeSlide.classList.remove('active');
       });
 
+      btns.forEach(function (btn) {
+        btn.classList.remove('active');
+      });
       slides[i].classList.add('active');
       btns[i].classList.add('active');
       i++;
@@ -90,12 +93,12 @@ var repeat = function repeat(activeClass) {
   };
 
   repeater();
-}; //repeat();
+};
 
+repeat();
 /* =======================================================
 *   Modal Open Video
 * ======================================================= */
-
 
 $("[data-modal]").click(function (e) {
   e.preventDefault();

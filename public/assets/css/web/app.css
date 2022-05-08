@@ -755,13 +755,17 @@ footer {
 }
 
 .feed-highlights article.feed-news .body {
-    padding: 0 20px;
+    padding: 0px 20px 55px 20px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
 
 .feed-highlights article.feed-news .body a.feed {
     border-bottom: 1px solid var(--separate-color);
     padding: 10px 0;
     display: block;
+    flex: 1;
 }
 
 .feed-highlights article.feed-news .body a.feed:last-child {
@@ -771,6 +775,9 @@ footer {
 
 .feed-highlights article.feed-news .body a.feed img {
     height: 130px;
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
 }
 
 .feed-highlights article.feed-news .body a.feed span {
@@ -1007,6 +1014,7 @@ footer {
 .news_content article a.box-img img {
     border-radius: 15px;
     height: 200px;
+    width: 100%;
     object-fit: cover;
 }
 
