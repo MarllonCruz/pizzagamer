@@ -2,18 +2,21 @@
     <div class="feed-videos container center">
         <div class="header">
             <h4>Videos</h4>
+            <a href="{{ route('listagem', ['type' => 'video']) }}">Ver todos</a>
         </div>
         <div class="body">
             @foreach ($videos as $video)
-                <a class="video" href="#" 
-                    data-modal=".home_video_modal" 
-                    data-uri="{{ $video->video }}">
-                        <div class="box-img">
-                            <img src="{{ url('storage/' . $video->cover) }}" alt="">
-                            <i class="fa-solid fa-play"></i>
+                <div class="box">
+                    <div class="video" href="#" 
+                        data-modal=".home_video_modal" 
+                        data-uri="{{ $video->video }}">
+                            <div class="box-img">
+                                <img src="{{ url('storage/' . $video->cover) }}" alt="">
+                                <i class="fa-solid fa-play"></i>
+                            </div>
                         </div>
-                        <p>{{ $video->title }}</p>
-                </a>
+                    <a href="{{ route('video', ['uri' => $video->uri]) }}">{{ $video->title }}</a>
+                </div>
             @endforeach
         </div>
     </div>

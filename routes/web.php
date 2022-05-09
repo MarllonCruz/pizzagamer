@@ -24,8 +24,8 @@ Route::post('/listagem/s/{type}', [ListController::class, 'search'])->name('list
 Route::get('/listagem/s/{type}/{search}', [ListController::class, 'searchAction'])->name('listagem.search.action');
 Route::get('/listagem/noticia/{category}', [ListController::class, 'category'])->name('listagem.category');
 
-Route::get('/artigo/{slug}', PostShowController::class)->name('artigo');
-Route::get('/video/{slug}', VideoShowController::class)->name('video');
+Route::get('/noticia/{uri}', PostShowController::class)->name('noticia');
+Route::get('/video/{uri}', VideoShowController::class)->name('video');
 
 // Adm
 Route::prefix('/admin')->group(function () {

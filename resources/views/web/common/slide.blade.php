@@ -6,7 +6,7 @@
                 <div class="slide-info">
                     <h2>{{ $slide->title }}</h2>
                     <p>{{ $slide->description }}</p>
-                    <a href="#">Read More</a> 
+                    <a href="{{ route('noticia', ['uri' => $slide->uri]) }}">Mais Detalhes</a> 
                 </div>
             </div>
         @endforeach

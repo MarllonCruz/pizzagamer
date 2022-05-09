@@ -9,7 +9,10 @@ use App\Repos\Eloquent\CategoryRepository;
 use Illuminate\Http\Request;
 
 class ListController extends Controller
-{
+{   
+    /**
+     * @param string $type
+     */
     public function list($type)
     {  
         if ($type == "noticia") {
@@ -19,6 +22,10 @@ class ListController extends Controller
         }
     }
 
+    /**
+     * @param string $type
+     * @param SearchWebRequest $request
+     */
     public function search($type, SearchWebRequest $request)
     {   
         $search = $request->s;
@@ -32,6 +39,10 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param string $type
+     * @param string $search
+     */
     public function searchAction($type, $search)
     {   
         $search = filter_var($search, FILTER_SANITIZE_STRIPPED);
@@ -46,10 +57,15 @@ class ListController extends Controller
         }
     }
 
+    /**
+     * @param string $category_id
+     * @param ArticleRepository $articleRepository
+     * @param CategoryRepository $categoryRepository
+     */
     public function category($category_uri, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
     {   
         $category = $categoryRepository->handleFindByUri($category_uri);
-        $articles = $articleRepository->handleAllByCategory($category, 5);
+        $articles = $articleRepository->handleAllByCategory($category, 9);
  
         return view('web.pages.list', [
             'title'            => 'NOTÍCIAS',
@@ -62,6 +78,10 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param string|null $search
+     * @param ArticleRepository $articleRepository
+     */
     private function returnViewListPost(string $search = null, ArticleRepository $articleRepository)
     {   
 
@@ -82,6 +102,10 @@ class ListController extends Controller
         ]);
     }
 
+    /**
+     * @param string|null $search
+     * @param ArticleRepository $articleRepository
+     */
     private function returnViewListVideo(string $search = null, ArticleRepository $articleRepository)
     {
         $articles = ($search) 

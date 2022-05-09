@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class PostShowController extends Controller
 {
-    public function __invoke()
+    public function __invoke($uri)
     {
-        echo '1';
+        dd($uri);
     }
 }

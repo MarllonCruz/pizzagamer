@@ -7,8 +7,8 @@ use Illuminate\Http\Request;
 
 class VideoShowController extends Controller
 {
-    public function __invoke()
+    public function __invoke($uri)
     {
-        echo '2';
+        dd($uri);
     }
 }

@@ -23,6 +23,47 @@ main {
     min-height: 71vh;
 }
 
+/* =======================================================
+* 	Pagination
+* ======================================================= */
+.pagination-content {
+  margin: 0 auto;
+  padding: 50px 0 10px 0;
+}
+
+.pagination-content ul.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    row-gap: 30px;
+    column-gap: 10px;
+    padding: 0;
+}
+
+.pagination-content  ul.pagination li {
+    list-style: none;
+    margin: 0;
+}
+  
+.pagination-content ul.pagination li.disabled {
+    display: none;
+}
+  
+.pagination-content ul.pagination li a,
+.pagination-content ul.pagination li span {
+    color: var(--black);
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 10px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: var(--white);
+}
+  
+.pagination-content ul.pagination li span {
+    background-color: var(--gray);
+}
+
 /*WYSH HTMLCHARS*/
 .htmlchars {
     color: var(--color-default);
@@ -359,9 +400,14 @@ footer {
 	font-size: 15px;
 	font-weight: bold;
 	letter-spacing: 2px;
-	border: 2px solid var(--white);
+	border: 3px solid var(--white);
 	padding: 8px 20px;
 	border-radius: 30px;
+}
+
+.feed-slideshow .slide .slide-info a:hover {
+    background-color: var(--white);
+    color: var(--black);
 }
 
 
@@ -838,9 +884,20 @@ footer {
     color: var(--white);
 }
 
+.feed-videos .header {
+    display: flex;
+    justify-content: space-between;
+}
+
 .feed-videos .header h4 {
     color: var(--white-light);
+    font-size: 20px;
     margin-bottom: 10px;
+}
+
+.feed-videos .header a {
+    border-bottom: 2px solid var(--white);
+    height: 25px;
 }
 
 .feed-videos .body {
@@ -861,6 +918,7 @@ footer {
     overflow: hidden;
     margin-bottom: 5px;
     border-radius: 10px;
+    cursor: pointer;
 }
 
 .feed-videos .body .video .box-img img {

@@ -7,13 +7,13 @@
                     <!-- Feed Large -->
                     <article class="feed-large">
                         <div class="feed-info">
-                            <a class="feed-type" href="#">{{ $highlight->category->title }}</a>
-                            <a href="#">
+                            <a class="feed-type" href="{{ route('listagem.category', ['category' => $highlight->category->uri]) }}">{{ $highlight->category->title }}</a>
+                            <a href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                                 <h2>{{ $highlight->title }}</h2>
                                 <p>{{ $highlight->description }}</p>
                             </a>
                         </div>
-                        <a class="feed-cover" href="#">
+                        <a class="feed-cover" href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                             <img src="{{ url("storage/{$highlight->cover}") }}" alt="" />
                         </a>
                         <span class="feed-datetime">
@@ -25,13 +25,13 @@
                     <!-- Feed Medium -->
                     <article class="feed-medium">
                         <div class="feed-info">
-                            <a class="feed-type" href="#">{{ $highlight->category->title }}</a>
-                            <a href="#">
+                            <a class="feed-type" href="{{ route('listagem.category', ['category' => $highlight->category->uri]) }}">{{ $highlight->category->title }}</a>
+                            <a href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                                 <h2>{{ $highlight->title }}</h2>
                                 <p>{{ $highlight->description }}</p>
                             </a>
                         </div>
-                        <a class="feed-cover" href="#">
+                        <a class="feed-cover" href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                             <img src="{{ url("storage/{$highlight->cover}") }}" alt="" />
                         </a>
                         <span class="feed-datetime">
@@ -43,13 +43,13 @@
                     <!-- Feed Small Diff -->
                     <article class="feed-small diff">
                         <div class="feed-info">
-                            <a class="feed-type" href="https://www.google.com/">{{ $highlight->category->title }}</a>
-                            <a href="#">
+                            <a class="feed-type" href="{{ route('listagem.category', ['category' => $highlight->category->uri]) }}">{{ $highlight->category->title }}</a>
+                            <a href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                                 <h2>{{ $highlight->title }}</h2>
                                 <p>{{ $highlight->description }}</p>
                             </a>
                         </div>
-                        <a class="feed-cover" href="#">
+                        <a class="feed-cover" href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                             <img src="{{ url("storage/{$highlight->cover}") }}" alt="" />
                         </a>
                         <div class="feed-author">
@@ -67,13 +67,13 @@
                     <!-- Feed Small -->
                     <article class="feed-small">
                         <div class="feed-info">
-                            <a class="feed-type" href="#">{{ $highlight->category->title }}</a>
-                            <a href="#">
+                            <a class="feed-type" href="{{ route('listagem.category', ['category' => $highlight->category->uri]) }}">{{ $highlight->category->title }}</a>
+                            <a href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                                 <h2>{{ $highlight->title }}</h2>
                                 <p>{{ $highlight->description }}</p>
                             </a>
                         </div>
-                        <a class="feed-cover" href="#">
+                        <a class="feed-cover" href="{{ route('noticia', ['uri' => $highlight->uri]) }}">
                             <img src="{{ url("storage/{$highlight->cover}") }}" alt="" />
                         </a>
                         <span class="feed-datetime">
@@ -87,11 +87,11 @@
         <!-- Feed News -->
         <article class="feed-news">
             <div class="header">
-                <h4>News</h4>
+                <h4>Últimas notícia</h4>
             </div>
             <div class="body">
                 @foreach ($posts as $key => $post)
-                    <a class="feed" href="#1">
+                    <a class="feed" href="{{ route('noticia', ['uri' => $post->uri]) }}">
                         @if($key == 0) <img src="{{ url("storage/{$post->cover}") }}" alt=""> @endif
                         <span>{{ date_fmt_ago($post->opening_at) }}</span>
                         <h3>{{ $post->title }}</h3>
@@ -99,7 +99,7 @@
                 @endforeach
             </div>
             <div class="footer">
-                <a href="#10">ALL NEWS</a>
+                <a href="{{ route('listagem', ['type' => 'noticia']) }}">VER TODOS</a>
             </div>
         </article>
     </div>

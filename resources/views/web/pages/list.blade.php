@@ -42,6 +42,7 @@
 					</article>
 				@endforeach
 			</div>
+			{{ $articles->links('web.common.pagination-custom') }}
 		</section>
 	</main>
 @endsection
