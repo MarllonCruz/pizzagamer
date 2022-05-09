@@ -1,6 +1,10 @@
 @extends('web.template')
 
-@section('title', '- Notícias')
+@if ($type == 'noticia')
+	@section('title', ' - Notícias')
+@else
+	@section('title', ' - Videos')
+@endif
 
 @section('content')
 	<main class="width-full">
@@ -8,8 +12,9 @@
 			<div class="news-header">
 				<h1>{{ $title }}</h1>
 				<p>{{ $description }}</p>
-				<form class="search-box">
-					<input type="text" name="s" placeholder="{{ $placeholderInput }}">
+				<form class="search-box" method="post" action="{{ route("listagem.search", ['type' => $type]) }}">
+					@csrf
+					<input type="text" name="s" value="{{ $searchInput }}" placeholder="{{ $placeholderInput }}">
 					<button><i class="fa-solid fa-magnifying-glass"></i></button>
 				</form>
 			</div>
@@ -21,7 +26,10 @@
 						</a>
 						<header>
 							<p class="meta">
-								@if(!empty($article->category_id)) <a href="">{{ $article->category->title }}</a> •@endif 
+								@if(!empty($article->category_id)) 
+									<a href="{{ route('listagem.category', ['category' =>$article->category->uri]) }}"
+										>{{ $article->category->title }}</a> •
+								@endif 
 								{{ $article->user->fullName() }} • {{ date_fmt_custom($article->created_at) }}
 							</p>
 							<h2>

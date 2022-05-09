@@ -18,8 +18,12 @@ use App\Http\Controllers\Web\VideoShowController;
 
 // Web
 Route::get('/', HomeController::class)->name('home');
+
 Route::get('/listagem/{type}', [ListController::class, 'list'])->name('listagem');
-Route::get('/listagem/{type}/{search}', [ListController::class, 'search'])->name('listagem.search');
+Route::post('/listagem/s/{type}', [ListController::class, 'search'])->name('listagem.search');
+Route::get('/listagem/s/{type}/{search}', [ListController::class, 'searchAction'])->name('listagem.search.action');
+Route::get('/listagem/noticia/{category}', [ListController::class, 'category'])->name('listagem.category');
+
 Route::get('/artigo/{slug}', PostShowController::class)->name('artigo');
 Route::get('/video/{slug}', VideoShowController::class)->name('video');
 

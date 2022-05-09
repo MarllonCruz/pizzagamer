@@ -43,6 +43,17 @@ class ArticleRepository extends AbstractRepository
         return $articles->paginate($paginate);  
     }
 
+    public function handleAllByCategory(Category $category, int $paginate = null)
+    {
+        $articles = Article::where('category_id', $category->id)->orderBy('opening_at', 'DESC');
+
+        if (!$paginate) {
+            return $articles->get();
+        }
+
+        return $articles->paginate($paginate);
+    }
+
     /**
     * @return array|object|mixed|null
     */

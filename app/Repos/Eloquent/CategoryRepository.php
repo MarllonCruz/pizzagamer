@@ -93,4 +93,9 @@ class CategoryRepository extends AbstractRepository
 
         $category->delete();
     }
+
+    public function handleFindByUri(string $uri)
+    {
+        return Category::where('uri', $uri)->first();
+    }
 }

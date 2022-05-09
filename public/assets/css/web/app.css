@@ -15,7 +15,12 @@ body {
     line-height: 1.7;
     position: relative;
     overflow-x: hidden;
+    min-height: 100vh;
     background-color: var(--bg-body);
+}
+
+main {
+    min-height: 71vh;
 }
 
 /*WYSH HTMLCHARS*/
@@ -236,24 +241,24 @@ footer {
 }
 
 .footer-container h3 {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 600;
     color: var(--black-light);
 }
 
 .footer-container p {
-    font-size: 18px;
+    font-size: 16px;
     font-weight: 600;
 }
 .footer-container p svg {
     margin-right: 10px;
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .footer-container ul {
     display: flex;
     gap: 30px;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .footer-container ul li a:hover {
