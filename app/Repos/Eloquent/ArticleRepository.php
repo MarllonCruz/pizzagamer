@@ -20,9 +20,20 @@ class ArticleRepository extends AbstractRepository
      * 
      * @return Article|null
      */
-    public function findType(int $id, string $type): ?Article
+    public function findTypeId(int $id, string $type): ?Article
     {
         return Article::select()->where('id', $id)->where('type', $type)->first();
+    }
+
+    /**
+     * @param string $uri
+     * @param string $type
+     * 
+     * @return Article|null
+     */
+    public function findTypeUri(string $uri, string $type): ?Article
+    {
+        return Article::select()->where('uri', $uri)->where('type', $type)->first();
     }
 
     /**

@@ -47,7 +47,7 @@
                 @enderror
 
                 <div class="al-right">
-                    <button type="submit"><i class="fa-solid fa-square-check"></i> Criar Categoria</button>
+                    <button type="submit"><i class="fa-solid fa-square-check"></i> Atualizar Categoria</button>
                 </div>
             </form>
          </div>

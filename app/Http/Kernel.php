@@ -54,6 +54,7 @@ class Kernel extends HttpKernel
      * @var array<string, class-string|string>
      */
     protected $routeMiddleware = [
+        'check.level' => \App\Http\Middleware\CheckLevel::class,
         'permission.crud.user' => \App\Http\Middleware\PermissionCrudUser::class,
         'permission.crud.post' => \App\Http\Middleware\PermissionCrudPost::class,
         'auth' => \App\Http\Middleware\Authenticate::class,

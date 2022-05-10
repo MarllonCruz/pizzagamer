@@ -3,15 +3,15 @@
         <div class="nav-top">
             <p class="nav-top--numb">Cel: +01 123 456 7890</p>
             <ul class="nav-top--social">
-                <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
-                <li><a href="#"><i class="fa-brands fa-github-alt"></i></a></li>
+                <li><a><i class="fa-brands fa-twitter"></i></a></li>
+                <li><a><i class="fa-brands fa-linkedin-in"></i></a></li>
+                <li><a><i class="fa-brands fa-github-alt"></i></a></li>
             </ul>
         </div>
         <div class="nav-separate"></div>
         <div class="nav-menu">
             <div class="nav-menu--log">
-                <a href="#"><i class="fa-solid fa-ghost"></i>Ghost Gamer</a>
+                <a href="{{ route('home') }}"><i class="fa-solid fa-ghost"></i>Ghost Gamer</a>
             </div>
             <div class="nav-menu--menus">
                 <ul>

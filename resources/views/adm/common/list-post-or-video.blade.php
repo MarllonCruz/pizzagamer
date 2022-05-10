@@ -3,7 +3,7 @@
        <div class="post">
           <img src="{{ url('storage/' . $article->cover) }}" alt="">  
 
-          <a href="{{ route("{$route}.show", ["{$param}" => $article->id]) }}">{{ $article->title }}</a>
+          <a target="_blank" href="{{ route("{$route}.show", ["{$param}" => $article->id]) }}">{{ $article->title }}</a>
 
           <div class="status-post">
              <span><i class="fa-solid fa-clock"></i> {{ date_fmt($article->updated_at, 'd/m/Y H:i') }}</span>

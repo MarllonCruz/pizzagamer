@@ -39,10 +39,16 @@ class UserSeeder extends Seeder
         for ($i=0; $i < 12; $i++) { 
 
             $title = $faker->sentence(6);
-            $content = "<h3>{$faker->sentence(6)}</h3><p></p>
+            $content = "<h2>{$faker->sentence(6)}</h2><p></p>
                         <p>{$faker->sentence(10)}</p><p></p>
-                        <h5>{$faker->sentence(4)}</h5>
+                        <h3>{$faker->sentence(4)}</h3>
                         <p>{$faker->sentence(20)}</p><p></p>
+                        <p>{$faker->sentence(30)}</p>
+                        <ul>
+                            <li>{$faker->sentence(2)}</li>
+                            <li>{$faker->sentence(2)}</li>
+                            <li>{$faker->sentence(2)}</li>
+                        </ul>
                         <p>{$faker->sentence(30)}</p>";
             
             $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);

@@ -27,10 +27,6 @@ class PostController extends Controller
     public function __construct(Notify $notify)
     {
         $this->notify = $notify;
-        
-        $this->middleware('permission.crud.post', ['except' => [
-            'index', 'show', 'create', 'edit', 'search', 'categoriasIndex', 'categoriasCreate', 'categoriasEdit'
-        ]]);
     }
 
     /**
@@ -114,9 +110,7 @@ class PostController extends Controller
             return redirect()->route('artigos.index');
         }
 
-        return view('adm.posts.show', [
-            'article' => $article
-        ]);
+        return redirect()->route('noticia', ['uri' => $article->uri]);
     }
 
     /**

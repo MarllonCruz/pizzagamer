@@ -23,10 +23,6 @@ class VideoController extends Controller
     public function __construct(Notify $notify)
     {
         $this->notify = $notify;
-        
-        $this->middleware('permission.crud.post', ['except' => [
-            'index', 'show', 'create', 'edit', 'search'
-        ]]);
     }
 
      /**
@@ -88,9 +84,7 @@ class VideoController extends Controller
             return redirect()->route('artigos.index');
         }
 
-        return view('adm.videos.show', [
-            'article' => $article
-        ]);
+        return redirect()->route('noticia', ['uri' => $article->uri]);
     }
 
     /**
@@ -101,7 +95,7 @@ class VideoController extends Controller
     */
     public function edit(int $article_id, ArticleRepository $articleRepository)
     {
-        $article = $articleRepository->findType($article_id, 'video');
+        $article = $articleRepository->findTypeId($article_id, 'video');
 
         if (!$article) {
            $this->notify->warning('Video não encotrando para editar');
@@ -126,7 +120,7 @@ class VideoController extends Controller
      */
     public function update(VideoUpdateRequest $request, int $article_id, ArticleRepository $articleRepository)
     {    
-        $article = $articleRepository->findType($article_id, 'video');
+        $article = $articleRepository->findTypeId($article_id, 'video');
 
         if (!$article || $request->id != $article->id) {
             $this->notify->warning('Video não encotrando para editar');
@@ -149,7 +143,7 @@ class VideoController extends Controller
      */
     public function destroy(int $article_id, ArticleRepository $articleRepository)
     {   
-        $article = $articleRepository->findType($article_id, 'video');
+        $article = $articleRepository->findTypeId($article_id, 'video');
 
         if (!$article) {
             $this->notify->warning('Artigo não encotrando para editar');

@@ -22,10 +22,6 @@ class UserController extends Controller
    public function __construct(Notify $notify)
    {
        $this->notify = $notify;
-       
-        $this->middleware('permission.crud.user', ['except' => [
-           'index', 'show', 'create', 'edit', 'search'
-        ]]);
    }
 
    /**

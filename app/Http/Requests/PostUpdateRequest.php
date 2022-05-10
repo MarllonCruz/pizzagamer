@@ -15,7 +15,7 @@ class PostUpdateRequest
             'content' => 'required',
             'status' => Rule::in(['active', 'trash', 'draft']),
             'cover' => 'file|mimes:jpg,png|max:8192|dimensions:min_width=620,min_height=400',
-            'opening_at' => 'required|datetime'
+            'opening_at' => 'required'
         ];
     }
 
@@ -34,7 +34,7 @@ class PostUpdateRequest
             'cover.size'           => 'maximo do tamanho da imagem é 8MB (8192 KB)',
             'content.required'     => 'Preenche campo do conteúdo',
             'opening_at.required'  =>  'Seleciona a data de lançamento', 
-            'opening_at.date'      =>  'Seleciona a data de lançamento'  
+            'opening_at.datetime'      =>  'Seleciona a data de lançamento'  
         ];
     }
 }

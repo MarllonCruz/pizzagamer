@@ -54,13 +54,16 @@ tinyMCE.init({
     title: 'Normal',
     block: 'p'
   }, {
-    title: 'Titulo 3',
+    title: 'Titulo 1',
+    block: 'h2'
+  }, {
+    title: 'Titulo 2',
     block: 'h3'
   }, {
-    title: 'Titulo 4',
+    title: 'Titulo 3',
     block: 'h4'
   }, {
-    title: 'Titulo 5',
+    title: 'Titulo 4',
     block: 'h5'
   }, {
     title: 'Código',

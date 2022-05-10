@@ -56,9 +56,10 @@ tinyMCE.init({
     toolbar: "styleselect | pastetext | removeformat |  bold | italic | underline | strikethrough | bullist | numlist | alignleft | aligncenter | alignright |  link | unlink | fsphpimage | code | fullscreen",
     style_formats: [
         {title: 'Normal', block: 'p'},
-        {title: 'Titulo 3', block: 'h3'},
-        {title: 'Titulo 4', block: 'h4'},
-        {title: 'Titulo 5', block: 'h5'},
+        {title: 'Titulo 1', block: 'h2'},
+        {title: 'Titulo 2', block: 'h3'},
+        {title: 'Titulo 3', block: 'h4'},
+        {title: 'Titulo 4', block: 'h5'},
         {title: 'Código', block: 'pre', classes: 'brush: php;'}
     ],
     link_class_list: [
