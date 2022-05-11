@@ -2,16 +2,19 @@
 
 namespace App\Http\Controllers\Web;
 
+use Illuminate\Http\Request;
+use App\Models\Reports\Access;
 use App\Http\Controllers\Controller;
+use App\Repos\Eloquent\SlideRepository;
 use App\Repos\Eloquent\ArticleRepository;
 use App\Repos\Eloquent\HighlightRepository;
-use App\Repos\Eloquent\SlideRepository;
-use Illuminate\Http\Request;
 
 class HomeController extends Controller
 {
     public function __invoke(ArticleRepository $articleRepository, HighlightRepository $highlightRepository, SlideRepository $slideRepository)
     {   
+        (new Access())->report(true);
+        
         $slides     = $slideRepository->allFront();
         $highlights = $highlightRepository->allFront();
         $posts      = $articleRepository->handleAll('post', 5);

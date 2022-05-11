@@ -1,6 +1,6 @@
 @extends('web.template')
 
-@section('title', ' - Videos')
+@section('title', " - {$article->title}")
 
 @section('content')
 	 <!-- Article Video -->

@@ -95,10 +95,13 @@ var repeat = function repeat(activeClass) {
   repeater();
 };
 
-repeat();
+if (slides.length > 0) {
+  repeat();
+}
 /* =======================================================
 *   Modal Open Video
 * ======================================================= */
+
 
 $("[data-modal]").click(function (e) {
   e.preventDefault();

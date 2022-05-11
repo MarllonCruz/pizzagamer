@@ -33,7 +33,11 @@ class ArticleRepository extends AbstractRepository
      */
     public function findTypeUri(string $uri, string $type): ?Article
     {
-        return Article::select()->where('uri', $uri)->where('type', $type)->first();
+        $article = Article::select()->where('uri', $uri)->where('type', $type)->first();
+        $article->views += 1;
+        $article->save();
+
+        return $article; 
     }
 
      /**

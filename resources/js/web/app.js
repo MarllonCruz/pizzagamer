@@ -80,7 +80,9 @@ var repeat = function(activeClass) {
 	}
 	repeater();
 }
-repeat();
+if (slides.length > 0) {
+	repeat();
+}
 
 /* =======================================================
 *   Modal Open Video

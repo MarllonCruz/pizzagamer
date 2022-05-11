@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Web;
 
 use App\Http\Controllers\Controller;
+use App\Models\Reports\Access;
 use App\Repos\Eloquent\ArticleRepository;
 use Illuminate\Http\Request;
 
 class PostShowController extends Controller
-{
+{   
     public function __invoke($uri, ArticleRepository $articleRepository)
     {   
+        (new Access())->report(true);
         $article        = $articleRepository->findTypeUri($uri, 'post');
         $othersArticles = $articleRepository->othersArticles('post', $article->id);
         

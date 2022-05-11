@@ -1,6 +1,6 @@
 @extends('web.template')
 
-@section('title', ' - Notícias')
+@section('title', " - {$article->title}")
 
 @section('content')
 	<!-- Article Post -->
