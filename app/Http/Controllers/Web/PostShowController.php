@@ -10,12 +10,13 @@ class PostShowController extends Controller
 {
     public function __invoke($uri, ArticleRepository $articleRepository)
     {   
-        $article = $articleRepository->findTypeUri($uri, 'post');
+        $article        = $articleRepository->findTypeUri($uri, 'post');
+        $othersArticles = $articleRepository->othersArticles('post', $article->id);
         
         return view('web.pages.post', [
-            'article' => $article,
-            'type'    => 'noticia',
-            'page'    => 'post'
+            'page'           => 'post',
+            'article'        => $article,
+            'othersArticles' => $othersArticles
         ]);
     }
 }

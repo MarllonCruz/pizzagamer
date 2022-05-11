@@ -36,6 +36,18 @@ class ArticleRepository extends AbstractRepository
         return Article::select()->where('uri', $uri)->where('type', $type)->first();
     }
 
+     /**
+    * @param string $type 'post', 'video'
+    * @param int $ignoreId
+    * 
+    * @return Article|null
+    */
+    public function othersArticles(string $type, int $ignoreId)
+    {
+        return Article::inRandomOrder()
+                        ->where('type', $type)->where('id', '!=', $ignoreId)->limit(3)->get();
+    }
+
     /**
     * @param string $type 'post', 'video'
     * @param int|null $paginate

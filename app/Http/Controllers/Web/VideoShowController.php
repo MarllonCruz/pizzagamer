@@ -9,12 +9,13 @@ class VideoShowController extends Controller
 {
     public function __invoke($uri, ArticleRepository $articleRepository)
     {   
-        $article = $articleRepository->findTypeUri($uri, 'video');
+        $article        = $articleRepository->findTypeUri($uri, 'video');
+        $othersArticles = $articleRepository->othersArticles('video', $article->id);
         
         return view('web.pages.video', [
-            'article' => $article,
-            'type'    => 'video',
-            'page'    => 'video'
+            'page'           => 'video',
+            'article'        => $article,
+            'othersArticles' => $othersArticles
         ]);
     }
 }
