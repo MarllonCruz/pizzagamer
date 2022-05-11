@@ -8,7 +8,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\VideoCreateRequest;
 use App\Http\Requests\VideoUpdateRequest;
 use App\Repos\Eloquent\ArticleRepository;
-use App\Repos\Eloquent\CategoryRepository;
 
 class VideoController extends Controller
 {   

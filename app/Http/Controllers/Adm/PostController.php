@@ -12,7 +12,6 @@ use App\Http\Requests\PostUpdateRequest;
 use Illuminate\Support\Facades\Validator;
 use App\Repos\Eloquent\CategoryRepository;
 use App\Repos\Eloquent\ArticleRepository;
-use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {   

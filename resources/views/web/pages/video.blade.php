@@ -1,36 +1,27 @@
 @extends('web.template')
 
-@if ($type == 'noticia')
-	@section('title', ' - Notícias')
-@else
-	@section('title', ' - Videos')
-@endif
+@section('title', ' - Videos')
 
 @section('content')
-	<!-- Article -->
-    <main class="width-full">
-        <article class="article container center">
+	 <!-- Article Video -->
+     <main class="width-full">
+        <article class="article article-video container center">
             <h1>{{ $article->title }}</h1>
-            <img src="{{ url("storage/{$article->cover}") }}" alt="" >
+            <h3>{{ $article->description }}</h3>
+            <div class="video">
+                <iframe width="560" class="iframe_1"
+                    src="{{ $article->video }}"
+                    frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+            </div>
             <div class="info">
                 <div class="author">
-                    <div class="avatar">
-                        <img src="{{ url("storage/{$article->user->photo}") }}" alt="">
-                    </div>
-                    <div class="name">
-                        Por: {{ $article->user->fullName() }}
-                    </div>
+                    <div class="avatar"><img src="{{ url("storage/{$article->user->photo}") }}" alt=""></div>
+                    <div class="name">Por: {{ $article->user->fullName() }}</div>
                 </div>
-
-                <div class="date">
-                    {{ date_fmt_custom($article->created_at) }}
-                </div>
-            </div>
-
-            <div class="htmlchars">
-                {!! $article->content !!}
+                <div class="date">{{ date_fmt_custom($article->created_at) }}</div>
             </div>
         </article>
+    </main>
 
         <!-- Others Articles -->
         <section class="others-articles container center">

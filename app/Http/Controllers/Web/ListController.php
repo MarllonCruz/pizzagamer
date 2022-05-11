@@ -68,8 +68,8 @@ class ListController extends Controller
         $articles = $articleRepository->handleAllByCategory($category, 9);
  
         return view('web.pages.list', [
-            'title'            => 'NOTÍCIAS',
-            'description'      => "Confira nossas notícias em categoria (". $category->title .")",
+            'title'            => $category->title,
+            'description'      => $category->description,
             'placeholderInput' => 'Encontre um artigo:',
             'searchInput'      => null,
             'page'             => 'post',

@@ -2,8 +2,10 @@
 
 @if ($type == 'noticia')
 	@section('title', ' - Notícias')
+	<?php $routeUri =  'noticia' ?>
 @else
 	@section('title', ' - Videos')
+	<?php $routeUri =  'video' ?>
 @endif
 
 @section('content')
@@ -21,7 +23,7 @@
 			<div class="news_content mt-20">
 				@foreach ($articles as $article)
 					<article>
-						<a class="box-img" href="#">
+						<a class="box-img" href="{{ route($routeUri, ['uri' => $article->uri]) }}">
 							<img src="{{ url("storage/{$article->cover}") }}" alt="">
 						</a>
 						<header>
@@ -33,10 +35,10 @@
 								{{ $article->user->fullName() }} • {{ date_fmt_custom($article->created_at) }}
 							</p>
 							<h2>
-								<a href="">{{ $article->title }}</a>
+								<a href="{{ route($routeUri, ['uri' => $article->uri]) }}">{{ $article->title }}</a>
 							</h2>
 							<p> 
-								<a href=""><a href="">{{ $article->description }}</a></a> 
+								<a href="{{ route($routeUri, ['uri' => $article->uri]) }}">{{ $article->description }}</a> 
 							</p>
 						</header>
 					</article>

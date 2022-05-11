@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Adm;
 use App\Supports\Notify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Highlight;
 use App\Repos\Eloquent\ArticleRepository;
 use App\Repos\Eloquent\HighlightRepository;
 

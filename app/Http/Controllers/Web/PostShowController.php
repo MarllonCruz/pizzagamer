@@ -12,7 +12,7 @@ class PostShowController extends Controller
     {   
         $article = $articleRepository->findTypeUri($uri, 'post');
         
-        return view('web.pages.find', [
+        return view('web.pages.post', [
             'article' => $article,
             'type'    => 'noticia',
             'page'    => 'post'

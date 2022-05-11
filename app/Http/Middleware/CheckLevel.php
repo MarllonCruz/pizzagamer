@@ -24,15 +24,26 @@ class CheckLevel
     public function handle(Request $request, Closure $next, string $level)
     {   
         $levels = [
-            'visitor' => [1],
-            'admin'   => [4, 5, 6, 7],
-            'leader'  => [10]
+            'visitor' => [
+                'number' => [1],
+                'message' => ''
+            ],
+            'admin'   => [
+                'number' => [4, 5, 6, 7],
+                'message' => 'Você não tem permissão fazer ações no setores artigos, video, slides, destaques e usuários'
+            ],
+            'leader'  => [
+                'number' => [10],
+                'message' => 'Você não tem permissão fazer ações no setor usuários'
+            ]
         ];
 
         $levelIds = $levels[$level] ?? [];
+        $number   = $levelIds['number'] ?? [];
+        $message  = $levelIds['message'] ?? null;
 
-        if (!in_array(intval(auth()->user()->level), $levelIds)) {
-            $this->notify->warning('Você não tem permissão fazer ações no setores artigos, video, slides, destaques e usuários');
+        if (!in_array(intval(auth()->user()->level), $number)) {
+            $this->notify->warning($message);
             return redirect()->back();
         }
 
