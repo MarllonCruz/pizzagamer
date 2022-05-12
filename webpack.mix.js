@@ -28,6 +28,7 @@ mix
     .js('resources/js/adm/app.js', 'assets/js/adm/app.js')
 
     // Web
+    //.sass('resources/sass/web/app.scss', 'assets/css/web/app.update.css') 
     .js('resources/js/web/app.js', 'assets/js/web/app.js')
     
 

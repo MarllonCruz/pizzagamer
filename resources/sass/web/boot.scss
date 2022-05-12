@@ -1,72 +1,86 @@
 @font-face {
-    font-family: 'Fredoka';
-    src: url(fonts/Fredoka.ttf) format("truetype");
-} 
+  font-family: 'Fredoka';
+  src: url(../../fonts/Fredoka.ttf) format("truetype");
+}
 
 * {
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
+  font-family: 'Fredoka', sans-serif;
 
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
 }
 
 :root{
-    --white: #FFFFFF;
-    --white-light: #FCFCFC;
-    --black: #0F1013;
-    --black-light: #5a5a5afd;
-    --orange: #FD5E17;
-    --orange-light: #fb4d00;
-    --gray: #D6D6D6;
+  --white: #FFFFFF;
+  --white-light: #FCFCFC;
+  --black: #0F1013;
+  --black-light: #5a5a5afd;
+  --orange: #FD5E17;
+  --orange-light: #fb4d00;
+  --gray: #D6D6D6;
+  --blue: #2a6fff;
 
-    --separate-color: #19191914;
-    --bg-body: #EFEFEF;
-    --bg-black-light: #292a2c;
+  --separate-color: #19191914;
+  --bg-body: #EFEFEF;
+  --bg-black-light: #292a2c;
+
+  --weight-light: 300;
+  --weight-normal: 400;
+  --weight-bold: 600;
+  --weight-black: 900;
+
+  --radius-normal: 5px;
+  --radius-medium: 10px;
+  --radius-large: 20px;
+  --radius-round: 50%;
+
 }
-  
+
 h1, h2, h3, h4, h5, h6, figure {
-    color: var(--black);
-    font-family: "Fredoka", Arial, sans-serif;
-    font-weight: 400;
+  color: var(--black);
+  font-family: "Fredoka", Arial, sans-serif;
+  font-weight: 400;
 }
 
 img {
-    max-width: 100%;
+  max-width: 100%;
 }
 
 a {
-    text-decoration: none;
-    color: inherit;
+  text-decoration: none;
+  color: inherit;
 }
 
 li {
-    list-style: none;
+  list-style: none;
 }
 
 .width-full {
-    width: 100vw;
+  width: 100vw;
 }
 
 .center {
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 .flex-center {
-    display: flex;
-    justify-content: center;
-    align-items: c;
+  display: flex;
+  justify-content: center;
+  align-items: c;
 }
 
 .container {
-    max-width: 1100px;
+  max-width: 1100px;
 }
 
 .mt-20 {
-    margin-top: 20px;
+  margin-top: 20px;
 }
 
 .my-20 {
-    margin: 20px 0;
+  margin: 20px 0;
 }
+

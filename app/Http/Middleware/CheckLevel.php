@@ -29,7 +29,7 @@ class CheckLevel
                 'message' => ''
             ],
             'admin'   => [
-                'number' => [4, 5, 6, 7],
+                'number' => [4, 5, 6, 7, 8, 9, 10],
                 'message' => 'Você não tem permissão fazer ações no setores artigos, video, slides, destaques e usuários'
             ],
             'leader'  => [
