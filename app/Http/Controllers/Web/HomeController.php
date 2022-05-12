@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Web;
 
-use Illuminate\Http\Request;
 use App\Models\Reports\Access;
 use App\Http\Controllers\Controller;
 use App\Repos\Eloquent\SlideRepository;

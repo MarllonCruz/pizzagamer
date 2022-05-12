@@ -5,12 +5,10 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Article;
 use App\Models\Category;
-use App\Models\Slide;
 use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 use Illuminate\Database\Seeder;
 use Illuminate\Filesystem\Filesystem;
-use Illuminate\Support\Facades\Storage;
 
 class UserSeeder extends Seeder
 {
