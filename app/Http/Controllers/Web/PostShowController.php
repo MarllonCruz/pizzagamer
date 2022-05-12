@@ -11,10 +11,14 @@ class PostShowController extends Controller
 {   
     public function __invoke($uri, ArticleRepository $articleRepository)
     {   
-        (new Access())->report(true);
         $article        = $articleRepository->findTypeUri($uri, 'post');
+        if (!$article) {
+            return redirect()->route('home');
+        }
+        
         $othersArticles = $articleRepository->othersArticles('post', $article->id);
         
+        (new Access())->report(true);
         return view('web.pages.post', [
             'page'           => 'post',
             'article'        => $article,

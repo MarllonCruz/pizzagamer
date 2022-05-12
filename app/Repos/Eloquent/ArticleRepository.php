@@ -34,9 +34,12 @@ class ArticleRepository extends AbstractRepository
     public function findTypeUri(string $uri, string $type): ?Article
     {
         $article = Article::select()->where('uri', $uri)->where('type', $type)->first();
+        if (!$article) {
+            return null;
+        }
+
         $article->views += 1;
         $article->save();
-
         return $article; 
     }
 

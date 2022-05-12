@@ -65,6 +65,10 @@ class ListController extends Controller
     public function category($category_uri, ArticleRepository $articleRepository, CategoryRepository $categoryRepository)
     {   
         $category = $categoryRepository->handleFindByUri($category_uri);
+        if (!$category) {
+            return redirect()->route('listagem', ['type' => 'noticia']);
+        }
+        
         $articles = $articleRepository->handleAllByCategory($category, 9);
  
         return view('web.pages.list', [

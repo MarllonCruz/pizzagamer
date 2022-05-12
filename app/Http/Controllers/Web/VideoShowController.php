@@ -10,10 +10,14 @@ class VideoShowController extends Controller
 {
     public function __invoke($uri, ArticleRepository $articleRepository)
     {   
-        (new Access())->report(true);
         $article        = $articleRepository->findTypeUri($uri, 'video');
+        if (!$article) {
+            return redirect()->route('home');
+        }
+        
         $othersArticles = $articleRepository->othersArticles('video', $article->id);
         
+        (new Access())->report(true);
         return view('web.pages.video', [
             'page'           => 'video',
             'article'        => $article,
