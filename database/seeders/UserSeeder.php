@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
 
         // clear files image no path storage
         $file = new Filesystem;
-        $file->cleanDirectory('storage/app/public/article/factory');
+        $file->cleanDirectory('storage/app/public/article');
 
         for ($i=0; $i < 12; $i++) { 
 
@@ -49,7 +49,7 @@ class UserSeeder extends Seeder
                         </ul>
                         <p>{$faker->sentence(30)}</p>";
             
-            $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
+            $cover = $faker->image(storage_path('app/public/article/'), 620, 400, null, false);
 
             Article::create([
                 'user_id'     => $user->id,
@@ -58,7 +58,7 @@ class UserSeeder extends Seeder
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
                 'content'     => $content,
-                'cover'       => 'article/factory/' . $cover,
+                'cover'       => 'article/' . $cover,
                 'views'       => 0,
                 'type'        => 'post',
                 'status'      => 'active',
@@ -70,14 +70,14 @@ class UserSeeder extends Seeder
         for ($i=0; $i < 10; $i++) { 
 
             $title = $faker->sentence(6);
-            $cover = $faker->image(storage_path('app\public\article\factory'), 620, 400, null, false);
+            $cover = $faker->image(storage_path('app/public/article'), 620, 400, null, false);
 
             Article::create([
                 'user_id'     => $user->id,
                 'title'       => $title,
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
-                'cover'       => 'article/factory/' . $cover,
+                'cover'       => 'article/' . $cover,
                 'video'       => 'https://www.youtube.com/embed/X8NFkUQNeek',
                 'views'       => 0,
                 'type'        => 'video',

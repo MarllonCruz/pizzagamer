@@ -14,7 +14,7 @@ class CreateAccessesTable extends Migration
     public function up()
     {
         Schema::create('accesses', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->integer('users');
             $table->integer('views');
             $table->integer('pages');

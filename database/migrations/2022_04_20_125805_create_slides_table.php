@@ -14,7 +14,7 @@ class CreateSlidesTable extends Migration
     public function up()
     {
         Schema::create('slides', function (Blueprint $table) {
-            $table->id();
+            $table->bigIncrements('id');
             $table->bigInteger('article_id')->nullable();
             $table->integer('order');
         });
