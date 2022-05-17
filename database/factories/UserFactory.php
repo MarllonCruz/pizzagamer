@@ -18,7 +18,7 @@ class UserFactory extends Factory
         return [
             'first_name' => $this->faker->firstName(),
             'last_name' => $this->faker->lastName(),
-            'email' => 'ghostgamer@gmail.com',
+            'email' => 'pizzagamer@gmail.com',
             'password' => Hash::make('123456789'),
             'level' => '10',
             'genre' => null,

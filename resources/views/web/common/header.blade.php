@@ -12,7 +12,7 @@
         <div class="nav-menu">
             <div class="nav-menu--log">
                 <a href="{{ route('home') }}">
-                    <img src="{{ url('storage/article/default.png') }}" alt="" srcset="">
+                    <img src="{{ url('storage/media/pizza/default.png') }}" alt="" srcset="">
                     {{ config('app.name') }}
                 </a>
             </div>

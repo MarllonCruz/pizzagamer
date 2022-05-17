@@ -87,7 +87,7 @@
         <!-- Feed News -->
         <article class="feed-news">
             <div class="header">
-                <h4>Últimas notícia</h4>
+                <h4>Últimas notícias</h4>
             </div>
             <div class="body">
                 @foreach ($posts as $key => $post)

@@ -21,7 +21,7 @@
                 @csrf
 
                 <h1>
-                    <img src="{{ url('storage/article/default.png') }}" alt="" srcset="">
+                    <img src="{{ url('storage/media/pizza/default.png') }}" alt="" srcset="">
                     {{ config('app.name') }} Adm
                 </h1>
                 

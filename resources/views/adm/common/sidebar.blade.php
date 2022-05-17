@@ -1,6 +1,6 @@
 <aside id="menu-aside">
     <div class="logo">
-        Ghost Gamer Adm
+        {{ config('app.name') }} Adm
     </div>
     <nav class="nav-menu">
         <a href="{{ route('dash') }}" 
