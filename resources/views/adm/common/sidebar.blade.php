@@ -3,9 +3,9 @@
         Ghost Gamer Adm
     </div>
     <nav class="nav-menu">
-        {{-- <a href="{{ route('dash') }}" 
+        <a href="{{ route('dash') }}" 
             @if($page == 'dash') ?? class="active" @endif><i class="fa-solid fa-chart-simple"></i> Dashboard
-        </a> --}}
+        </a>
         <a href="{{ route('artigos.index') }}" 
             @if($page == 'post') ?? class="active" @endif><i class="fa-solid fa-newspaper"></i> Artigos
         </a>

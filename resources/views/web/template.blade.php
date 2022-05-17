@@ -5,7 +5,8 @@
 	<meta charset="UTF-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Ghost Gamer @yield('title')</title>
+	<title>{{ config('app.name') }} @yield('title')</title>
+	<link rel="icon" type="image/gif/png" href="{{ url('storage/article/default.png') }}"/>
 
 	 <!-- Fontawesome style -->
 	 <link rel="stylesheet" href="{{ url(mix('assets/css/fontawesome.css')) }}">

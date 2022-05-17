@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Ghost Gamer | Admin</title>
+    <title>{{ config('app.name') }} | Admin</title>
+    <link rel="icon" type="image/gif/png" href="{{ url('storage/article/default.png') }}">
 
     <!-- App Style -->
     <link rel="stylesheet" href="{{ url(mix('assets/css/adm/login.css')) }}">
@@ -19,7 +20,10 @@
             <form action="{{ route('admin.login') }}" method="post">
                 @csrf
 
-                <h1>Ghost Gamer Adm</h1>
+                <h1>
+                    <img src="{{ url('storage/article/default.png') }}" alt="" srcset="">
+                    {{ config('app.name') }} Adm
+                </h1>
                 
                 <div class="ajax_response"></div>
 

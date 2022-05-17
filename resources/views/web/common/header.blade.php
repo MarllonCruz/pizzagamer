@@ -11,7 +11,10 @@
         <div class="nav-separate"></div>
         <div class="nav-menu">
             <div class="nav-menu--log">
-                <a href="{{ route('home') }}"><i class="fa-solid fa-ghost"></i>Ghost Gamer</a>
+                <a href="{{ route('home') }}">
+                    <img src="{{ url('storage/article/default.png') }}" alt="" srcset="">
+                    {{ config('app.name') }}
+                </a>
             </div>
             <div class="nav-menu--menus">
                 <ul>

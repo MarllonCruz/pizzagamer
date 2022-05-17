@@ -1,1 +1,132 @@
-(()=>{function t(t){return function(t){if(Array.isArray(t))return e(t)}(t)||function(t){if("undefined"!=typeof Symbol&&null!=t[Symbol.iterator]||null!=t["@@iterator"])return Array.from(t)}(t)||function(t,n){if(!t)return;if("string"==typeof t)return e(t,n);var r=Object.prototype.toString.call(t).slice(8,-1);"Object"===r&&t.constructor&&(r=t.constructor.name);if("Map"===r||"Set"===r)return Array.from(t);if("Arguments"===r||/^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(r))return e(t,n)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.")}()}function e(t,e){(null==e||e>t.length)&&(e=t.length);for(var n=0,r=new Array(e);n<e;n++)r[n]=t[n];return r}var n=document.querySelector(".nav-menu--btn-open"),r=document.querySelector(".nav-menu--btn-close"),a=document.querySelector(".nav-menu--menus"),c=!1;n.addEventListener("click",(function(){c?(a.classList.remove("active"),c=!1):(a.classList.add("active"),c=!0)})),r.addEventListener("click",(function(){c&&(a.classList.remove("active"),c=!1)}));var i=document.querySelectorAll(".slide"),o=document.querySelectorAll(".btn");o.forEach((function(t,e){t.addEventListener("click",(function(){var t;t=e,i.forEach((function(t){t.classList.remove("active")})),o.forEach((function(t){t.classList.remove("active")})),i[t].classList.add("active"),o[t].classList.add("active"),e}))}));var s,l;i.length>0&&(s=document.getElementsByClassName("slide active"),l=1,function e(){setTimeout((function(){t(s).forEach((function(t){t.classList.remove("active")})),o.forEach((function(t){t.classList.remove("active")})),i[l].classList.add("active"),o[l].classList.add("active"),l++,i.length==l&&(l=0),l>=i.length||e()}),1e4)}()),$("[data-modal]").click((function(t){t.preventDefault();var e=$(".embed iframe"),n=$(this).data("modal"),r=$(this).data("uri");e.attr("src",r),$(n).fadeIn(200).css("display","flex")})),$(".j_modal_close").click((function(t){t.preventDefault(),$(t.target).hasClass("j_modal_close")&&$(".j_modal_close").fadeOut(200);var e=$(this).find("iframe");e&&e.attr("src",null)}))})();
+/******/ (() => { // webpackBootstrap
+var __webpack_exports__ = {};
+/*!*********************************!*\
+  !*** ./resources/js/web/app.js ***!
+  \*********************************/
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _iterableToArray(iter) { if (typeof Symbol !== "undefined" && iter[Symbol.iterator] != null || iter["@@iterator"] != null) return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) return _arrayLikeToArray(arr); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+/* =======================================================
+*   Btn Nav Menu
+* ======================================================= */
+var menuBtnOpen = document.querySelector('.nav-menu--btn-open');
+var menuBtnClose = document.querySelector('.nav-menu--btn-close');
+var menus = document.querySelector('.nav-menu--menus');
+var menuOpen = false;
+menuBtnOpen.addEventListener('click', function () {
+  if (!menuOpen) {
+    menus.classList.add('active');
+    menuOpen = true;
+  } else {
+    menus.classList.remove('active');
+    menuOpen = false;
+  }
+});
+menuBtnClose.addEventListener('click', function () {
+  if (menuOpen) {
+    menus.classList.remove('active');
+    menuOpen = false;
+  }
+});
+/* =======================================================
+*   Javascript sliders
+* ======================================================= */
+
+var slides = document.querySelectorAll('.slide');
+var btns = document.querySelectorAll('.btn');
+var currentSlide = 1; // slider manual navigation
+
+var manualNav = function manualNav(manual) {
+  slides.forEach(function (slide) {
+    slide.classList.remove('active');
+  });
+  btns.forEach(function (btn) {
+    btn.classList.remove('active');
+  });
+  slides[manual].classList.add('active');
+  btns[manual].classList.add('active');
+};
+
+btns.forEach(function (btn, i) {
+  btn.addEventListener('click', function () {
+    manualNav(i);
+    currentSlide = i;
+  });
+}); // slider autoplay navigation
+
+var repeat = function repeat(activeClass) {
+  var active = document.getElementsByClassName('slide active');
+  var i = 1;
+
+  var repeater = function repeater() {
+    setTimeout(function () {
+      _toConsumableArray(active).forEach(function (activeSlide) {
+        activeSlide.classList.remove('active');
+      });
+
+      btns.forEach(function (btn) {
+        btn.classList.remove('active');
+      });
+      slides[i].classList.add('active');
+      btns[i].classList.add('active');
+      i++;
+
+      if (slides.length == i) {
+        i = 0;
+      }
+
+      if (i >= slides.length) {
+        return;
+      }
+
+      repeater();
+    }, 10000);
+  };
+
+  repeater();
+};
+
+if (slides.length > 0) {
+  repeat();
+}
+/* =======================================================
+*   Modal Open Video
+* ======================================================= */
+
+
+$("[data-modal]").click(function (e) {
+  e.preventDefault();
+  var iframe = $(".embed iframe");
+  var modal = $(this).data("modal");
+  var uri = $(this).data("uri");
+  iframe.attr('src', uri);
+  $(modal).fadeIn(200).css("display", "flex");
+});
+/* =======================================================
+*   Modal Close Video
+* ======================================================= */
+
+$(".j_modal_close").click(function (e) {
+  e.preventDefault();
+
+  if ($(e.target).hasClass("j_modal_close")) {
+    $(".j_modal_close").fadeOut(200);
+  }
+
+  var iframe = $(this).find("iframe");
+
+  if (iframe) {
+    iframe.attr("src", null);
+  }
+});
+/******/ })()
+;
