@@ -31,7 +31,7 @@ class VideoController extends Controller
      */
     public function index(ArticleRepository $articleRepository)
     {   
-        $articles = $articleRepository->handleAll('video', 9);
+        $articles = $articleRepository->handleAll('video', false, 9);
 
         return view('adm.videos.home', [
             'page' => 'video',
