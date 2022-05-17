@@ -27,7 +27,8 @@ class HighlightRepository extends AbstractRepository
 
         $data = [];
         foreach ($highlights as $key => $highlight) {
-            $data[$key] = $highlight->article ?? Article::inRandomOrder()->where('type', 'post')->first();
+            $data[$key] = $highlight->article ?? Article::inRandomOrder()->where('type', 'post')
+                                                        ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))->first();
             $data[$key]['position'] = $highlight->position;
         }
 

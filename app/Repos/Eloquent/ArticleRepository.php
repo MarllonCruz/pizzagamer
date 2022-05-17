@@ -8,6 +8,7 @@ use App\Supports\Tools;
 use App\Models\Category;
 use App\Models\Highlight;
 use Illuminate\Support\Str;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
 
@@ -52,8 +53,10 @@ class ArticleRepository extends AbstractRepository
     */
     public function othersArticles(string $type, int $ignoreId)
     {
-        return Article::inRandomOrder()
-                        ->where('type', $type)->where('id', '!=', $ignoreId)->limit(3)->get();
+        return Article::inRandomOrder()->where('type', $type)
+                        ->where('status', 'active')
+                        ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                        ->where('id', '!=', $ignoreId)->limit(3)->get();
     }
 
     /**
@@ -63,9 +66,15 @@ class ArticleRepository extends AbstractRepository
     * 
     * @return Article|null
     */
-    public function handleAll(string $type, int $paginate = null, string $orderBy = 'DESC')
+    public function handleAll(string $type, bool $status, int $paginate = null, string $orderBy = 'DESC')
     {
-        $articles = Article::where('type', $type)->orderBy('id', $orderBy);   
+        $articles = Article::where('type', $type)
+                            ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                            ->orderBy('id', $orderBy);   
+
+        if ($status) {
+            $articles->where('status', 'active');
+        }
 
         if (!$paginate) {
             return $articles->get();
@@ -76,25 +85,23 @@ class ArticleRepository extends AbstractRepository
 
      /**
     * @param string $type 'post', 'video'
-    * @param int|null $paginate
     * @param string $orderBy = 'DESC'
     * 
     * @return Article|null
     */
-    public function latestNews(string $type, int $paginate = null, string $orderBy = 'DESC')
+    public function latestNews(string $type, string $orderBy = 'DESC')
     {
-        $articles = Article::where('type', $type)->orderBy('opening_at', $orderBy);   
-
-        if (!$paginate) {
-            return $articles->get();
-        }
-
-        return $articles->paginate($paginate);  
+        return Article::where('type', $type)->where('status', 'active')
+                        ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                        ->orderBy('opening_at', $orderBy)
+                        ->limit(5)
+                        ->get();     
     }
 
     public function handleAllByCategory(Category $category, int $paginate = null)
     {
-        $articles = Article::where('category_id', $category->id)->orderBy('opening_at', 'DESC');
+        $articles = Article::where('category_id', $category->id)
+                            ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))->orderBy('opening_at', 'DESC');
 
         if (!$paginate) {
             return $articles->get();
@@ -108,7 +115,9 @@ class ArticleRepository extends AbstractRepository
     */
     public function listPostsActive($model)
     {   
-        $slides = $model->select('article_id')->where('article_id', '!=', 'null')->get();
+        $slides = $model->select('article_id')
+                        ->where('article_id', '!=', 'null')
+                        ->get();
 
         $ids = [];
         foreach ($slides as $slide) {
@@ -118,6 +127,7 @@ class ArticleRepository extends AbstractRepository
         return Article::select()->whereNotIn('id', $ids)
             ->where('type', 'post')
             ->where('status', 'active')
+            ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
             ->get();
     }
 
@@ -224,8 +234,12 @@ class ArticleRepository extends AbstractRepository
      */
     public function handleSearch(string $search, string $type)
     {
-        $articles = Article::where('title','LIKE','%' . $search .'%')->where('type', $type)
-                            ->orWhere('description','LIKE','%' . $search . '%')->where('type', $type)
+        $articles = Article::where('title','LIKE','%' . $search .'%')
+                            ->where('type', $type)->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                            ->where('status', 'active')
+                            ->orWhere('description','LIKE','%' . $search . '%')
+                            ->where('type', $type)->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                            ->where('status', 'active')
                             ->paginate(9);
         return $articles;
     }

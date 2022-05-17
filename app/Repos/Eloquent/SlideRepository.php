@@ -38,7 +38,10 @@ class SlideRepository extends AbstractRepository
          */
         if (empty($data)) {
             for ($i=0; $i < 5; $i++) { 
-                $data[] = Article::inRandomOrder()->where('type', 'post')->first();
+                $data[] = Article::inRandomOrder()
+                                    ->where('type', 'post')
+                                    ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
+                                    ->first();
             }
         }
 

@@ -91,7 +91,7 @@ class ListController extends Controller
 
         $articles = ($search) 
             ? $articleRepository->handleSearch($search, 'post') 
-            : $articleRepository->handleAll('post', 9);
+            : $articleRepository->handleAll('post', true, 9);
  
         return view('web.pages.list', [
             'title'            => 'NOTÍCIAS',
@@ -114,7 +114,7 @@ class ListController extends Controller
     {
         $articles = ($search) 
         ? $articleRepository->handleSearch($search, 'video') 
-        : $articleRepository->handleAll('video', 9);
+        : $articleRepository->handleAll('video', true, 9);
 
         return view('web.pages.list', [
             'title'            => 'VIDEOS',

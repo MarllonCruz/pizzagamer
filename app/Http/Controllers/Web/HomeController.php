@@ -16,8 +16,8 @@ class HomeController extends Controller
 
         $slides     = $slideRepository->allFront();
         $highlights = $highlightRepository->allFront();
-        $posts      = $articleRepository->latestNews('post', 5);
-        $videos     = $articleRepository->handleAll('video', 4);
+        $posts      = $articleRepository->latestNews('post');
+        $videos     = $articleRepository->handleAll('video', true, 4);
         $page       = "home";
 
         return view('web.pages.index', compact('page', 'slides', 'highlights', 'posts', 'videos'));

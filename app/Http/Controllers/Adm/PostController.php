@@ -35,7 +35,7 @@ class PostController extends Controller
      */
     public function index(ArticleRepository $articleRepository)
     {   
-        $articles = $articleRepository->handleAll('post', 9);
+        $articles = $articleRepository->handleAll('post', false, 9);
 
         return view('adm.posts.home', [
             'page' => 'post',
