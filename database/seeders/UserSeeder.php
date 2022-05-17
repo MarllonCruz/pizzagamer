@@ -30,10 +30,6 @@ class UserSeeder extends Seeder
             'uri'         => Str::slug('Evento' , '-')
         ]);
 
-        // clear files image no path storage
-        $file = new Filesystem;
-        $file->cleanDirectory('storage/app/public/article');
-
         for ($i=0; $i < 12; $i++) { 
 
             $title = $faker->sentence(6);
@@ -48,8 +44,6 @@ class UserSeeder extends Seeder
                             <li>{$faker->sentence(2)}</li>
                         </ul>
                         <p>{$faker->sentence(30)}</p>";
-            
-            $cover = $faker->image(storage_path('app/public/article/'), 620, 400, null, false);
 
             Article::create([
                 'user_id'     => $user->id,
@@ -58,7 +52,7 @@ class UserSeeder extends Seeder
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
                 'content'     => $content,
-                'cover'       => 'article/' . $cover,
+                'cover'       => 'article/default.png',
                 'views'       => 0,
                 'type'        => 'post',
                 'status'      => 'active',
@@ -70,14 +64,13 @@ class UserSeeder extends Seeder
         for ($i=0; $i < 10; $i++) { 
 
             $title = $faker->sentence(6);
-            $cover = $faker->image(storage_path('app/public/article'), 620, 400, null, false);
 
             Article::create([
                 'user_id'     => $user->id,
                 'title'       => $title,
                 'uri'         => Str::slug($title, '-'),
                 'description' => $faker->sentence(10),
-                'cover'       => 'article/' . $cover,
+                'cover'       => 'article/default.png',
                 'video'       => 'https://www.youtube.com/embed/X8NFkUQNeek',
                 'views'       => 0,
                 'type'        => 'video',

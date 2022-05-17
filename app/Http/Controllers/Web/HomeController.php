@@ -13,7 +13,7 @@ class HomeController extends Controller
     public function __invoke(ArticleRepository $articleRepository, HighlightRepository $highlightRepository, SlideRepository $slideRepository)
     {   
         (new Access())->report(true);
-        
+
         $slides     = $slideRepository->allFront();
         $highlights = $highlightRepository->allFront();
         $posts      = $articleRepository->handleAll('post', 5);
