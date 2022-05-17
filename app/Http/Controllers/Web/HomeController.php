@@ -16,7 +16,7 @@ class HomeController extends Controller
 
         $slides     = $slideRepository->allFront();
         $highlights = $highlightRepository->allFront();
-        $posts      = $articleRepository->handleAll('post', 5);
+        $posts      = $articleRepository->latestNews('post', 5);
         $videos     = $articleRepository->handleAll('video', 4);
         $page       = "home";
 

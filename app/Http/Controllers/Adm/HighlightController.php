@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Adm;
 use App\Supports\Notify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Highlight;
 use App\Repos\Eloquent\ArticleRepository;
 use App\Repos\Eloquent\HighlightRepository;
 
@@ -54,7 +55,7 @@ class HighlightController extends Controller
         }
 
         $articleRepository = (new ArticleRepository());
-        $articles = $articleRepository->listPostsActive();
+        $articles = $articleRepository->listPostsActive($model = (new Highlight()));
 
         return view('adm.highlights.add', [
             'page' => 'highlight',

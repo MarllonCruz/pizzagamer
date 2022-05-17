@@ -6,6 +6,7 @@ use App\Models\Slide;
 use App\Models\Article;
 use App\Supports\Tools;
 use App\Models\Category;
+use App\Models\Highlight;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use App\Repos\Eloquent\AbstractRepository;
@@ -73,6 +74,24 @@ class ArticleRepository extends AbstractRepository
         return $articles->paginate($paginate);  
     }
 
+     /**
+    * @param string $type 'post', 'video'
+    * @param int|null $paginate
+    * @param string $orderBy = 'DESC'
+    * 
+    * @return Article|null
+    */
+    public function latestNews(string $type, int $paginate = null, string $orderBy = 'DESC')
+    {
+        $articles = Article::where('type', $type)->orderBy('opening_at', $orderBy);   
+
+        if (!$paginate) {
+            return $articles->get();
+        }
+
+        return $articles->paginate($paginate);  
+    }
+
     public function handleAllByCategory(Category $category, int $paginate = null)
     {
         $articles = Article::where('category_id', $category->id)->orderBy('opening_at', 'DESC');
@@ -87,9 +106,9 @@ class ArticleRepository extends AbstractRepository
     /**
     * @return array|object|mixed|null
     */
-    public function listPostsActive()
+    public function listPostsActive($model)
     {   
-        $slides = Slide::select('article_id')->where('article_id', '!=', 'null')->get();
+        $slides = $model->select('article_id')->where('article_id', '!=', 'null')->get();
 
         $ids = [];
         foreach ($slides as $slide) {

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Adm;
 use App\Supports\Notify;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Slide;
 use App\Repos\Eloquent\ArticleRepository;
 use App\Repos\Eloquent\SlideRepository;
 
@@ -46,7 +47,7 @@ class SlideController extends Controller
     */
     public function create(ArticleRepository $articleRepository)
     {
-        $articles = $articleRepository->listPostsActive();
+        $articles = $articleRepository->listPostsActive($model = (new Slide()));
 
         return view('adm.slides.add', [
             'page' => 'slide',

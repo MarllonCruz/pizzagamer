@@ -15,7 +15,7 @@ class MceUploadController extends Controller
 
             $image = $tools->fileUpload($request->image, 'post/content/');
             
-            $mce_image = '<img style="width: 100%;" src="' . url("storage/{$image}") . '" alt="{title}" title="{title}">';
+            $mce_image = '<img style="width: 100%;" src="' . url("storage/{$image}") . '" alt=">';
 
             return response()->json([
                 'mce_image' => $mce_image
