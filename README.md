@@ -4,7 +4,7 @@
 #### Link para CMS do projeto: http://pizzagamer.marlonweb.com/admin
 
 <div>
-<img src="pizzagamer.png" style="width: 100%"/>
+<img src="./pizzagamer.png" style="width: 100%"/>
 </div>
 
 ## Sobre o projeto
