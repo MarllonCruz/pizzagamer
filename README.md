@@ -1,4 +1,4 @@
-<p align="center"><a style="color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 26px; text-decoration: none;" href="http://pizzagamer.marlonweb.com/" target="_blank"><img src="public/storage/media/pizza/default.png" width="80">Pizza Gamer</a></p>
+<p align="center"><a style="color: #fff; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 26px; text-decoration: none;" href="http://pizzagamer.marlonweb.com/" target="_blank"><img src="./icon.png" width="80">Pizza Gamer</a></p>
 
 #### Link do site do projeto: https://pizzagamer.marlonweb.com
 #### Link para CMS do projeto: http://pizzagamer.marlonweb.com/admin
