@@ -66,15 +66,17 @@ class ArticleRepository extends AbstractRepository
     * 
     * @return Article|null
     */
-    public function handleAll(string $type, bool $status, int $paginate = null, string $orderBy = 'DESC')
+    public function handleAll(string $type, bool $date, bool $status, int $paginate = null, string $orderBy = 'DESC')
     {
-        $articles = Article::where('type', $type)
-                            ->whereDate('opening_at', '<', date('Y-m-d H:i:s'))
-                            ->orderBy('id', $orderBy);   
+        $articles = Article::where('type', $type)->orderBy('id', $orderBy);   
+
+        if ($date) {
+            $articles->whereDate('opening_at', '<', date('Y-m-d H:i:s'));
+        }
 
         if ($status) {
             $articles->where('status', 'active');
-        }
+        } 
 
         if (!$paginate) {
             return $articles->get();
