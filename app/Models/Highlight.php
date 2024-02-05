@@ -12,7 +12,8 @@ class Highlight extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'article_id', 'position',
+        'article_id',
+        'position',
     ];
 
     public function article()

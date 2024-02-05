@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class UserFactory extends Factory
-{   
+{
     protected $model = User::class;
 
     /**
@@ -16,8 +16,8 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'first_name' => $this->faker->firstName(),
-            'last_name' => $this->faker->lastName(),
+            'first_name' => 'Usuário',
+            'last_name' => 'Admin',
             'email' => 'pizzagamer@gmail.com',
             'password' => Hash::make('123456789'),
             'level' => '10',

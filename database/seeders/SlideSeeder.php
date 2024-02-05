@@ -15,10 +15,22 @@ class SlideSeeder extends Seeder
      */
     public function run()
     {
-        for ($i=1; $i <= 10 ; $i++) { 
+        $indexSlide = 1;
+        $limitCountSlide = 10;
+
+        $articles = Article::all();
+
+        foreach ($articles as $article) {
+            if ($indexSlide > $limitCountSlide) {
+                break;
+            }
+
             Slide::create([
-                'order' => $i
+                'order' => $indexSlide,
+                'article_id' => $article->getKey()
             ]);
+
+            $indexSlide++;
         }
     }
 }

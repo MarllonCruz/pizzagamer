@@ -11,7 +11,8 @@ class Slide extends Model
     use HasFactory;
 
     protected $fillable = [
-        'article_id', 'order',
+        'article_id',
+        'order',
     ];
 
     public $timestamps = false;

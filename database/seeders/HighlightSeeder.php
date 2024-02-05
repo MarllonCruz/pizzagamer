@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Article;
 use App\Models\Highlight;
 use Illuminate\Database\Seeder;
 
@@ -13,27 +14,31 @@ class HighlightSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
-        for ($i=1; $i <= 4 ; $i++) { 
+    {
+        for ($i = 1; $i <= 4; $i++) {
             Highlight::create([
                 'position' => 'small',
-                'title' => 'Pequeno'
+                'title' => 'Pequeno',
+                'article_id' =>  Article::inRandomOrder()->whereNotNull('category_id')->first()->getKey()
             ]);
         }
 
         Highlight::create([
             'position' => 'small diff',
-            'title' => 'Pequeno(p)'
+            'title' => 'Pequeno(p)',
+            'article_id' =>  Article::inRandomOrder()->whereNotNull('category_id')->first()->getKey()
         ]);
 
         Highlight::create([
             'position' => 'medium',
-            'title' => 'Médio'
+            'title' => 'Médio',
+            'article_id' =>  Article::inRandomOrder()->whereNotNull('category_id')->first()->getKey()
         ]);
 
         Highlight::create([
             'position' => 'large',
-            'title' => 'Grande'
+            'title' => 'Grande',
+            'article_id' =>  Article::inRandomOrder()->whereNotNull('category_id')->first()->getKey()
         ]);
     }
 }
